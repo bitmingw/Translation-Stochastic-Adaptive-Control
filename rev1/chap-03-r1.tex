@@ -1,1 +1,33 @@
-\chapter{...} % Properties of Linear Stochastic Systems
+\chapter{线性随机系统的性质} % Properties of Linear Stochastic Systems
+
+本章简要介绍了含有输入干扰和测量误差的线性随机系统模型，并重点讨论了当干扰是高斯噪声时的情况。本章推导了状态和测量过程的平均值和协方差和递推公式。递推中的渐近性质和状态方程中的稳定性密切相关。最后，本章说明线性高斯系统的状态和高斯-马尔可夫过程之间存在联系。
+
+\section{线性高斯系统}
+
+对于n维随机变量$z$，
+\begin{equation}
+z \sim N(\overline{z},\Sigma) \quad or \quad p(z) \sim N(\overline{z},\Sigma)
+\end{equation}
+指出$z$服从平均值为$\overline{z}$，协方差为$\Sigma$的高斯分布。\\
+其中$z$的概率分布是
+\begin{equation}
+p(z) \ = \ [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} \ exp[{{-1}/2} \ (z - \overline{z})^T \ \Sigma^{-1} \ (z - \overline{z})]
+\end{equation}
+式中$\vert \Sigma \vert$代表$det \ \Sigma$。\\
+
+对于线性随机系统
+\begin{subequations}
+\begin{align}
+x_{k+1} &= A \ x_k + B \ u_k + G \ w_k \\
+y_k &= C \ x_k + H \ v_k
+\end{align}
+\end{subequations}
+式中$x_k \in R^n$，$u_k \in R^m$，$y_k \in R^p$，$w_k \in R^g$，$v_k \in R^h$且$A$，$B$，$G$，$C$，$H$为相应大小的固定矩阵。假设独立随机变量$x_0, \ w_0, \ w_1,..., \ v_0, \ v_1,...$均服从高斯分布：
+\begin{equation}
+x_0 \sim N(\overline{x_0},\Sigma_0), \quad w_k \sim N(0,Q), \quad v_k \sim N(0,R) 
+\end{equation}
+\\
+
+为了计算该系统的一步转移概率，我们可以直接运用公式(2.6.7)，但从最初的原理开始可以获得更有建设性的解释。因为$w_k$服从高斯分布，$G \ w_k$也服从高斯分布。其平均值为$E \ G \ w_k \ = \ G \ E \ w_k = 0$，其协方差为$E \ (G \ w_k)(G \ w_k)^T \ = \ G \ E \ w_k {w_k}^T \ G^T \ = \ GQG^T$。因此$G \ w_k$服从$G \ w_k \sim N(0,GQG^T)$。\\
+
+% ==== End of Page 23 ====
