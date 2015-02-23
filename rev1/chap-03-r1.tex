@@ -6,28 +6,66 @@
 
 对于n维随机变量$z$，
 \begin{equation}
-z \sim N(\overline{z},\Sigma) \quad or \quad p(z) \sim N(\overline{z},\Sigma)
+z \sim N(\overline{z},\Sigma) \quad or \quad p(z) \sim N(\overline{z},\Sigma) \label{eq:3.1}
 \end{equation}
 指出$z$服从平均值为$\overline{z}$，协方差为$\Sigma$的高斯分布。\\
 其中$z$的概率分布是
 \begin{equation}
-p(z) \ = \ [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} \ exp[{{-1}/2} \ (z - \overline{z})^T \ \Sigma^{-1} \ (z - \overline{z})]
+p(z) \ = \ [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} \ exp[{{-1}/2} \ (z - \overline{z})^T \ \Sigma^{-1} \ (z - \overline{z})] \label{eq:3.2}
 \end{equation}
 式中$\vert \Sigma \vert$代表$det \ \Sigma$。\\
 
 对于线性随机系统
 \begin{subequations}
 \begin{align}
-x_{k+1} &= A \ x_k + B \ u_k + G \ w_k \\
-y_k &= C \ x_k + H \ v_k
+x_{k+1} &= A \ x_k + B \ u_k + G \ w_k \label{eq:3.3a} \\
+y_k &= C \ x_k + H \ v_k \label{eq:3.3b}
 \end{align}
 \end{subequations}
 式中$x_k \in R^n$，$u_k \in R^m$，$y_k \in R^p$，$w_k \in R^g$，$v_k \in R^h$且$A$，$B$，$G$，$C$，$H$为相应大小的固定矩阵。假设独立随机变量$x_0, \ w_0, \ w_1,..., \ v_0, \ v_1,...$均服从高斯分布：
 \begin{equation}
-x_0 \sim N(\overline{x_0},\Sigma_0), \quad w_k \sim N(0,Q), \quad v_k \sim N(0,R) 
+x_0 \sim N(\overline{x_0},\Sigma_0), \quad w_k \sim N(0,Q), \quad v_k \sim N(0,R). \label{eq:3.4}
 \end{equation}
-\\
 
-为了计算该系统的一步转移概率，我们可以直接运用公式(2.6.7)，但从最初的原理开始可以获得更有建设性的解释。因为$w_k$服从高斯分布，$G \ w_k$也服从高斯分布。其平均值为$E \ G \ w_k \ = \ G \ E \ w_k = 0$，其协方差为$E \ (G \ w_k)(G \ w_k)^T \ = \ G \ E \ w_k {w_k}^T \ G^T \ = \ GQG^T$。因此$G \ w_k$服从$G \ w_k \sim N(0,GQG^T)$。\\
+为了计算该系统的一步转移概率，我们可以直接运用公式(2.6.7) % Should be \eqref{eq:2.6.7}
+，但从最初的原理开始可以获得更有建设性的解释。因为$w_k$服从高斯分布，$G \ w_k$也服从高斯分布。其平均值为$E \ G \ w_k \ = \ G \ E \ w_k = 0$，其协方差为$E \ (G \ w_k)(G \ w_k)^T \ = \ G \ E \ w_k {w_k}^T \ G^T \ = \ GQG^T$。因此$G \ w_k$服从$G \ w_k \sim N(0,GQG^T)$。\\
 
 % ==== End of Page 23 ====
+
+因为假设上述的随机变量是相互独立的，所以对于任意反馈法则$g$，$w_k$与$x_k$和$u_k$相互独立。从\eqref{eq:3.3a}可以看出，在已知$x_k$和$u_k$时$x_{k+1}$的条件概率分布等同于$G \ w_k$的概率分布的平均值偏移了$A \ x_k + B \ u_k$。因此系统的状态转移概率是
+\begin{equation}
+p(x_{k+1} \vert x_k,u_k) \sim N(A \ x_k + B \ u_k, GQG^T). \label{eq:3.5}
+\end{equation}
+代入式\eqref{eq:3.2}可得表达式
+\begin{align*}
+p(x_{k+1} \vert x_k,u_k) = & K \ exp[{-1}/2 \ (x_{k+1} - A \ x_k - B \ u_k)^T \\
+                           & \times (GQG^T)^{-1} \ (x_{k+1} - A \ x_k - B \ u_k)]
+\end{align*}
+式中的$K$为归一化常数
+\begin{equation*}
+K = [(2 \pi)^n \ \vert GQG^T \vert]^{{-1}/2}.
+\end{equation*}
+
+类似地可以得到输出概率（观测概率）为
+\begin{equation}
+p(y_k \vert x_k) \sim N(C \ x_k, HRH^T). \label{eq:3.6}
+\end{equation}
+
+下面计算系统的$m$步转移概率。设$g$为满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$且$g_{k+1},...,g_{k+m-1}$为常值函数的任何反馈法则。设$\{x_k\},\{y_k\}$为相应的系统状态和输出过程。由定义(2.6.14) % May be \ref(def:2.6.14)
+可知$m$步转移概率是已知$x_k,u_k,...u_{k+m-1}$时$x_{k+m}$的条件概率，它与反馈法则$g$无关。由定义(2.6.16) % May be \ref(def:2.6.16)
+可以用更简单的方式直接计算此概率。从公式\eqref{eq:3.3a}可得
+\begin{equation}
+x_{k+m} = A^m \ x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j} + \sum_{j=0}^{m-1} A^{m-1-j} G \ w_{k+j}. \label{eq:3.7}
+\end{equation}
+因为随机变量$\{w_{k+j},j \ge 0\}$服从高斯分布，且与$x_k$，$u_k$，$u_{k+j},j \ge 1$相互独立，故从公式\eqref{eq:3.7}可知
+\begin{equation}
+p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \Sigma_{k+m \vert k}) \label{eq:3.8}
+\end{equation}
+式中$\Sigma_{k+m \vert k}$等同于$cov(\sum_{j=0}^{m-1} A^{m-1-j} G \ w_{k+j})$。这个协方差的计算与$w_k$的值无关：
+\begin{align}
+\Sigma_{k+m \vert k} &= cov(\Sigma_{j=0}^{m-2} A^{m-1-j} G \ w_{k+j}) + cov(G \ w_{k+m-1}) \nonumber \\
+% ==== End of Page 24 ====
+&= cov(A \Sigma_{j=0}^{m-2} A^{m-2-j} G \ w_{k+j}) + GQG^T \nonumber \\
+&= A [cov(\Sigma_{j=0}^{m-2} G \ w_{k+j})] A^T + GQG^T \nonumber \\
+&= A \Sigma_{k+m-1 \vert k} A^T + GQG^T \label{eq:3.9}
+\end{align}
