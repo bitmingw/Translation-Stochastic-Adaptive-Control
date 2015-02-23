@@ -1,0 +1,3 @@
+# The purpose of this file is to checkin the directory "fig"
+# When you do have some files in the directory, you can remove the following line
+!.gitignore

@@ -1,0 +1,150 @@
+% \tracingstats=2 %%跟踪内存使用情况
+
+%------------把查到的专有名词翻译放在下面-------------
+%adaptive control 自适应控制
+
+
+% \documentclass[CJK,twoside,12pt,openany,a4paper,punct,fancyhdr]{ctexbook}
+\documentclass[CJK]{cctbook}
+
+%---------------调入一些宏包----------------------------
+\usepackage{latexsym,amssymb,amsmath,amsbsy,amsopn,amstext,amsxtra,color,multicol,bm,calc,ifpdf}
+\usepackage{indentfirst} %段首缩进
+\usepackage{times} %Times-Roman字体
+\usepackage{mathtools} %一些数学命令
+\usepackage{longtable} %跨页表格
+\usepackage{bm} %加粗数学字体
+\usepackage{mathrsfs} %rsfs数学字体
+% \usepackage{listings} %插入程序代码
+
+
+%---------------设置页面边距----------------------------
+\usepackage[top=3.5cm,bottom=2.6cm,left=3cm,right=2.6cm]{geometry}
+
+%-----------------页脚页眉设置------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\addtolength{\headwidth}{\marginparsep-0.4in}
+\addtolength{\headwidth}{\marginparwidth}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries \nouppercase \rightmark}
+\fancyhead[RE]{\bfseries \nouppercase \leftmark}
+\fancypagestyle{plain}{%
+\fancyhead{} % get rid of headers
+\renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+
+
+%-----------------定义参考文献的相关参量---------------
+% \usepackage[superscript]{cite}
+% \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}%自定义\upcite命令使参考文献以上标出现
+% \usepackage{natbib}
+% \usepackage{overcite}%参考文献上标形式
+% \usepackage{bibunits}%支持多个参考文献
+% \let\oldinclude\include%保存原有的\include命令定义
+% \def\include#1{\oldinclude{#1}\putbib}%重定义\include，自动加上\putbib
+% \bibliographyunit[\chapter]%设置每一章都有参考文献
+% \bibliography*{mybib} %设置参考文献数据库
+% \bibliographystyle*{unsrt} %设置参考文献样式
+
+%-----------------超链接、PDF书签---------------
+% \usepackage[CJKbookmarks,bookmarksnumbered]{hyperref}
+
+
+%-----------------定义图表的标签文字---------------
+% \renewcommand{\refname}{参考文献} %参考文献几个字用中文显示
+% \renewcommand{\figurename}{图} %Figure X.X表示为图X.X
+% \renewcommand{\lstlistingname}{表} %listingX.X表示为表X.X
+
+%-----------------设置图、表、公式编号的样式---------------
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+
+
+%-----------------将所有物理单位定义为正体---------------------
+\def\mr{\textrm{mr}}
+\def\s{\textrm{s}}
+\def\g{\textrm{g}}
+\def\Hz{\textrm{Hz}}
+
+%----------------------插图设置--------------------------------------
+\usepackage{graphicx} %调入插图所需宏包
+\graphicspath{{./}{fig/}}%表示图片所在的子目录
+\ifpdf
+  \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+  \DeclareGraphicsRule{*}{eps}{*}{}
+\fi
+
+%----------------------新的定理环境和命令-------------------------------------
+\newcommand{\der}[2]{\frac{\partial {#1}}{\partial {#2}}}
+
+%%定理环境设置
+\newtheorem{Thm}{定理}[section]
+\newtheorem{thm}{定理}[section]
+\newtheorem{Def}{定义}[section]
+\newtheorem{defn}{定义}[section]
+\newtheorem{Ass}{假设}[section]
+\newtheorem{Rem}{注释}[section]
+\newtheorem{Lem}{引理}[section]
+\newtheorem{Pro}{命题}[section]
+\newtheorem{Exa}{例子}[section]
+\newtheorem{Cor}{推论}[section]
+ 
+
+%----------------------草稿阶段加快编译-------------------------------------
+% \includeonly{chap-01} %%去掉注释，只编译指定的章节
+% \def\includegraphics[#1]#2{#2} %%去掉注释，跳过图片的插入
+
+%
+%原书下载地址： http://cesg.tamu.edu/wp-content/uploads/2014/09/Kumar-Varaiya-Textbook.pdf
+
+\begin{document}%
+% \begin{CJK*}{GBK}{song}%
+
+%----------------------定义书的作者和标题-------------------------------------
+\def\eauthor{P. R. Kumar and P. Varaiya}
+\def\cauthor{马宏宾、陈孙杰、周浩、李亚超、文铭、郝维铭、刘思达、桑田等}
+\def\etitle{Stochastic Systems: Estimation, Identification and Adaptive Control}
+\def\ctitle{随机系统：估计，辨识，自适应控制}
+
+
+%----------------------书的封面-------------------------------------
+\author{ 原著：\eauthor\\ 翻译：\cauthor }
+\title{\ctitle\\ \large \etitle}
+\date{}
+\maketitle
+
+\tableofcontents 
+
+\include{chap-preface} % Preface --李亚超
+\include{chap-01} % Introduction --陈孙杰
+\include{chap-02} % State Space Models --刘思达
+\include{chap-03} % Properties of Linear Stochastic Systems --文铭
+\include{chap-04} % Controlled Markov Chain Models --文铭
+\include{chap-05} % Input Output Models --刘思达
+\include{chap-06} % Dynamic Programming --桑田
+\include{chap-07} % Linear Systems: Estimation and Control --郝维铭
+\include{chap-08} % Infinite Horizon Dynamic Programming --桑田
+\include{chap-09} % Introduction to System Identification --陈孙杰
+\include{chap-10} % Linear System Identification --郝维铭
+\include{chap-11} % Bayesian Adaptive Control --周浩
+\include{chap-12} % Non-Bayesian Adaptive Control --周浩
+\include{chap-13} % Self-Tuning Regulators for Linear Systems --李亚超
+
+
+%附录部分，网上电子版（第三版）有该附录
+\begin{appendix}\renewcommand{\thechapter}{\Alph{chapter}.}
+\end{appendix}
+
+%参考文献
+\bibliography{mybib}
+\bibliographystyle{plain} 
+
+% \end{CJK*}
+
+\end{document}
