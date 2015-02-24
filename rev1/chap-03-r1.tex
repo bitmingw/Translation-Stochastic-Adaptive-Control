@@ -145,3 +145,42 @@ $y_{k+m}$的方差定义为
 &= C A^m \Sigma_k C^T, \quad m \ge 1. \label{eq:3.16}
 \end{align}
 下面我们通过一个练习检测时变线性随机系统。
+
+练习 % should be defined later
+
+除了公式\eqref{eq:3.3}和\eqref{eq:3.4}的非时变系统之外，也有如下的时变系统
+\begin{align*}
+x_{k+1} \ = \ A^k \ x_k + B^k \ u_k + G_k \ w_k,
+y_k \ = \ C_k \ x_k + H_k \ v_k,
+\end{align*}
+且独立变量服从高斯分布
+\begin{equation*}
+x_0 \sim N(\overline{x}_0, \Sigma_0), \quad w_k \sim N(0, Q_k), \quad v_k \sim N(0, R_k).
+\end{equation*}
+请证明$m$步转移概率也服从高斯分布
+\begin{align*}
+p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim \\
+N(A_{k+m-1} .. A_k \ x_k + \sum_{j=0}^{m-1} A_{k+m-1} .. A_{k+j+1} B_{k+j} \ u_{k+j}, \Sigma_{k+m \vert k}).
+\end{align*}
+并且高斯分布的协方差可以使用时变线性差分方程计算
+\begin{align*}
+\Sigma_{k+m \vert k} &= A_{k+m-1} \Sigma_{k+m-1 \vert k} A_{k+m-1}^T + G_{k+m-1} Q_{k+m-1} G_{k+m-1}^T, \\
+\Sigma_{k \vert k} &= 0.
+\end{align*}
+
+在上文中我们均假设系统的输入噪声$\{w_k\}$是一个独立过程。下面的练习将展示如何通过扩大状态向量消除这个假设。
+
+练习 % should be defined later
+
+假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的。因此系统\eqref{eq:3.3}, \eqref{eq:3.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
+\begin{equation*}
+\xi_{k+1} = F \ \xi_k + \epsilon_k; \quad w_k = D \ \xi_k + \delta_k,
+\end{equation*}
+其中变量$\{x_0,\xi_0,...,v_0,...,\epsilon_0,...,\delta_0,...$都相互独立且服从高斯分布。证明$\{y_k\}$可以表示为一个线性随机系统。
+【提示：可将状态向量改写为$\zeta_k := (x_k^T,\xi_k^T)^T$】
+
+因此线性随机系统的定义可以扩大到系统输入噪声为经过线性随机系统过滤后的高斯白噪声的情形。
+
+% ==== End of Page 27 ====
+
+\section{线性非高斯系统}
