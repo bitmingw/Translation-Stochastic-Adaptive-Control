@@ -102,8 +102,46 @@ p_{x_k}^g \sim N(\overline{x_k}, \Sigma_k)
 \overline{x_k} &= A^k \ \overline{x_0} + \sum_{j=0}^{k-1} A^{k-1-j} B \ u_j, \nonumber \\
 \Sigma_k &= cov(A^k \ x_0 + \sum_{j=0}^{k-1} A^{k-1-j} G \ w_j) \nonumber \\
 &= cov(A(A^{k-1} \ x_0 + \sum_{j=0}^{k-2} A^{k-2-j} G \ w_j)) + cov(G \ w_{k-1}) \nonumber \\
-&= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \\
-\Sigma_0 &= cov(x_0).
+&= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.12} \\
+\Sigma_0 &= cov(x_0). \label{eq:3.13}
 \end{align}
 因此$\{x_k\}$的概率分布可以递归地计算出来。
 
+为了计算协方差$\Sigma_{k+m,k}$的值，从它的定义出发
+\begin{equation*}
+\Sigma_{k+m,k} \ := \ E \ (x_{k+m} - \overline{x}_{k+m}) (x_k - \overline{x}_k)^T.
+\end{equation*}
+从公式\eqref{eq:3.7}可得
+\begin{equation*}
+x_{k+m} - \overline{x}_{k+m} = A^m (x_k - \overline{x}_k) + \sum_{j=0}^{m-1} A^{m-1-j} G \ w_{k+j}
+\end{equation*}
+因为$x_k$与$w_{k+j}, j \ge 0$相互独立，所以
+\begin{equation}
+\Sigma_{k+m,k} = A^m \Sigma_{k}. \label{eq:3.14}
+\end{equation}
+注意到均值$\overline{x}_k$只由控制过程$\{u_k\}$决定，但协方差$\Sigma_{k+m,k}$受到更多的因素影响。
+
+当$g$是开环时，过程$y_k$服从高斯分布。从公式$\eqref{eq:3.3b}$可以看出
+\begin{equation*}
+p_{y_k}^g \sim N(\overline{y}_k, \Sigma_{k}^{y})
+\end{equation*}
+其中均值为
+\begin{equation*}
+\overline{y}_k \ := \ E \ y_k \ = \ C \ E \ x_k \ = \ C (A^k \ \overline{x}_0 + \sum_{j=0}^{k-1} A^{k-1-j} B \ u_j)
+\end{equation*}
+方差为
+\begin{equation}
+\Sigma_k^y \ = \ cov(C \ x_k) + cov(H \ v_k) \ = \ C \Sigma_k C^T + HRH^T. \label{eq:3.15}
+\end{equation}
+同时可以得到$y_{k+m}$和$y_k$的方差。
+% ==== End of Page 26 ====
+$y_{k+m}$的方差定义为
+\begin{equation*}
+\Sigma_{k+m,k}^y \ := \ E \ (y_{k+m} - \overline{y}_{k+m}) (y_k - \overline{y}_k)^T.
+\end{equation*}
+由公式\eqref{eq:3.3b}和公式\eqref{3.14}，考虑到$\{x_k\}$和$\{v_k\}$之间的独立性，可得
+\begin{align}
+\Sigma_{k+m,k}^y &= C \Sigma_{k+m,k} C^T, \quad m \ge 1, \nonumber \\
+&= C A^m \Sigma_k C^T, \quad m \ge 1. \label{eq:3.16}
+\end{align}
+下面我们通过一个练习检测时变线性随机系统。
