@@ -16,7 +16,7 @@ p(z) \ = \ [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} \ exp[{{-1}/2} \ (z - \over
 式中$\vert \Sigma \vert$代表$det \ \Sigma$。\\
 
 对于线性随机系统
-\begin{subequations}
+\begin{subequations} \label{eq:3.3}
 \begin{align}
 x_{k+1} &= A \ x_k + B \ u_k + G \ w_k \label{eq:3.3a} \\
 y_k &= C \ x_k + H \ v_k \label{eq:3.3b}
@@ -69,3 +69,41 @@ p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m x_k + \sum_{j=0}^{m-1} A^{m-1-
 &= A [cov(\Sigma_{j=0}^{m-2} G \ w_{k+j})] A^T + GQG^T \nonumber \\
 &= A \Sigma_{k+m-1 \vert k} A^T + GQG^T \label{eq:3.9}
 \end{align}
+通过初始条件
+\begin{equation}
+\Sigma_{k \vert k} = 0 \label{eq:3.10}
+\end{equation}
+可以递归求得所有$\Sigma_{k+m \vert k}, m > 0$。
+从公式\eqref{eq:3.9}和\eqref{eq:3.10}可以看出$\Sigma_{k+m \vert k}$只取决于$m$，而与$k$的值无关。
+
+注意上述讨论的反馈函数$g_1,...,g_k$（而不是$g_i, i \ge k$）并不需要为常值函数。事实上，$g_i, i \le k$可以为任何非线性函数。 % of the available information \{y^i\}
+如果反馈函数是非线性的，那么控制过程也将是非高斯的，因此由无条件概率决定的状态过程也将是非高斯的。即便如此，由条件概率决定的转移概率依旧服从高斯分布。这就构成了下面的引理。
+\begin{Lem} \label{lem:3.11}
+由公式\eqref{eq:3.3}和\eqref{eq:3.4}所描述的$m$步转移概率，当反馈法则$g$满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$时，服从高斯分布：
+\begin{equation}
+p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m \ x_k + \Sigma_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \Sigma_{k+m \vert k}).
+\end{equation}
+此外，协方差矩阵$\Sigma_{k+m \vert k}$可以通过线性差分方程\eqref{eq:3.9}和\eqref{eq:3.10}算出。
+\end{Lem}
+
+假设我们的控制率总是开环的，即$g_i \equiv u_i$对$i \ge 0$和$i \le k$总是常值函数。这时状态过程$\{x_k\}$服从高斯分布。它的无条件概率分布完全由无条件的均值$E \ x_k^g$和无条件的协方差$\Sigma_{k+m \vert k} \ := \ cov(x_{k+m},x_k)$描述。
+
+概率$p_{x_k}^g$决定了均值$E \ x_k^g$和方差$\Sigma_{k,k} \ := \ cov(x_k,x_k) \ := \ \Sigma_k$。注意到
+\begin{equation*}
+x_k = A^k \ x_0 + \sum_{j=0}^{k-1} A^{k-1-j} B \ u_j + \sum_{j=0}^{k-1} A^{k-1-j} G \ w_j
+\end{equation*}
+% ==== End of Page 25 ====
+右边的三项相互独立且满足高斯分布，所以
+\begin{equation*}
+p_{x_k}^g \sim N(\overline{x_k}, \Sigma_k)
+\end{equation*}
+其中
+\begin{align}
+\overline{x_k} &= A^k \ \overline{x_0} + \sum_{j=0}^{k-1} A^{k-1-j} B \ u_j, \nonumber \\
+\Sigma_k &= cov(A^k \ x_0 + \sum_{j=0}^{k-1} A^{k-1-j} G \ w_j) \nonumber \\
+&= cov(A(A^{k-1} \ x_0 + \sum_{j=0}^{k-2} A^{k-2-j} G \ w_j)) + cov(G \ w_{k-1}) \nonumber \\
+&= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \\
+\Sigma_0 &= cov(x_0).
+\end{align}
+因此$\{x_k\}$的概率分布可以递归地计算出来。
+
