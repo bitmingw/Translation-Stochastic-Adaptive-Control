@@ -6,25 +6,25 @@
 
 对于n维随机变量$z$，
 \begin{equation}
-z \sim N(\overline{z},\Sigma) \quad or \quad p(z) \sim N(\overline{z},\Sigma) \label{eq:3.1}
+z \sim N(\overline{z},\Sigma) \quad or \quad p(z) \sim N(\overline{z},\Sigma) \label{eq:3.1.1}
 \end{equation}
 指出$z$服从平均值为$\overline{z}$，协方差为$\Sigma$的高斯分布。\\
 其中$z$的概率分布是
 \begin{equation}
-p(z) \ = \ [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} \ exp[{{-1}/2} \ (z - \overline{z})^T \ \Sigma^{-1} \ (z - \overline{z})] \label{eq:3.2}
+p(z) \ = \ [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} \ exp[{{-1}/2} \ (z - \overline{z})^T \ \Sigma^{-1} \ (z - \overline{z})] \label{eq:3.1.2}
 \end{equation}
 式中$\vert \Sigma \vert$代表$det \ \Sigma$。\\
 
 对于线性随机系统
-\begin{subequations} \label{eq:3.3}
+\begin{subequations} \label{eq:3.1.3}
 \begin{align}
-x_{k+1} &= A \ x_k + B \ u_k + G \ w_k \label{eq:3.3a} \\
-y_k &= C \ x_k + H \ v_k \label{eq:3.3b}
+x_{k+1} &= A \ x_k + B \ u_k + G \ w_k \label{eq:3.1.3a} \\
+y_k &= C \ x_k + H \ v_k \label{eq:3.1.3b}
 \end{align}
 \end{subequations}
 式中$x_k \in R^n$，$u_k \in R^m$，$y_k \in R^p$，$w_k \in R^g$，$v_k \in R^h$且$A$，$B$，$G$，$C$，$H$为相应大小的固定矩阵。假设独立随机变量$x_0, \ w_0, \ w_1,..., \ v_0, \ v_1,...$均服从高斯分布：
 \begin{equation}
-x_0 \sim N(\overline{x_0},\Sigma_0), \quad w_k \sim N(0,Q), \quad v_k \sim N(0,R). \label{eq:3.4}
+x_0 \sim N(\overline{x_0},\Sigma_0), \quad w_k \sim N(0,Q), \quad v_k \sim N(0,R). \label{eq:3.1.4}
 \end{equation}
 
 为了计算该系统的一步转移概率，我们可以直接运用公式(2.6.7) % Should be \eqref{eq:2.6.7}
@@ -32,11 +32,11 @@ x_0 \sim N(\overline{x_0},\Sigma_0), \quad w_k \sim N(0,Q), \quad v_k \sim N(0,R
 
 % ==== End of Page 23 ====
 
-因为假设上述的随机变量是相互独立的，所以对于任意反馈法则$g$，$w_k$与$x_k$和$u_k$相互独立。从\eqref{eq:3.3a}可以看出，在已知$x_k$和$u_k$时$x_{k+1}$的条件概率分布等同于$G \ w_k$的概率分布的平均值偏移了$A \ x_k + B \ u_k$。因此系统的状态转移概率是
+因为假设上述的随机变量是相互独立的，所以对于任意反馈法则$g$，$w_k$与$x_k$和$u_k$相互独立。从\eqref{eq:3.1.3a}可以看出，在已知$x_k$和$u_k$时$x_{k+1}$的条件概率分布等同于$G \ w_k$的概率分布的平均值偏移了$A \ x_k + B \ u_k$。因此系统的状态转移概率是
 \begin{equation}
-p(x_{k+1} \vert x_k,u_k) \sim N(A \ x_k + B \ u_k, GQG^T). \label{eq:3.5}
+p(x_{k+1} \vert x_k,u_k) \sim N(A \ x_k + B \ u_k, GQG^T). \label{eq:3.1.5}
 \end{equation}
-代入式\eqref{eq:3.2}可得表达式
+代入式\eqref{eq:3.1.2}可得表达式
 \begin{align*}
 p(x_{k+1} \vert x_k,u_k) = & K \ exp[{-1}/2 \ (x_{k+1} - A \ x_k - B \ u_k)^T \\
                            & \times (GQG^T)^{-1} \ (x_{k+1} - A \ x_k - B \ u_k)]
@@ -48,18 +48,18 @@ K = [(2 \pi)^n \ \vert GQG^T \vert]^{{-1}/2}.
 
 类似地可以得到输出概率（观测概率）为
 \begin{equation}
-p(y_k \vert x_k) \sim N(C \ x_k, HRH^T). \label{eq:3.6}
+p(y_k \vert x_k) \sim N(C \ x_k, HRH^T). \label{eq:3.1.6}
 \end{equation}
 
 下面计算系统的$m$步转移概率。设$g$为满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$且$g_{k+1},...,g_{k+m-1}$为常值函数的任何反馈法则。设$\{x_k\},\{y_k\}$为相应的系统状态和输出过程。由定义(2.6.14) % May be \ref(def:2.6.14)
 可知$m$步转移概率是已知$x_k,u_k,...u_{k+m-1}$时$x_{k+m}$的条件概率，它与反馈法则$g$无关。由定义(2.6.16) % May be \ref(def:2.6.16)
-可以用更简单的方式直接计算此概率。从公式\eqref{eq:3.3a}可得
+可以用更简单的方式直接计算此概率。从公式\eqref{eq:3.1.3a}可得
 \begin{equation}
-x_{k+m} = A^m \ x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j} + \sum_{j=0}^{m-1} A^{m-1-j} G \ w_{k+j}. \label{eq:3.7}
+x_{k+m} = A^m \ x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j} + \sum_{j=0}^{m-1} A^{m-1-j} G \ w_{k+j}. \label{eq:3.1.7}
 \end{equation}
-因为随机变量$\{w_{k+j},j \ge 0\}$服从高斯分布，且与$x_k$，$u_k$，$u_{k+j},j \ge 1$相互独立，故从公式\eqref{eq:3.7}可知
+因为随机变量$\{w_{k+j},j \ge 0\}$服从高斯分布，且与$x_k$，$u_k$，$u_{k+j},j \ge 1$相互独立，故从公式\eqref{eq:3.1.7}可知
 \begin{equation}
-p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \Sigma_{k+m \vert k}) \label{eq:3.8}
+p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \Sigma_{k+m \vert k}) \label{eq:3.1.8}
 \end{equation}
 式中$\Sigma_{k+m \vert k}$等同于$cov(\sum_{j=0}^{m-1} A^{m-1-j} G \ w_{k+j})$。这个协方差的计算与$w_k$的值无关：
 \begin{align}
@@ -67,23 +67,23 @@ p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m x_k + \sum_{j=0}^{m-1} A^{m-1-
 % ==== End of Page 24 ====
 &= cov(A \Sigma_{j=0}^{m-2} A^{m-2-j} G \ w_{k+j}) + GQG^T \nonumber \\
 &= A [cov(\Sigma_{j=0}^{m-2} G \ w_{k+j})] A^T + GQG^T \nonumber \\
-&= A \Sigma_{k+m-1 \vert k} A^T + GQG^T \label{eq:3.9}
+&= A \Sigma_{k+m-1 \vert k} A^T + GQG^T \label{eq:3.1.9}
 \end{align}
 通过初始条件
 \begin{equation}
-\Sigma_{k \vert k} = 0 \label{eq:3.10}
+\Sigma_{k \vert k} = 0 \label{eq:3.1.10}
 \end{equation}
 可以递归求得所有$\Sigma_{k+m \vert k}, m > 0$。
-从公式\eqref{eq:3.9}和\eqref{eq:3.10}可以看出$\Sigma_{k+m \vert k}$只取决于$m$，而与$k$的值无关。
+从公式\eqref{eq:3.1.9}和\eqref{eq:3.1.10}可以看出$\Sigma_{k+m \vert k}$只取决于$m$，而与$k$的值无关。
 
 注意上述讨论的反馈函数$g_1,...,g_k$（而不是$g_i, i \ge k$）并不需要为常值函数。事实上，$g_i, i \le k$可以为任何非线性函数。 % of the available information \{y^i\}
 如果反馈函数是非线性的，那么控制过程也将是非高斯的，因此由无条件概率决定的状态过程也将是非高斯的。即便如此，由条件概率决定的转移概率依旧服从高斯分布。这就构成了下面的引理。
-\begin{Lem} \label{lem:3.11}
-由公式\eqref{eq:3.3}和\eqref{eq:3.4}所描述的$m$步转移概率，当反馈法则$g$满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$时，服从高斯分布：
+\begin{Lem} \label{lem:3.1.11}
+由公式\eqref{eq:3.1.3}和\eqref{eq:3.1.4}所描述的$m$步转移概率，当反馈法则$g$满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$时，服从高斯分布：
 \begin{equation}
 p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m \ x_k + \Sigma_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \Sigma_{k+m \vert k}).
 \end{equation}
-此外，协方差矩阵$\Sigma_{k+m \vert k}$可以通过线性差分方程\eqref{eq:3.9}和\eqref{eq:3.10}算出。
+此外，协方差矩阵$\Sigma_{k+m \vert k}$可以通过线性差分方程\eqref{eq:3.1.9}和\eqref{eq:3.1.10}算出。
 \end{Lem}
 
 假设我们的控制率总是开环的，即$g_i \equiv u_i$对$i \ge 0$和$i \le k$总是常值函数。这时状态过程$\{x_k\}$服从高斯分布。它的无条件概率分布完全由无条件的均值$E \ x_k^g$和无条件的协方差$\Sigma_{k+m \vert k} \ := \ cov(x_{k+m},x_k)$描述。
@@ -102,8 +102,8 @@ p_{x_k}^g \sim N(\overline{x_k}, \Sigma_k)
 \overline{x_k} &= A^k \ \overline{x_0} + \sum_{j=0}^{k-1} A^{k-1-j} B \ u_j, \nonumber \\
 \Sigma_k &= cov(A^k \ x_0 + \sum_{j=0}^{k-1} A^{k-1-j} G \ w_j) \nonumber \\
 &= cov(A(A^{k-1} \ x_0 + \sum_{j=0}^{k-2} A^{k-2-j} G \ w_j)) + cov(G \ w_{k-1}) \nonumber \\
-&= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.12} \\
-\Sigma_0 &= cov(x_0). \label{eq:3.13}
+&= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.1.12} \\
+\Sigma_0 &= cov(x_0). \label{eq:3.1.13}
 \end{align}
 因此$\{x_k\}$的概率分布可以递归地计算出来。
 
@@ -111,17 +111,17 @@ p_{x_k}^g \sim N(\overline{x_k}, \Sigma_k)
 \begin{equation*}
 \Sigma_{k+m,k} \ := \ E \ (x_{k+m} - \overline{x}_{k+m}) (x_k - \overline{x}_k)^T.
 \end{equation*}
-从公式\eqref{eq:3.7}可得
+从公式\eqref{eq:3.1.7}可得
 \begin{equation*}
 x_{k+m} - \overline{x}_{k+m} = A^m (x_k - \overline{x}_k) + \sum_{j=0}^{m-1} A^{m-1-j} G \ w_{k+j}
 \end{equation*}
 因为$x_k$与$w_{k+j}, j \ge 0$相互独立，所以
 \begin{equation}
-\Sigma_{k+m,k} = A^m \Sigma_{k}. \label{eq:3.14}
+\Sigma_{k+m,k} = A^m \Sigma_{k}. \label{eq:3.1.14}
 \end{equation}
 注意到均值$\overline{x}_k$只由控制过程$\{u_k\}$决定，但协方差$\Sigma_{k+m,k}$受到更多的因素影响。
 
-当$g$是开环时，过程$y_k$服从高斯分布。从公式$\eqref{eq:3.3b}$可以看出
+当$g$是开环时，过程$y_k$服从高斯分布。从公式$\eqref{eq:3.1.3b}$可以看出
 \begin{equation*}
 p_{y_k}^g \sim N(\overline{y}_k, \Sigma_{k}^{y})
 \end{equation*}
@@ -131,7 +131,7 @@ p_{y_k}^g \sim N(\overline{y}_k, \Sigma_{k}^{y})
 \end{equation*}
 方差为
 \begin{equation}
-\Sigma_k^y \ = \ cov(C \ x_k) + cov(H \ v_k) \ = \ C \Sigma_k C^T + HRH^T. \label{eq:3.15}
+\Sigma_k^y \ = \ cov(C \ x_k) + cov(H \ v_k) \ = \ C \Sigma_k C^T + HRH^T. \label{eq:3.1.15}
 \end{equation}
 同时可以得到$y_{k+m}$和$y_k$的方差。
 % ==== End of Page 26 ====
@@ -139,16 +139,16 @@ $y_{k+m}$的方差定义为
 \begin{equation*}
 \Sigma_{k+m,k}^y \ := \ E \ (y_{k+m} - \overline{y}_{k+m}) (y_k - \overline{y}_k)^T.
 \end{equation*}
-由公式\eqref{eq:3.3b}和公式\eqref{3.14}，考虑到$\{x_k\}$和$\{v_k\}$之间的独立性，可得
+由公式\eqref{eq:3.1.3b}和公式\eqref{eq:3.14}，考虑到$\{x_k\}$和$\{v_k\}$之间的独立性，可得
 \begin{align}
 \Sigma_{k+m,k}^y &= C \Sigma_{k+m,k} C^T, \quad m \ge 1, \nonumber \\
-&= C A^m \Sigma_k C^T, \quad m \ge 1. \label{eq:3.16}
+&= C A^m \Sigma_k C^T, \quad m \ge 1. \label{eq:3.1.16}
 \end{align}
 下面我们通过一个练习检测时变线性随机系统。
 
 练习 % should be defined later
 
-除了公式\eqref{eq:3.3}和\eqref{eq:3.4}的非时变系统之外，也有如下的时变系统
+除了公式\eqref{eq:3.1.3}和\eqref{eq:3.1.4}的非时变系统之外，也有如下的时变系统
 \begin{align*}
 x_{k+1} \ = \ A^k \ x_k + B^k \ u_k + G_k \ w_k,
 y_k \ = \ C_k \ x_k + H_k \ v_k,
@@ -172,7 +172,7 @@ N(A_{k+m-1} .. A_k \ x_k + \sum_{j=0}^{m-1} A_{k+m-1} .. A_{k+j+1} B_{k+j} \ u_{
 
 练习 % should be defined later
 
-假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的。因此系统\eqref{eq:3.3}, \eqref{eq:3.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
+假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的。因此系统\eqref{eq:3.1.3}, \eqref{eq:3.1.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
 \begin{equation*}
 \xi_{k+1} = F \ \xi_k + \epsilon_k; \quad w_k = D \ \xi_k + \delta_k,
 \end{equation*}
@@ -184,3 +184,41 @@ N(A_{k+m-1} .. A_k \ x_k + \sum_{j=0}^{m-1} A_{k+m-1} .. A_{k+j+1} B_{k+j} \ u_{
 % ==== End of Page 27 ====
 
 \section{线性非高斯系统}
+
+对于公式\eqref{eq:3.1.3}所示的线性系统，假设独立随机变量$x_0,w_0,w_1,...,v_0,v_1,...$并不服从高斯分布，但它们的均值和方差仍和先前相同：
+\begin{align*}
+E \ x_0 = \overline{x}_0, \quad E \ w_k = 0, \quad E \ v_k = 0, \\
+cov(x_0) = \Sigma_0, \quad cov(w_k) = Q, \quad cov(v_k) = R.
+\end{align*}
+与此同时，使用开环控制率使得$g_k = u_k, k \ge 0$是常值函数。
+设
+\begin{align*}
+\overline{x}_{k+m \vert k} \ := \ E \ \{x_{k+m} \vert x_k,u_k,...,u_{k+m-1}\}, \\
+\Sigma_{k+m \vert k} \ := \ E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \vert x_k,u_k,...,u_{k+m-1}\},
+\end{align*}
+在已知$x_k$时$x_{k+m}$的条件均值和条件概率。
+
+从公式\eqref{eq:3.1.7}可知
+\begin{align*}
+\overline{x}_{k+m \vert k} \ = \ A^m \ x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \\
+\Sigma_{k+m \vert k} \ = \ cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}),
+\end{align*}
+展开可得
+\begin{equation*}
+\Sigma_{k+m \vert k} = A \Sigma_{k+m-1 \vert k} A^T + GQG^T.
+\end{equation*}
+与公式\eqref{eq:3.1.8}相比，前两项条件moments % TO BE DONE
+和高斯系统的情形相同，但条件概率分布并不一定服从高斯分布。
+
+类似地，当系统是开环时，无条件均值和协方差
+\begin{equation*}
+\overline{x}_k \ := \ E \ x_k, \quad \Sigma_k \ := \ E \ (x_k - \overline{x}_k) (x_k - \overline{x}_k)^T
+\end{equation*}
+也由公式\eqref{eq:3.1.12}给出。
+
+通过下面的练习，我们可以看出，前两项moments % TO BE DONE
+恰好相同的情况对时变系统也成立。
+
+% ==== End of Page 28 ====
+
+\section{渐进性质}
