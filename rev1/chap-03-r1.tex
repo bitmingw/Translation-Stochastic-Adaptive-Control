@@ -264,3 +264,50 @@ cov(x_0) = \Sigma_0, \quad cov(w_k) = Q, \quad cov(v_k) = R.
 公式\eqref{eq:3.3.5}称为离散李雅普诺夫方程。
 
 练习 % Should be defined later
+
+假设$A$是稳定的，若$cov(x_0) = \Sigma_{\infty}$，则$\{x_k\}$的协方差函数是平稳的 % TO BE CHECKED
+。即$\Sigma_k = \Sigma_{\infty}$且$\Sigma_{k+m,k} = A^m \Sigma_{\infty}$对所有$k > 0$均成立。一般而言，$\{x_k\}$可以被分解成两部分
+\begin{equation*}
+x_k = x_k' + x_k''
+\end{equation*}
+其中$\{x_k'\}$的协方差函数是平稳的 % TO BE CHECKED
+，且当$k \to \infty$时$E \ \vert x_k'' \vert^2 \to 0$.（分解方式可能不唯一。）
+
+\begin{Rem}
+某些时候，即使$A$不是稳定的，$\Sigma_k$仍旧会收敛。一个简单的例子是当$\Sigma_0 = 0$，$Q = 0$时，$\Sigma_k \equiv 0$而与$A$无关。另外，$\Sigma_{\infty}$也不一定是严格正定的。例如当$A = 0$且$GQG^T < n$的时候。上面的两个例子说明，如果输入扰动$\{w_k\}$影响了状态向量的每个组成部分，那么$A$的稳定性必须满足收敛到$\Sigma_k$，且协方差的极限$\Sigma_{\infty}$是正定的。如果合适地定义了影响所有组成部分的标记，上面的说法是很有说服力的。
+\end{Rem}
+
+一对维度分别为$n \times n$和$n \times g$的矩阵$A$和$S$，当维度为$n \times ng$的矩阵$[S \ AS \ A^{n-1}S]$的秩为$n$时，则成这个状态是可达的。可达性将通过下面的习题证明。
+
+练习 % Should be defined later
+
+证明下面的几种说法相互等价: \\
+(1) $A$，$S$是一个可达对
+(2) $n \times n$的矩阵$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T$是正定的
+(3) 对任意$x \in \mathbb{R}^n$，存在一个输入序列$w_0,...,w_{n-1}$属于$\mathbb{R}^g$，使下面的确定性线性系统
+\begin{equation*}
+x_{k+1} = A \ x_k + S \ w_k, \quad k \ge 0
+\end{equation*}
+从状态$x_0 = 0$转移到$x_n = x$。
+
+\begin{Thm} \label{Thm:3.3.9}
+设$A$，$S$是一个可达对，则下面的说法相互等价： \\
+(1) $A$是稳定的。
+(2) 方程
+\begin{equation}
+\Sigma = A \Sigma A^T + SS^T \label{eq:3.3.10}
+\end{equation}
+有一个正定的解$\Sigma$。
+\end{Thm}
+
+证明 % Should be defined later
+
+% ==== End of Page 30 ====
+
+如果$A$是稳定的，由定理(3.4) % May be \ref{Thm:3.3.4}
+可知，存在一个唯一的半正定解，
+\begin{equation*}
+\Sigma = \sum_{j=0}^{\infty} A^j SS^T (A^j)^T.
+\end{equation*}
+因为$A$，$S$是可达的，由定理(3.8b) % May be \ref{Thm:3.3.8}
+可得$\Sigma$是正定的。
