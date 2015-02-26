@@ -353,3 +353,43 @@ p(x_{k+1} \vert x_k,...,x_0) = p(x_{k+1} \vert x_k) \label{eq:3.4.1}
 
 % ==== End of page 31 ====
 
+我们已经知道，状态过程$\{x_k\}$由
+\begin{equation*}
+x_{k+1} = A_k \ x_k + w_k
+\end{equation*}
+给出。如果$x_0,w_0,w_1,...$是相互独立的且服从高斯分布，那么这个过程就是高斯-马尔可夫过程。我们把这个这个命题的逆命题作为练习。假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，指定$\Sigma_k := cov(x_k)$，$\Sigma_{k+1,k} := cov(x_{k+1},x_k)$。
+
+练习 \label{3.4.2} % Should be defined later
+
+试证明
+\begin{align}
+\hat{x}_{k+1 \vert k} :=& E \ \{x_{k+1} \vert x_k,...,x_0\} = E \ \{x_{k+1} \vert x_k\} \nonumber \\
+=& \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k. \label{eq:3.4.3}
+\end{align}
+若令
+\begin{equation*}
+w_k := x_{k+1} - \hat{x}_{k+1 \vert k}
+\end{equation*}
+试证明对高斯分布且相互独立的随机变量$x_0,w_0,w_1,...$，高斯-马尔可夫过程可以表示为
+\begin{equation}
+x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
+\end{equation}
+其中$A_k := \Sigma_{k+1,k} \Sigma_k^{-1}$。
+【提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和剩下的部分，可以通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \vert x_k = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。】
+
+在上面的练习中，$w_k = x_{k+1} - \hat{x}_{k+1 \vert k}$和$x_k$共同决定了$x_{k+1}$。$x_k$这一项可以在$k$时刻知道，但$w_k$与先前的历史无关，因为无法在$k$时刻获知。因此$w_k := \hat{x}_{k+1 \vert k} - x_{k+1}$又称为innovation % TO BE DONE
+，或者说是过去未出现的关于$x_{k+1}$的新信息。式\eqref{eq:3.4.4}也称为过程$\{x_k\}$的 innovations representation % TO BE DONE
+
+\section{注解}
+
+1. Anderson and Moore (1979) 详尽地讨论了线性随机系统的性质。他们的书还研究了与可达性类似的概念--可控性和可观性。有关线性随机系统的更多性质会在第七章介绍。
+
+% 注:破折号无法使用GB2312编码，已使用双横线代替
+
+% ==== End of Page 32 ====
+
+\section{参考文献}
+
+% To BE DONE
+
+% ==== End of Page 33 ====
