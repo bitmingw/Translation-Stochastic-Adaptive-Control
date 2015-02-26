@@ -281,7 +281,7 @@ x_k = x_k' + x_k''
 
 练习 % Should be defined later
 
-证明下面的几种说法相互等价: \\
+证明下面的几种说法相互等价: \label{3.3.8} \\ % Should be defined later
 (1) $A$，$S$是一个可达对
 (2) $n \times n$的矩阵$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T$是正定的
 (3) 对任意$x \in \mathbb{R}^n$，存在一个输入序列$w_0,...,w_{n-1}$属于$\mathbb{R}^g$，使下面的确定性线性系统
@@ -311,3 +311,45 @@ x_{k+1} = A \ x_k + S \ w_k, \quad k \ge 0
 \end{equation*}
 因为$A$，$S$是可达的，由定理(3.8b) % May be \ref{Thm:3.3.8}
 可得$\Sigma$是正定的。
+
+现在假设$\Sigma$是公式\eqref{eq:3.3.10}的一个正定解，那么有
+\begin{equation}
+\Sigma = A^k \Sigma (A^k)^T + \sum_{j=0}^{k-1} A^j SS^T (A^j)^T, \quad k \ge 0. \label{eq:3.3.11}
+\end{equation}
+如果$\lambda$是$A$的一个特征值，并且有一个向量$x \neq 0$满足$A^T \ x = \lambda x$。在式\eqref{eq:3.3.11}左乘$x^{\ast}$（$\ast$代表共轭转置），右乘$x$，另$k = n-1$时，有
+\begin{equation*}
+x^{\ast} \Sigma x = \vert \lambda \vert^{2(n-1)} x^{\ast} \Sigma x + x^{\ast} [\sum_{j=0}^{n-1} A^j SS^T (A^j)^T] x.
+\end{equation*}
+括号$[...]$中的矩阵由由定理(3.8b) % May be \ref{Thm:3.3.8}
+可知是正定的，因此上式中的最后一项是严格大于0的。最后可以得出$\vert \lambda \vert < 1$并且$A$是稳定的。
+
+回到协方差公式\eqref{eq:3.3.1}，若矩阵$S$满足
+\begin{equation}
+GQG^T = SS^T \label{eq:3.3.12}
+\end{equation}
+则称$S$是$GQG^T$的一个平方根。
+
+\begin{Thm} \label{Thm:3.3.13}
+假设$A$，$S$是可达的，则下面的命题是等价的：
+(1) $A$是稳定的。
+(2) 当$k \to \infty$时$\Sigma_k$收敛至正定矩阵$\Sigma_{\infty}$。
+\end{Thm}
+
+证明 % Should be defined later
+
+由定理\eqref{Thm:3.3.9}直接可得。
+
+\begin{Rem}
+式\eqref{eq:3.3.12}中的平方根$S$并不是唯一的。但是从(3.8b) % Should be defined later
+可知，$A$，$S$是可达的当且仅当$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的。因此$A$，$S$的可达性并不取决于\eqref{eq:3.3.12}中平方根的选取。
+\end{Rem}
+
+\section{高斯-马尔可夫过程}
+
+如果一个在$\mathbb{R}^n$内取值的随机过程$\{x_k,k \ge 0\}$是高斯的，那么称这个随机过程为高斯-马尔可夫过程。也就是说，对任意$k$，随机变量$x_0,...x_k$的概率分布服从高斯分布，并且满足马尔可夫性质：
+\begin{equation}
+p(x_{k+1} \vert x_k,...,x_0) = p(x_{k+1} \vert x_k) \label{eq:3.4.1}
+\end{equation}
+
+% ==== End of page 31 ====
+
