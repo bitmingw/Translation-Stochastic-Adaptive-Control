@@ -139,7 +139,7 @@ $y_{k+m}$的方差定义为
 \begin{equation*}
 \Sigma_{k+m,k}^y \ := \ E \ (y_{k+m} - \overline{y}_{k+m}) (y_k - \overline{y}_k)^T.
 \end{equation*}
-由公式\eqref{eq:3.1.3b}和公式\eqref{eq:3.14}，考虑到$\{x_k\}$和$\{v_k\}$之间的独立性，可得
+由公式\eqref{eq:3.1.3b}和公式\eqref{eq:3.1.14}，考虑到$\{x_k\}$和$\{v_k\}$之间的独立性，可得
 \begin{align}
 \Sigma_{k+m,k}^y &= C \Sigma_{k+m,k} C^T, \quad m \ge 1, \nonumber \\
 &= C A^m \Sigma_k C^T, \quad m \ge 1. \label{eq:3.1.16}
@@ -382,7 +382,7 @@ x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
 
 \section{注解}
 
-1. Anderson and Moore (1979) 详尽地讨论了线性随机系统的性质。他们的书还研究了与可达性类似的概念--可控性和可观性。有关线性随机系统的更多性质会在第七章介绍。
+1. Anderson and Moore (1979)详尽地讨论了线性随机系统的性质。他们的书还研究了与可达性类似的概念--可控性和可观性。有关线性随机系统的更多性质会在第七章介绍。
 
 % 注:破折号无法使用GB2312编码，已使用双横线代替
 
@@ -393,3 +393,10 @@ x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
 % To BE DONE
 
 % ==== End of Page 33 ====
+
+%\begin{thebibliography}{100} % estimate max number of bibliography
+%\bibitem{AndersonMoore1979} B.D.O. Anderson and J.B. Moore (1979), \textit{Optimal filtering,} Prentice-Hall, Englewood Cliffs, NJ.
+%\end{thebibliography}
+
+% 似乎不能为每一章单独生成参考文献
+% 原有的bib库不正确
