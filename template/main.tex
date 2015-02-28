@@ -41,14 +41,14 @@
 %-----------------定义参考文献的相关参量---------------
 % \usepackage[superscript]{cite}
 % \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}%自定义\upcite命令使参考文献以上标出现
-% \usepackage{natbib}
+\usepackage{natbib}
 % \usepackage{overcite}%参考文献上标形式
-% \usepackage{bibunits}%支持多个参考文献
+\usepackage{bibunits}%支持多个参考文献
 % \let\oldinclude\include%保存原有的\include命令定义
 % \def\include#1{\oldinclude{#1}\putbib}%重定义\include，自动加上\putbib
-% \bibliographyunit[\chapter]%设置每一章都有参考文献
-% \bibliography*{mybib} %设置参考文献数据库
-% \bibliographystyle*{unsrt} %设置参考文献样式
+\bibliographyunit[\chapter]%设置每一章都有参考文献
+\bibliography*{mybib} %设置参考文献数据库
+\bibliographystyle{unsrt} %设置参考文献样式
 
 %-----------------超链接、PDF书签---------------
 % \usepackage[CJKbookmarks,bookmarksnumbered]{hyperref}
@@ -85,15 +85,17 @@
 
 %%定理环境设置
 \newtheorem{Thm}{定理}[section]
-\newtheorem{thm}{定理}[section]
+% \newtheorem{thm}{定理}[section]
 \newtheorem{Def}{定义}[section]
-\newtheorem{defn}{定义}[section]
+% \newtheorem{defn}{定义}[section]
 \newtheorem{Ass}{假设}[section]
 \newtheorem{Rem}{注释}[section]
 \newtheorem{Lem}{引理}[section]
 \newtheorem{Pro}{命题}[section]
 \newtheorem{Exa}{例子}[section]
 \newtheorem{Cor}{推论}[section]
+\newtheorem{Exe}{练习}
+\newtheorem{Prf}{证明}
  
 
 %----------------------草稿阶段加快编译-------------------------------------
@@ -137,13 +139,13 @@
 \include{chap-13} % Self-Tuning Regulators for Linear Systems --李亚超
 
 
-%附录部分，网上电子版（第三版）有该附录
-\begin{appendix}\renewcommand{\thechapter}{\Alph{chapter}.}
-\end{appendix}
+%附录部分
+% \begin{appendix}\renewcommand{\thechapter}{\Alph{chapter}.}
+% \end{appendix}
 
 %参考文献
-\bibliography{mybib}
-\bibliographystyle{plain} 
+% \bibliography{mybib}
+% \bibliographystyle{plain} 
 
 % \end{CJK*}
 
