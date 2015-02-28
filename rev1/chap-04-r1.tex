@@ -63,3 +63,48 @@ q_2(u^2) & 1 - q_2(u^2)
 \end{picture}
 
 %==== End of Page 36 ====
+
+其中，$q$的取值满足$q_1(0) < q_1(1) < q_1(2)$和$q_2(0) < q_2(1)$。这是因为轻度使用和维护得更好的机器比重度使用和维护不佳的机器崩溃的概率更低。另外，式\eqref{eq:4.1.3}中的最后两项概率与$u_k^1$无关，因为当机器已经崩溃时，它就无法被使用了。
+
+假设系统受到一个时变的反馈指令$\{g_0,g_1,...\}$的作用，记$g_k \equiv g$，且另$u_k = g(x_k)$，则可得到转移概率矩阵$P_g = \{P_ij^g\}$，其中
+\begin{equation}
+P_ij^g := P_ij(g(i)), \quad i,j \in \{1,2\} \label{eq:4.1.5}
+\end{equation}
+例如，若$g(1) = (2,0), g(2) = (0,1)$，那么
+\begin{equation}
+P^g = 
+\begin{bmatrix}
+1 - q_1(2) + q_2(0) & q_1(2) - q_2(0) \\
+q_2(1) & 1 - q_2(1)
+\end{bmatrix} \label{eq:4.1.6}
+\end{equation}
+
+我们得到的结果$\{x_k\}$是一个具有静态转移概率$P^g$的马尔可夫链。$x_k$的概率分布可以写成行向量的形式
+\begin{equation*}
+p_k := (Prob\{x_k = 1\}, \ Prob\{x_k = 2\})
+\end{equation*}
+从马尔可夫的性质，公式\eqref{eq:4.1.3}可知
+\begin{equation}
+p_{k+m} = p_k[P^g]^m, \quad m \ge 0 \label{eq:4.1.7}
+\end{equation}
+特别地，
+\begin{equation}
+p_k = p_0[P^g]^k \label{eq:4.1.8}
+\end{equation}
+其中$p_0$是$x_0$的初始分布。
+
+通常，当$k \to \infty$时，$p_k$收敛于与初始概率分布$p_0$无关的$p = (p(1),p(2))$，这时我们称它是一个具有各态历经性的马尔可夫链。概率分布的极限又称为稳态，平衡态，或不变分布。它是下面的线性方程的解：
+\begin{equation}
+p = p \ P^g, \quad p(1) + p(2) = 1 \label{eq:4.1.9}
+\end{equation}
+公式\eqref{eq:4.1.9}总有一个解。当马尔可夫链满足各态历经性时这个解是唯一的，且极限分布$p = (p(1),p(2))$可以用下式表示:
+\begin{equation}
+p(i) = \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n I (x_k = i) \ wp \ 1 \label{eq:4.1.10}
+\end{equation}
+式中的$I$是指示函数，当$x_k = i$时$I(x_k = i) = 1$，当$x_k \ne i$时$I(x_k = i) = 0$。因此，$p(1)$是机器正常运转的时间的比例，$p(2)$是机器崩溃的时间的比例。
+
+% ==== End of Page 37 ====
+
+从式\eqref{eq:4.1.9}可以看出稳态概率$p$取决于反馈法则$g$。通过改变法则$g$，也就是改变使用和维护机器的时机，就可以调整机器崩溃的时间。但什么样的法则$g$可以导致最好的$p$呢？我们会在之后的章节进一步探讨这个问题。
+
+\section{有限状态控制马尔可夫链}
