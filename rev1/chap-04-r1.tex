@@ -108,3 +108,52 @@ p(i) = \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n I (x_k = i) \ wp \ 1 \label{
 从式\eqref{eq:4.1.9}可以看出稳态概率$p$取决于反馈法则$g$。通过改变法则$g$，也就是改变使用和维护机器的时机，就可以调整机器崩溃的时间。但什么样的法则$g$可以导致最好的$p$呢？我们会在之后的章节进一步探讨这个问题。
 
 \section{有限状态控制马尔可夫链}
+
+前面的例子可以一般化成任意有限状态控制的马尔可夫链。它的状态$x_k$可取值$\{1,...I\}$。它的控制可以从一个有限或无限的集合$U$中取值。转移概率由一个$I \times I$的矩阵描述
+\begin{equation}
+u \to P(u) := \{P_ij(u), \quad 1 \le i,j \le I\} \label{eq:4.2.1}
+\end{equation}
+我们记
+\begin{equation}
+Prob\{x_{k+1} = j \vert x_k = i, x_{k-1},...,x_0,u_k,...,u_0\} = P_ij(u_k) \label{eq:4.2.2}
+\end{equation}
+矩阵$P(u)$的每个元素都是非负的，并且每一行的各个元素之和都是1，即矩阵$P(u)$是一个随机矩阵。同时，我们必须指定初始状态$x_0$的概率分布。当观测不等于状态，即$y_k \not\equiv x_k$，我们还需要指定观测概率
+\begin{equation}
+P(y \vert i) := Prob\{y_k = y \vert x_k = i\} \label{eq:4.2.3}
+\end{equation}
+
+\section{完全客观和马尔可夫策略}
+
+考虑可控的马尔可夫链模型\eqref{eq:4.2.1}，若这个状态是可观测的，即$y_k \equiv x_k$，另$g = \{g_0,g_1,...\}$为一个反馈策略，使得$g_k$只与当前状态$x_k$有关。我们称这个策略$g$为马尔可夫策略。
+
+若$g$是一个马尔可夫策略，且$\{x_k\}$是状态过程的结果，我们用一个$I$维的行向量表示$x_k$的概率分布：
+\begin{equation*}
+p_k^g := (Prob\{x_k = 1\},...,Prob\{x_k = I\})
+\end{equation*}
+上标$g$表示此分布由$g$决定，但在语义清楚时可以省略。
+
+\begin{Lem} \label{Lem:4.3.1}
+当我们运用了马尔可夫策略$g$的时候，状态过程的结果$\{x_k\}$就是一个马尔可夫过程。在$k$时刻它的一步转移概率为
+% ==== End of Page 38 ====
+\begin{equation*}
+P_k^g := \{(P_k^g)_ij := P_ij (g_k(i)), \quad i \le i, j \le I\}
+\end{equation*}
+它的$m$步转移概率为
+\begin{equation*}
+P_k^g ... P_{k+m-1}^g
+\end{equation*}
+矩阵中第$ij$个元素是当$k$时刻它的状态为$i$的条件下$k+m$时刻它的状态为$j$的概率。即
+\begin{equation*}
+p_{k+m} = p_k \ P_k^g ... P_{k+m-1}^g
+\end{equation*}
+特别地，
+\begin{equation}
+p_k = p_0 \ P_0^g ... P_{k-1}^g
+\end{equation}
+其中$p_0$是初始状态$x_0$的概率分布。
+\end{Lem}
+
+\begin{Prf}
+从马尔可夫的性质\eqref{eq:4.2.2}直接得证。
+\end{Prf}
+
