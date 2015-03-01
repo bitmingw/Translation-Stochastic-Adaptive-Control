@@ -148,7 +148,7 @@ p_{k+m} = p_k \ P_k^g ... P_{k+m-1}^g
 \end{equation*}
 特别地，
 \begin{equation}
-p_k = p_0 \ P_0^g ... P_{k-1}^g
+p_k = p_0 \ P_0^g ... P_{k-1}^g \label{eq:4.3.2}
 \end{equation}
 其中$p_0$是初始状态$x_0$的概率分布。
 \end{Lem}
@@ -156,4 +156,32 @@ p_k = p_0 \ P_0^g ... P_{k-1}^g
 \begin{Prf}
 从马尔可夫的性质\eqref{eq:4.2.2}直接得证。
 \end{Prf}
+
+由于转移概率矩阵只取决于时间$k$，因此我们说$\{x_k\}$是一个具有非静态转移概率的马尔可夫链。
+
+\section{马尔可夫策略的成本}
+
+马尔可夫策略$g$决定了状态过程$\{x_k\}$的概率分布和控制过程$\{u_k = g_k(x_k)\}$。不同的策略会导致不同的概率分布。在最优控制中，我们希望找到最好的策略，这需要通过比较多种策略才能得出。我们为此定义了代价函数，它是一系列和状态与控制相关的实值函数
+\begin{equation*}
+c_k(i,u), \quad 1 \le i \le I, \quad u \in U, \quad k \ge 0
+\end{equation*}
+它表示$c_k{i,u}$是$k$时刻当$x_k = i$和$u_k = u$时的代价。
+
+对于一个固定的马尔可夫策略$g$，到$N$时刻积累的代价为$\sum_{k=0}^N c_k(x_k,u_k)$。因为$x_k$和$u_k$是随机的，所以它是一个随机变量。积累的代价的均值为
+\begin{equation}
+J(g) := E^g \ \sum_{k=0}^N c_k(x_k,u_k) \ = \ E^g \ \sum_{k=0}^N c_k(x_k,g_k(x_k)) \label{eq:4.4.1}
+\end{equation}
+此处的$E^g$代表由$g$决定的$\{x_k\}$和$\{u_k\}$的概率分布。
+
+$J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
+\begin{align}
+J(g) &= \sum_{k=0}^N \sum_{i=1}^I Prob\{x_k = i\} \ c_k(i,g_k(i)) \nonumber \\
+% ==== End of Page 39 ====
+&= \sum_{k=0}^N p_k c_k^g = \sum_{k=0}^N p_0 (P_0^g ... P_{k-1}^g) c_k^g \label{eq:4.4.2}
+\end{align}
+其中$c_k^g$是$I$维的列向量
+\begin{equation}
+c_k^g := (c_k(1,g(1)),...,c_k(I,g(I)))^T \label{eq:4.4.3}
+\end{equation}
+式\eqref{eq:4.4.2}中的最后一步推导用到了\eqref{eq:4.3.2}。
 
