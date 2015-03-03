@@ -289,7 +289,7 @@ Prob\{y_{k+1} = 1 \vert y_k = 1,x_k,z_{k-1},...,z_0,u_k,...,u+0\} \equiv 1
 一个马尔可夫策略$g = \{g_0,g_1,...\}$称为静态的或者时不变的，如果$g_0 \equiv g_1 \equiv ... \equiv g$。
 
 如果$g$是静态的，则转移概率矩阵也是静态的，$P_k^g \equiv P^g$。若假设代价函数也是时不变的，即$c_k = c$，设衰减因子$0 < \beta < 1$为一个固定值，则
-% ==== End of Page 42
+% ==== End of Page 42 ====
 \begin{align*}
 V_k^g(i) &= E^g \ \{\sum_{l=k}^{\infty} \beta^l c(x_l,g(x_l)) \vert x_k = i\} \\
 &= \beta^k E^g \{\sum_{l=0}^{\infty} \beta^l c(x_l,g(x_l)) \vert x_0 = i\} \\
@@ -303,3 +303,31 @@ V_k^g(i) &= E^g \ \{\sum_{l=k}^{\infty} \beta^l c(x_l,g(x_l)) \vert x_k = i\} \\
 \begin{equation*}
 [I - \beta P^g] V_0^g = c^g
 \end{equation*}
+这是一组共$I$个线性方程，$V_0^g(i)$中有$I$个未知量。练习\eqref{Exe:4.5.3}说明$[I - \beta P^g]$是可逆的，因此这个系统的线性方程有唯一解$V_0^g$。
+
+\begin{Exe} \label{Exe:4.5.1}
+定义$x \in R^I$的模为$\vert x \vert := \max \{\vert x_1 \vert,...\vert x_I \vert\}$。定义$I \times I$的矩阵$P$的模为$\Vert P \Vert := \max_i \sum_j \vert P_ij \vert$。证明矩阵的模可由向量的模推导出来
+\begin{equation*}
+\Vert P \Vert = \max_{x \ne 0} \frac{\vert P_x \vert}{\vert x \vert}
+\end{equation*}
+并且$\Vert PQ \Vert \le \Vert P \Vert \Vert Q \Vert$
+\end{Exe}
+
+\begin{Exe} \label{Exe:4.5.2}
+$I \times I$的矩阵$P$，当$P_ij \ge 0$且$\sum_j P_ij = 1$时是一个转移概率矩阵（随机矩阵）。证明$\Vert P \Vert = 1$。
+\end{Exe}
+
+\begin{Exe} \label{Exe:4.5.3}
+$P$是一个转移概率矩阵，$0 < \beta < 1$，证明$I - \beta P$是可逆的。事实上，
+\begin{equation*}
+[I - \beta P]^{-1} = \lim_{n \to \infty} \sum_{k=0}^n [\beta P]^k
+\end{equation*}
+由于$\Vert P \Vert = 1$，因此公式右侧的无穷项的和存在。对一个固定值$c$和$V(0)$，按下面的办法生成序列$V(n)$
+\begin{equation*}
+V(n+1) := c + \beta P V(n)
+\end{equation*}
+试证明当$n \to \infty$时$V(n) \to [I - \beta P]^{-1}$
+【提示：递归带入$V(n)$的表达式。】
+\end{Exe}
+
+% ==== End of Page 43 ====
