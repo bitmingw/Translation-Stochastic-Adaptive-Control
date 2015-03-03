@@ -219,3 +219,36 @@ V_k^g(i) &= E^g \ \{\sum_{l=k}^N c_l(x_l,g_l(x_l)) \vert x_k = i\} \\
 由$(P_k^g)_{ij}$可看出，这就是\eqref{eq:4.4.7}的结果。
 \end{Prf}
 
+前面的公式可以用向量的形式更方便地表达，我们设$I$维的列向量
+\begin{equation}
+V_k^g := (V_k^g(1),...,V_k^g(I))^T \label{eq:4.4.9}
+\end{equation}
+则用\eqref{eq:4.4.3}可以分别表达\eqref{eq:4.4.7}，\eqref{eq:4.4.8}和\eqref{eq:4.4.5}如下
+\begin{align}
+V_k^g &= c_k^g + P_k^g V_{k+1}^g, \quad 0 \le k < N \label{eq:4.4.10} \\
+V_N^g &= c_N^g \label{eq:4.4.11} \\
+J(g) &= p_0 \ V_0^g \label{eq:4.4.12}
+\end{align}
+
+这里的时间长度$N$是有限的，但有时我们需要研究时间为无限长时的情况。这不是一个立即可得的扩充，因为如果直接将\eqref{eq:4.4.1}中的$N = \infty$，在大多数情况下对任意$g$会有$J(g) = \infty$，所以最好的$g$也就失去了意义。有两个途径可以解决无限时间的问题。
+
+第一个方法是引入一个衰减因子$\beta, 0 < \beta < 1$，并计算衰减代价的期望
+\begin{equation*}
+J(g) = E^g \sum_{k=0}^{\infty} \beta^k c_k(x_k,u_k)
+\end{equation*}
+只要$c_k$是有界的，$J(g)$就是有限的。因为在$k$时刻的代价衰减了$\beta^k$，所以现在的代价比未来的代价更为重要。例如，在经济问题中，设$\beta = (1+r)^{-1}$，其中$r > 0$是利率。在这种表示中，$J(g)$是当前的代价，从\eqref{eq:4.4.2}可知
+\begin{equation*}
+J(g) = \sum_{k=0}^{\infty} \beta^k p_0 (P_0^g ... P_{k-1}^g) c_k^g
+\end{equation*}
+若定义
+\begin{equation*}
+V_k^g(i) := E^g \ \{\sum_{l=k}^{\infty} \beta^l c_l(x_l,g_l(x_l)) \vert x_k = i\}
+\end{equation*}
+使用\eqref{eq:4.4.9}中的记法，式\eqref{eq:4.4.10}和\eqref{eq:4.4.12}可以写为
+\begin{align}
+V_k^g &= \beta^k c_k^g + P_k^g V_{k+1}^g, \quad k \ge 0 \label{eq:4.4.13} \\
+% ==== End of Page 41 ====
+J(g) &= p_0 \ V_0^g \nonumber
+\end{align}
+但是，在无限时间问题中，式\eqref{eq:4.4.11}没有对应的公式。
+
