@@ -185,3 +185,37 @@ c_k^g := (c_k(1,g(1)),...,c_k(I,g(I)))^T \label{eq:4.4.3}
 \end{equation}
 式\eqref{eq:4.4.2}中的最后一步推导用到了\eqref{eq:4.3.2}。
 
+最佳的马尔可夫策略$g$可以使$J(g) = \sum_{k=0}^N p_0 (P_0^g ... P_{k-1}^g) c_k^g$取最小值。在第五章我们将通过学习动态规划来计算最佳的$g$。
+
+动态规划是一个用递归方式计算最佳$g$的方法。由于这个方法只取决于下面的事实：由$g$决定的状态过程是马尔可夫的，因此我们在这里加以介绍。对任意时间$1 \le k \le N$以及状态$1 \le i \le I$，令$V_k^g(i)$代表当$x_k = i$时$k,...N$阶段代价的期望。也就是说
+\begin{equation}
+V_k^g(i) := E^g \ \{\sum_{l=k}^N c_l (x_l,g_l(x_l)) \vert x_k = i\} \label{eq:4.4.4}
+\end{equation}
+因此所有的代价可以表示为
+\begin{equation}
+J(g) = \sum_{i=1}^I (p_0)_i V_0^g (i) \label{eq:4.4.5}
+\end{equation}
+
+\begin{Lem} \label{Lem:4.4.6}
+函数$V_k^g(i)$可以通过向后递归的方式计算：
+\begin{equation}
+V_k^g(i) = c_k(i,g_k(i)) + \sum_{j=1}^I (P_k^g)_ij V_{k+1}^g(j), \quad 0 \le k < N \label{eq:4.4.7}
+\end{equation}
+其初始条件是
+\begin{equation}
+V_N^g(i) = c_N(i,g_N(i)) \label{eq:4.4.8}
+\end{equation}
+\end{Lem}
+
+\begin{Prf}
+从定义中我们立即可得\eqref{eq:4.4.8}，之后
+\begin{align*}
+V_k^g(i) &= E^g \ \{\sum_{l=k}^N c_l(x_l,g_l(x_l)) \vert x_k = i\} \\
+&= c_k(i,g_k(i)) + E^g \ \{E^g \ \{\sum_{l=k+1}^N c_l(x_l,g_l(x_l)) \vert x_{k+1},x_k = i\} \vert x_k = i\} \\
+% ==== End of Page 40 ====
+&= c_k(i,g_k(i)) + E^g \ \{V_{k+1}^g(x_{k+1}) \vert x_k = i\}, \quad by \eqref{eq:4.2.2} \\
+&= c_k(ig_k(i)) + \sum_{j=1}^I V_{k+1}^g(j) Prob\{x_{k+1} \vert x_k = i\}
+\end{align*}
+由$(P_k^g)_{ij}$可看出，这就是\eqref{eq:4.4.7}的结果。
+\end{Prf}
+
