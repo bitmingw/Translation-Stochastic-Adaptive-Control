@@ -414,3 +414,52 @@ P_n & 0 & 0 & \ldots & 0
 这说明我们可以将各状态拆分成不相关的子集$I_1,...I_n$使得$I_{m-1}$只能转变为状态$I_m$。如果$P$不能变成上述形式，则称它的非周期性的。
 
 % ==== End of Page 45 ====
+
+\begin{Lem} \label{Lem:4.5.11}
+若$P$是不可约的且非周期的，则
+\begin{equation*}
+\lim_{k \to \infty} P^k = \Pi
+\end{equation*}
+其中$\Pi$矩阵的每一行都等于$\pi$。
+\end{Lem}
+
+\begin{Exe} \label{Exe:4.5.12}
+证明若$P$是周期性的，则$P^k$不收敛。
+\end{Exe}
+
+在一种情况下，代价函数可以定义在无限时间长度上，且既不需要衰减因子，也不需要计算单位时间的平均代价。我们在下个练习中介绍这种情况。
+
+\begin{Exe} \label{Exe:4.5.13}
+令$F \subset \{1,...I\}$为状态的一个子集，且对静态马尔可夫策略$g$，设$\tau$为第一次$x_k$进入$F$的时刻，即
+\begin{equation*}
+\tau =
+\begin{cases}
+\min \{k \ge 0 \vert x_k \in F\} \\
+\infty, \text{if } \forall k, \quad x_k \not\in F
+\end{cases}
+\end{equation*}
+假设
+\begin{equation}
+\forall i, \quad E \ \{\tau \vert x_0 = i\} < \infty
+\end{equation}
+令$c(i,u)$为一个静态代价函数，设
+\begin{equation}
+V^g(i) := E^g \ \{\sum_{k=0}^{\tau - 1} c(x_k,g(x_k)) \vert x_0 = i\}
+\end{equation}
+试证明$V^g(i) < \infty$且
+\begin{equation}
+V^g = c^g + R^g V^g
+\end{equation}
+其中当$i \not\in F$时$(R^g)_ij := (P^g)_ij$，当$i \in F$时$(R^g)_ij := 0$。随机时间$\tau$叫做停止时间，这种问题称为停止时间问题。
+\end{Exe}
+
+\section{无限状态马尔可夫链}
+
+基于第2、3、4节的内容，我们将状态$x_k$定义在无限集$\{1,2,3,...\}$上的可控马尔可夫链留到现在讨论。控制变量的集合为$U$。对于$u \in U$，转移概率由无限维矩阵
+\begin{equation}
+P(u) := \{P_ij(u), \quad 1 \le i,j \le \infty\}
+\end{equation}
+这与式\eqref{eq:4.2.2}的表达方法一致。
+
+% ==== End of Page 46 ====
+
