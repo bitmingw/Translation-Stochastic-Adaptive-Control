@@ -463,3 +463,42 @@ P(u) := \{P_ij(u), \quad 1 \le i,j \le \infty\}
 
 % ==== End of Page 46 ====
 
+马尔可夫策略$g$和以前的定义没有区别，在$k$时刻，一步和多步的转移概率矩阵分别为
+\begin{align*}
+P_k^g & := \{((P_k^g)_ij) := P_ij(g_k(i)), \quad 1 \le i,j < \infty\}
+P_k^g & ... P_{k+m-1}^g
+\end{align*}
+$x_k$的概率分布是一个无限长行向量
+\begin{equation*}
+p_k^g = p_k := (Prob\{x_k = 1\}, \quad Prob\{x_k = 2\},...)
+\end{equation*}
+由马尔可夫的性质可知，
+\begin{equation*}
+p_{k+m} = p_k \ P_k^g ... P_{k+m-1}^g, \quad \text{and } p_k = p_0 \ P_0^g ... P_{k-1}^g
+\end{equation*}
+对代价函数$c_k(i,u), 1 \le i < \infty, u \in U$，在一段有限时间内代价的期望由式\eqref{eq:4.4.1}给出。如果$V_k^g$是一个无限维列向量，且其各个分量$V_k^g(i)$由\eqref{eq:4.4.5}给出，则与\eqref{eq:4.4.7}和\eqref{eq:4.4.8}类似，可以递归得出
+\begin{align*}
+V_k^g(i) &= c_k(i,g_k(i)) + \sum_{j=1}^{\infty} (P_k^g)_ij V_{k+1}^g(j), 0 \le k < N
+V_N^g(i) &= c_N(i,g_N(i))
+\end{align*}
+
+类似地，在无限时间中衰减的代价由公式\eqref{eq:4.4.13}递归得到。如果$g$和代价函数$c(i,u)$是时不变的，则无限维向量$V_0^g$满足线性方程
+\begin{equation}
+[I - \beta P^g] V_0^g = c^g \label{eq:4.6.1}
+\end{equation}
+下面的练习证明\eqref{eq:4.6.1}有唯一解。
+
+\begin{Exe} \label{Exe:4.6.2}
+令$l_{\infty}$为所有无限维列向量$x = (x_1,x_2,...)^T$的集合。对$x \in l_{\infty}$，定义其模为$\vert x \vert := \sup \{\vert x_1 \vert, \vert x_2 \vert,...\}$，试证明$\Vert P^g \Vert := \sup_{x \ne 0} \frac{\vert P^g x \vert}{\vert x \vert} = 1$，并证明定义在$l_{\infty}$上的线性映射$x \to [I - \beta P^g]x$是可逆的，事实上，
+\begin{equation*}
+[I - \beta P^g]^{-1} x = \sum_{k=1}^{\infty} [\beta P^g]^k x
+\end{equation*}
+特别地，若$c^g \in l_{\infty}$，即$\sup_i \vert c^g(i) \vert$是有界的，则\eqref{eq:4.6.1}有唯一解。
+\end{Exe}
+
+类似地，我们可以定义单位时间的平均代价
+% ==== End of Page 47 ====
+\begin{align}
+J(g) :=& \lim_{N \to \infty} \frac{1}{N} E^g \sum_{k=0}^N c(x_k,g(x_k)) \nonumber \\
+=& p_0 [\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^N (P^g)^k] c^g \label{eq:4.6.3}
+\end{align}
