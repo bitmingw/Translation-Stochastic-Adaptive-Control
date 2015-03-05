@@ -541,4 +541,36 @@ J(g) :=& \lim_{N \to \infty} \frac{1}{N} E^g \sum_{k=0}^N c(x_k,g(x_k)) \nonumbe
 \put(5.5,0.8){$\epsilon$}
 \put(9,0.8){$\epsilon$}
 \end{picture}
+
+从图中可得它的转移概率矩阵为
+\begin{equation*}
+P = 
+\begin{bmatrix}
+0 & 1 & \ldots & \ldots & \ldots \\
+\epsilon & 0 & 1 - \epsilon & \ldots & \ldots \\
+\ldots & \epsilon & 0 & 1 - \epsilon & \ldots \\
+\ldots & \ldots & \epsilon & 0 & \ldots \\
+\ldots & \ldots & \ldots & \epsilon & \ldots \\
+\ldots & \ldots & \ldots & \ldots & \ldots
+\end{bmatrix}
+\end{equation*}
+试证明对任意$\epsilon > 0$，$P$是不可约的且周期性的。证明存在一个稳态分布$\pi$使
+\begin{equation}
+\pi \ P = \pi, \quad \text{and } \sum_{i=0}^{\infty} \pi(i) = 1
+\end{equation}
+当且仅当$\epsilon > \frac{1}{2}$
+【提示：先证明$\pi \ P = \pi$的一个正数解必须与$\eta = (\eta_1,\eta_2,...)$成正比。其中
+\begin{equation*}
+\eta(1) = 1, \quad \text{and } \eta{i} = \frac{(1 - \epsilon)^{i-2}}{\epsilon^{i-1}}, \quad i > 1
+\end{equation*}
+再证明$\sum_i \pi(i) = 1$成立当且仅当$\sum_i \eta(i) < \infty$且$\epsilon > \frac{1}{2}$】
 \end{Exe}
+
+如果\eqref{eq:4.6.3}中的塞萨罗极限存在（在有限情形下总是存在），那么有
+\begin{equation*}
+\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^N (P^g)^k = \Pi
+\end{equation*}
+% ==== End of Page 48 ====
+这时有$J(g) = p_0 \Pi c^g$。如果进一步，马尔可夫链是各态历经性的，矩阵$\Pi$的每一行都等于稳态分布$\pi$，则平均代价与初始分布无关，即$J(g) = \pi c^g$。
+
+\section{连续时间马尔可夫链}
