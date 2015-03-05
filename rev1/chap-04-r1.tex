@@ -502,3 +502,43 @@ V_N^g(i) &= c_N(i,g_N(i))
 J(g) :=& \lim_{N \to \infty} \frac{1}{N} E^g \sum_{k=0}^N c(x_k,g(x_k)) \nonumber \\
 =& p_0 [\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^N (P^g)^k] c^g \label{eq:4.6.3}
 \end{align}
+这里是有限和无限状态的唯一显著区别，因为引理\eqref{Lem:4.5.4}，\eqref{Lem:4.5.7}和\eqref{Lem:4.5.11}在无限状态条件下不成立。这将在下面的练习中说明。
+
+\begin{Exe} \label{Exe:4.5.4}
+考虑一个具有如下状态转移图的马尔可夫链：
+
+\setlength{\unitlength}{1cm}
+\thicklines
+\begin{picture}(12,4)
+% draw circles
+\put(1,2){\circle{1}}
+\put(0.9,1.9){$1$}
+\put(4,2){\circle{1}}
+\put(3.9,1.9){$2$}
+\put(7,2){\circle{1}}
+\put(6.9,1.9){$3$}
+\put(10.9,1.9){$\ldots$}
+% draw upper curves
+\qbezier(1.4,2.4)(2.5,3.2)(3.6,2.4)
+\put(3.4,2.45){\vector(4,-1){0.3}}
+\qbezier(4.4,2.4)(5.5,3.2)(6.6,2.4)
+\put(6.4,2.45){\vector(4,-1){0.3}}
+\qbezier(7.4,2.4)(9,3.2)(10.6,2.4)
+\put(10.4,2.45){\vector(4,-1){0.3}}
+% draw upper symbols
+\put(2.5,3.3){$1$}
+\put(5.3,3.3){$1 - \epsilon$}
+\put(8.8,3.3){$1 - \epsilon$}
+% draw lower curvers
+\qbezier(1.4,1.6)(2.5,0.8)(3.6,1.6)
+\put(1.6,1.55){\vector(-4,1){0.3}}
+\qbezier(4.4,1.6)(5.5,0.8)(6.6,1.6)
+\put(4.6,1.55){\vector(-4,1){0.3}}
+\qbezier(7.4,1.6)(9,0.8)(10.6,1.6)
+\put(7.6,1.55){\vector(-4,1){0.3}}
+% draw lower symbols
+\put(2.5,0.8){$\epsilon$}
+\put(5.5,0.8){$\epsilon$}
+\put(9,0.8){$\epsilon$}
+\end{picture}
+\end{Exe}
