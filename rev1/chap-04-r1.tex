@@ -605,3 +605,53 @@ p_1(t+dt) = p_1(t) \{1 - [q_1(u^1(t)) - q_2(u^2(t))] dt\} + p_2(t) q_2(u^2(t)) d
 \begin{equation*}
 \dot{p_2}(t) = p_1(t) [q_1(u^1(t)) - q_2(u^2(t))] - p_2(t) q_2(u^2(t))
 \end{equation*}
+写成矩阵形式，可得
+\begin{align*}
+\dot{p}(t) &= p(t) \times \\
+&\begin{bmatrix}
+-[q_1(u^1(t)) - q_2(u^2(t))] & [q_1(u^1(t)) - q_2(u^2(t))] \\
+q_2(u^2(t)) & -q_2(u^2(t))
+\end{bmatrix} \\
+&=: p(t) \ Q(u(t))
+\end{align*}
+$Q(u(t))$称为连续时间可控的马尔可夫链$\{x(t)\}$的转移概率变化率矩阵。$Q$的所有非对角元素都是非负的，且每一行的和为$0$。与此类似，转移概率矩阵的每一行之和等于$1$。
+
+更一般地，一个状态值定义在有限集$\{1,...,I\}$或者可数集$\{1,2,...\}$上的连续时间马尔可夫链$\{x(t)\}$可以由下面的变化率矩阵给出。对每个$u \in U$，
+\begin{equation}
+Q(t) = \{Q_ij(u)\}
+\end{equation}
+由于对任意$i \ne j$，$Q_ij(u) \ge 0, Q_ii(u) = -\sum_j Q_ij(u)$，转移概率可以表示为
+\begin{align*}
+P\{x(t+dt) = j \vert x(t) = i, x(s),u(s),s \le t\} \\
+= Q_ij(u(t)) dt, i \ne j \\
+P\{x(t+dt) = i \vert x(t) = i, x(s),u(s),s \le t\} \\
+= 1 - \sum_{j \ne i} Q_ij (u(t)) dt
+\end{align*}
+若$p(t) = (P\{x(t) = 1\}, P\{x(t) = 2\}, ...)$是$x(t)$的概率分布，则它服从微分方程
+\begin{equation*}
+\dot{p}(t) = p(t) \ Q(u(t))
+\end{equation*}
+
+一个马尔可夫策略是一个组合$g = \{g(t,i), t \ge 0\}$使得在任意时刻$t$它给出状态的控制函数$u(t) = g(t,x(t))$。这就定义了$t$时刻的变化率矩阵
+\begin{equation*}
+Q^g(t) := \{Q_ij(g(t,i))\}
+\end{equation*}
+且状态的概率分布随着线性微分方程
+\begin{equation}
+\dot{p}(t) = p(t) \ Q^g(t) \label{eq:4.7.2}
+\end{equation}
+的变化而变化。
+如果用$P^g(s,t)$代表这个微分方程的基本矩阵解，
+% ==== End of Page 50 ====
+\begin{align*}
+\dot{P}^g(s,t) &= P^g(s,t) Q^g(t), \quad t \ge s \\
+P^g(t,t) &= I
+\end{align*}
+则有
+\begin{equation}
+p(t) = p(s) P^g(s,t) = p(0) P^g(0,t) \label{eq:4.7.3}
+\end{equation}
+式\eqref{eq:4.7.2}称为柯尔莫哥洛夫前向方程，\eqref{eq:4.7.3}是\eqref{eq:4.3.2}的对应。若$g(t,i) \equiv g(i)$是时不变的，$Q^g$是静态的，且有
+\begin{equation*}
+P^g(s,t) = exp([(t-s) Q^g]), \quad p(t) = p(0) \ exp(tQ^g)
+\end{equation*}
