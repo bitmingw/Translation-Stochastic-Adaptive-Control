@@ -655,3 +655,30 @@ p(t) = p(s) P^g(s,t) = p(0) P^g(0,t) \label{eq:4.7.3}
 \begin{equation*}
 P^g(s,t) = exp([(t-s) Q^g]), \quad p(t) = p(0) \ exp(tQ^g)
 \end{equation*}
+
+\begin{Exe} \label{Exe:4.7.4}
+令$Q$为一个变化率矩阵，其非对角线元素均为非负，且每一行元素之和为0。设$x(t) =: (x_1(t),...,x_n(t))$满足微分方程$\dot{x}(t) = x(t) \ Q$。试证明对所有$t$，均有$\sum_{i=1}^n x_i(t)$为常数。因此只要$x(0)$是一个概率分布，则对任意$t$，$x(t)$各组成部分之和为$1$。
+【提示：在微分方程的左右两边同时乘以列向量$(1,...,1)^T$。】
+\end{Exe}
+
+无限状态连续时间马尔可夫链的一个有意义的例子是泊松过程，我们在下个练习中描述其速率$\lambda$。
+
+\begin{Exe} \label{Exe:4.7.5}
+考虑一个状态空间为$\{0,1,...\}$的马尔可夫链。令$Q_{i,i+1} := \lambda > 0$且$Q_ii := - \lambda$。因此马尔可夫链以$\lambda$的速率向下一个更大的整数移动。设初始的概率分布$p(0) = (1,0,0,0,...)$，即马尔可夫链从状态$0$开始。证明对所有$i \ge 0$，有$p_i(t) = exp(- \lambda t)(\lambda t)^i / i!$
+【提示：从$i = 0$开始递归地求解微分方程\eqref{eq:4.7.2}。】
+\end{Exe}
+
+我们可以证明，每次进入状态$i$的时候，连续时间马尔可夫链在转移到一个新状态之前花费的时间是一个指数分布的随机变量，其均值为$(-Q_ii)^{-1}$，即如果$\tau$指代任意时间，则有
+\begin{equation*}
+Prob(\tau > t) = exp(Q_ii t)
+\end{equation*}
+
+\begin{Exe} \label{Exe:4.7.6}
+若$\tau$是一个指数分布的随机变量，证明对所有$s \ge 0$
+\begin{equation}
+Prob(\tau > t+s \vert \tau > s) = Prob(\tau > t)
+\end{equation}
+成立。因此，在马尔可夫链内跳转所花费的时间是无记忆的，也就是说，马尔可夫链继续停留在状态$i$上的时间与它已经停留在$i$上的时间无关。
+\end{Exe}
+
+% ==== End of Page 51 ====
