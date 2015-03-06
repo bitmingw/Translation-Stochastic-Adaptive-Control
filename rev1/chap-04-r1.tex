@@ -890,7 +890,18 @@ E \ & \int_0^{\infty} [exp -\alpha t] c(x(t)) dt \\ % Need to be checked
 这与离散时间链$\{x_k\}$的单位时间平均代价相同。
 
 \section{注解}
-% 略
+
+1. 可控马尔可夫链模型的介绍参见 Howard (1971)。有限马尔可夫链在 Kemeny and Snell (1960) 和 Feller (1957) 中有简要介绍。我们可以在其中找到引理\eqref{Lem:4.5.4}，\eqref{Lem:4.5.7}和\eqref{Lem:4.5.11}的证明。连续时间马尔可夫链在 Doob (1953) 中有简要介绍。
+
+2. 根据引理\eqref{Lem:4.5.11}，无周期性和不可约的有限链是各态历经性的。无线链没有这样简明的性质。相关内容可以见 Kemeny, Snell and Knapp (1976) 和 Revuz (1975)。
+
+3. 如果无限连续时间链$\{x(t)\}$是可均匀化的，即$\sup_i \sum_{j \ne i} Q_ij = \infty$，则$x(t)$可能在一段有限的时间内无限次地变更状态，这意味着它可能没有对应的离散时间链。一个连续链$\{x(t)\}$可以通过时间离散化来近似，只需要令$x_k = x(\Delta k), \Delta > 0$。参见 Kushner (1977) 和 Dijk (1984)。
+
+4. 泊松过程可用于描述更加一般的状态跳转过程，包括连续时间马尔可夫链，参见 Bremaud (1981) 和 Snyder (1975)。
+
+% ==== End of Page 57 ====
+
+5. 排队模型在 Kleinrock (1975), Bremaud (1981) 和 Gross and Harris (1974) 中都有描述。更一般的排队网络见 Kelly (1979)。最近关于排队系统在控制问题中的应用参见 Stidham (1985)。 第8节的例子出自 Rosberg, Varaiya and Walrand (1981)。
 
 \section{参考文献}
-% 略
+% 见 bibliography
