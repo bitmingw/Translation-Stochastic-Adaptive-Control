@@ -789,3 +789,40 @@ Prob\{K(t) = k\} = [exp - tq] \frac{(qt)^k}{k!}, \quad k = 0,1,2,... \label{eq:4
 \begin{equation}
 \hat{x}(t) = x_k, \quad (T_k \le t < T_{k+1}) \label{eq:4.8.4}
 \end{equation}
+这里需要注意，$T_{k+1} - T_k, k = 0,1,...$是服从概率密度$p(T_{k+1} - T_k = t) = q \ exp-qt$分布的随机变量。这是由于泊松过程中跳变发生的时间是服从指数分布的。从贝叶斯定理出发，
+\begin{equation}
+P\{\hat{x}(t) = i\} = \sum_{k=0}^{\infty} P\{x_k = i\} \ P\{K(t) = k\} \label{eq:4.8.5}
+\end{equation}
+从\eqref{eq:4.8.2}，\eqref{eq:4.8.3}和\eqref{eq:4.8.5}出发，我们可以得出
+\begin{equation*}
+P\{\hat{x}(t) = i\} = P\{x(t) = i\}
+\end{equation*}
+故$x(t)$和$\hat{x}(t)$具有相同的概率分布。
+
+下面我们通过一个控制案例：串联的两个排队站来解释均匀化的步骤。假设客户以速率为$\lambda$的泊松过程到达站$1$，在$t$时刻站的服务速率可以为$u(t) \in [0,a]$间的任意数。在站$1$完成服务时，一个客户加入第二个队列，其服务速度为恒定值$\mu$。设$x_i(t)$为$t$时刻第$i$个服务站积累的客户数量，包括正在服务的客户。指定$x(t) = (x_1(t),x_2(t)) \in \{0,1,2,...\} \times \{0,1,2,...\}$代表$t$时刻的状态。
+
+令$p(t) = \{p(x(t)) = (i,j), 0 \le i,j < \infty\}$为$x(t)$的概率分布。则它的柯尔莫哥洛夫方程
+\begin{align*}
+\dot{p}(0,j) &= \mu p(0,j+1) - \lambda p(0,j), \quad j \ge 0 \\
+\dot{p}(i,0) &= \mu p(i,1) + \lambda p(i-1,0) - [\lambda + \mu] p(i,0), \quad i > 0 \\
+\dot{p}(i,j) &= \lambda p(i-1,j) + \mu p(i,j+1) + u p(i+1,j-1) \\
+&- [\lambda + \mu + u] p(i,j), \quad i > 0, j > 0
+\end{align*}
+显然每个速率的绝对值都小于$q := \lambda + \mu + a$，因此我们得到了一个离散时间链，其非零转移概率由下面的公式给出：
+\begin{align*}
+P(x_{k+1} = (0,j) \vert x_k &= (0,j+1), u_k = u) = \mu q^{-1}, \quad j \ge 0 \\
+P(x_{k+1} = (0,j) \vert x_k &= (0,j), u_k = u) = 1 - \lambda q^{-1}, \quad j \ge 0 \\
+P(x_{k+1} = (i,0) \vert x_k &= (i,1), u_k = u) = \mu q^{-1}, \quad i > 0 \\
+P(x_{k+1} = (i,0) \vert x_k &= (i-1,1), u_k = u) = \lambda q^{-1}, \quad i > 0 \\
+P(x_{k+1} = (i,0) \vert x_k &= (i,0), u_k = u) \\
+&= 1 - (\lambda + \mu)q^{-1}, \quad i > 0 \\
+% ==== End of Page 55 ====
+P(x_{k+1} = (i,j) \vert x_k &= (i-1,j), u_k = u) \\
+&= \lambda q^{-1}, \quad i > 0, j > 0 \\
+P(x_{k+1} = (i,j), \vert x_k &= (i,j+1), u_k = u) \\
+&= \mu q^{-1}, \quad i > 0, j > 0 \\
+P(x_{k+1} = (i,j) \vert x_k &= (i+1,j-1), u_k = u) \\
+&= u q^{-1}, \quad i > 0, j > 0 \\
+P(x_{k+1} = (i,j) \vert x_k &= (i,j), u_k = u) \\
+&= 1 - (\lambda + \mu + u) q^{-1}, \quad i > 0, j > 0
+\end{align*}
