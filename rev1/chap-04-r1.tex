@@ -675,10 +675,44 @@ Prob(\tau > t) = exp(Q_ii t)
 
 \begin{Exe} \label{Exe:4.7.6}
 若$\tau$是一个指数分布的随机变量，证明对所有$s \ge 0$
-\begin{equation}
+\begin{equation*}
 Prob(\tau > t+s \vert \tau > s) = Prob(\tau > t)
-\end{equation}
+\end{equation*}
 成立。因此，在马尔可夫链内跳转所花费的时间是无记忆的，也就是说，马尔可夫链继续停留在状态$i$上的时间与它已经停留在$i$上的时间无关。
 \end{Exe}
 
 % ==== End of Page 51 ====
+
+在离散马尔可夫链的情况下，概率分布$\pi$是时不变的，如果对所有$t \ge s$和$p(s) = \pi$可以得到$p(t) = \pi$，也就是说$\dot{p}(t) \equiv 0$。从\eqref{eq:4.7.2}我们可知
+\begin{equation}
+\pi Q = 0 \label{eq:4.7.7}
+\end{equation}
+下面的定理说明这也是$\pi$为时不变的一个充分条件。
+
+\begin{Exe} \label{Exe:4.7.8}
+如果概率分布$\pi$满足$\pi Q = 0$，证明$p(s) = \pi$可推出$p(t) = \pi$对所有$t \ge s$。
+【提示：通过将矩阵的幂展开成多项式级数，证明$\pi exp(tQ) = \pi$。】
+\end{Exe}
+
+式\eqref{eq:4.7.7}有一个简单的解释。将向量等式的每个元素取出，方程变为对所有$j$：
+\begin{equation*}
+\sum_i \pi_i Q_ij = 0
+\end{equation*}
+由于$Q_jj = - \sum_{i \ne j} Q_ji$，上式可以改写为
+\begin{equation}
+\sum_{i \ne j} \pi_i Q_ij = \pi_j \sum_{i \ne j} Q_ji \label{eq:4.7.9}
+\end{equation}
+等式左侧是进入状态$j$的总速率，等式右侧是离开状态$j$的总速率。条件\eqref{eq:4.7.9}是状态平衡方程。
+
+在离散时间马尔可夫链中，状态的转移只发生在离散的时刻，但连续时间的马尔可夫链的状态转移可以在任意时间发生。因此，无法为它定义周期性。一个相应的结果是，对有限状态连续时间的马尔可夫链，极限
+\begin{equation*}
+p(\infty) := lim_{t \to \infty} p(0) exp(tQ)
+\end{equation*}
+总是存在的。并且它是时不变的概率分布，满足$p(\infty) Q = 0$。（我们没有必要取\eqref{eq:4.5.4}中的塞萨罗极限）另外，就像离散时间的情形一样，若马尔可夫链是可约的，$p(\infty)$的值取决于初始概率分布$p(0)$。另外，对无限状态的马尔可夫链，极限并不是始终存在。
+
+下面的两个例子讲解了排队系统。
+
+\begin{Exe} \label{eq:4.7.10}
+有这样一个队列，顾客以泊松过程的速率$\lambda$进入队列。队列一次可以处理一个顾客，且每次完成服务的时间是一个以$\mu^{-1}$为均值的呈指数分布的随机变量。设$x(t)$为在$t$时刻队列中的顾客数量。
+% ==== End of Page 52 ====
+\end{Exe}
