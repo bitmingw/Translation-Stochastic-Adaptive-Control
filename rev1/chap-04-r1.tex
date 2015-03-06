@@ -868,3 +868,13 @@ P(x_{k+1} = (i,j) \vert x_k &= (i,j), u_k = u) \\
 \put(5,1.5){$1 - (\lambda + \mu + u) q^{-1}$}
 
 \end{picture}
+
+我们现在将连续时间和离散时间马尔可夫链的代价关联起来。设$c(i)$是$t$时刻瞬间的代价（当$x(t) = i$时）,$c := (c(1),c(2),...)^T$。在无限时间内$\{x(t)\}$的代价的期望，考虑到衰减率$\alpha > 0$，为：
+\begin{align*}
+E \ & \int_0^{\infty} [exp -\alpha t] c(x(t)) dt \\ % Need to be checked
+&= \int_0^{\infty} [exp - \alpha t] p(t) c dt \\
+&= \sum_{k=0}^{\infty} \{\int_0^{\infty} [exp -(\alpha+q)t] \frac{(qt)^k}{k!}\} p_k c, \quad by \eqref{eq:4.8.2} \\
+&= (\alpha + q)^{-1} \sum_{k=0}^{\infty} \beta^k p_k c
+\end{align*}
+% ==== End of Page 56 ====
+其中$\beta := q (\alpha+q)^{-1}$。因此忽略常数项$(\alpha+q)^{-1}$，它与离散时间链$\{x_k\}$，在衰减率$\beta$的情况下的代价相同。
