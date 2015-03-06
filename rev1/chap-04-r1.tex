@@ -749,3 +749,43 @@ $\pi_n$ÊÇËùÓÐÏßÂ·¶¼·±Ã¦µÄÎÈÌ¬¸ÅÂÊ¡£ËüÒ²ÊÇµç»°¶ªÊ§»ò×è¶ÏµÄ¸ÅÂÊ£¬Ëü±»³ÆÎª¶òÀ¼¶ªÊ§¹
 \end{Exe}
 
 \section{Á¬ÐøÊ±¼äºÍÀëÉ¢Ê±¼äÂí¶û¿É·òÁ´µÄ¹ØÏµ}
+ÏÖÔÚÎÒÃÇ·ÖÎöÁ¬ÐøÊ±¼äÁ´ºÍÀëÉ¢Ê±¼äÁ´Ö®¼äµÄ¹ØÏµ¡£Éè$\{x(t)\}$ÎªÒ»¸öÊ±±äÁ´£¬ÆäËÙÂÊ¾ØÕóÎª$Q$¡£¼ÙÉè
+\begin{equation*}
+Q_0 := \sup_i (-Q_ii) = \sup_i \sum_{j \ne i} Q_ij < \infty
+\end{equation*}
+Ôò³Æ´ËÂí¶û¿É·òÁ´ÊÇ¿É¾ùÔÈ»¯µÄ¡££¨×¢Òâ£¬µ±×´Ì¬¿Õ¼äÊÇÓÐÏÞµÄÊ±£¬$Q_0 < \infty$¡££©Éè¶¨Öµ$q \ge Q_0$£¬¸ÅÂÊ·Ö²¼$x(t)$Âú×ã
+\begin{equation*}
+\dot{p}(t) = - p(t)Q = -p(t)q[I - R]
+\end{equation*}
+ÆäÖÐ
+\begin{equation*}
+R := [I + \frac{Q}{q}]
+\end{equation*}
+Òò´Ë
+\begin{align}
+p(t) &= p(0) exp \ -tq [I - R] \nonumber \\ % The equation needs to be checked
+&= p(0) \sum_{k=0}^{\infty} [exp - tq] \frac{(tq)^k}{k!} R^k \label{eq:4.8.1}
+\end{align}
+
+ÒòÎª$R$ÊÇÒ»¸öËæ»ú¾ØÕó£¬¿¼ÂÇÒ»¸öÀëÉ¢Ê±¼äÁ´$\{x_k\}$ÒÔ$R$×÷Îª×´Ì¬×ªÒÆ¸ÅÂÊ£¬ÇÒ³õÊ¼¸ÅÂÊ·Ö²¼Îª$p(0)$£¬Ôò$x_k$µÄ¸ÅÂÊ·Ö²¼Îª
+\begin{equation*}
+p_k = p(0) R^k
+\end{equation*}
+ÓëÊ½\eqref{eq:4.8.1}Ïà±È£¬¿ÉµÃ
+\begin{equation}
+p(t) = \sum_{k=0}^{\infty} [exp - tq] \frac{(qt)^k}{k!} \label{eq:4.8.2} % Needs to be checked
+\end{equation}
+Áî$\{K(t)\}$ÎªËÙÂÊÎª$q$µÄ²´ËÉ¹ý³Ì£¬ÇÒÓëÁ´$\{x_k\}$ÎÞ¹Ø£¬ÔòÓÐ
+\begin{equation}
+Prob\{K(t) = k\} = [exp - tq] \frac{(qt)^k}{k!}, \quad k = 0,1,2,... \label{eq:4.8.3}
+\end{equation}
+Èô½øÒ»²½£¬´Ó$\{K(t)\}$ºÍ$\{x(t)\}$µÃ³öÁ¬ÐøÊ±¼ä¹ý³Ì$\{\hat{x}(t)\}$
+\begin{equation*}
+\hat{x}(t) := x_{K(t)}
+\end{equation*}
+Ò²¾ÍÊÇËµ£¬ÔÚ$t$Ê±¿Ì$\hat{x}$µÄÖµÊÇÀëÉ¢Ê±¼äÁ´$x_k$ÔÚÊ±¼ä$k = K(t)$µÄÖµ¡£
+% ==== End of Page 54 ====
+ÁíÍâ£¬Éè$T_0 := 0$£¬¶ÔÈÎÒâ$k > 0$£¬Éè$T_k$ÊÇµÚÒ»´Î$K(t) = k$µÄÊ±¼ä£¬Ôò
+\begin{equation}
+\hat{x}(t) = x_k, \quad (T_k \le t < T_{k+1}) \label{eq:4.8.4}
+\end{equation}
