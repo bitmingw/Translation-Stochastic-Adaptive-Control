@@ -1,1 +1,2 @@
 rate matrix 速率矩阵
+uniformizable 可均匀化的
