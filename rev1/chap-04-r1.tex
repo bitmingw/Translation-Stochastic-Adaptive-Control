@@ -878,3 +878,19 @@ E \ & \int_0^{\infty} [exp -\alpha t] c(x(t)) dt \\ % Need to be checked
 \end{align*}
 % ==== End of Page 56 ====
 其中$\beta := q (\alpha+q)^{-1}$。因此忽略常数项$(\alpha+q)^{-1}$，它与离散时间链$\{x_k\}$，在衰减率$\beta$的情况下的代价相同。
+
+类似地，$\{x(t)\}$单位时间内的平均代价为
+\begin{align*}
+\lim_{T \to \infty} & \frac{1}{T} E \ \int_0^T c(x(t)) dt \\
+&= \lim_{T \to \infty} \frac{1}{T} E \ \int_o^T c(\hat{x}(t)) dt \\
+&= \lim_{N \to \infty} \frac{1}{E \ T_N} E \ \sum_{k=0}^{N-1} (T_{k+1} - T_k) c(x_k), \quad \text{由} \eqref{eq:4.8.4} \\
+&= \lim_{N \to \infty} \frac{1}{E \ T_N} \sum_{k=0}^{N-1} E \ (T_{k+1} - T_k) \ E \ c(x_k), \quad \text{由} \{x_k\} \text{和} \{T_k\} \text{相互独立} \\
+&= lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^{N-1} E \ c(x_k)
+\end{align*}
+这与离散时间链$\{x_k\}$的单位时间平均代价相同。
+
+\section{注解}
+% 略
+
+\section{参考文献}
+% 略
