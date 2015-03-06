@@ -1,2 +1,3 @@
+Kolmogorov 柯尔莫哥洛夫
 rate matrix 速率矩阵
 uniformizable 可均匀化的
