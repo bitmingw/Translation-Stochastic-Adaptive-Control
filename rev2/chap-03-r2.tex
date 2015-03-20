@@ -57,7 +57,7 @@
 可以用更简单的方式直接计算此概率。从公式\eqref{eq:3.1.3a}可得
 \begin{equation}
 	x_{k+m} = A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B u_{k+j} 
-	          + \sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}. \label{eq:3.1.7}
+	+ \sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}. \label{eq:3.1.7}
 \end{equation}
 因为随机变量$\{w_{k+j}, j \ge 0\}$服从高斯分布，且与$x_k$，$u_k$，$u_{k+j}, j \ge 1$相互独立，故从公式\eqref{eq:3.1.7}可知
 \begin{equation}
@@ -175,14 +175,14 @@ $y_{k+m}$的方差定义为
 
 在上文中我们均假设系统的输入噪声$\{w_k\}$是一个独立过程。下面的练习将展示如何通过扩大状态向量消除这个假设。
 
-练习 % should be defined later
-
-假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的。因此系统\eqref{eq:3.1.3}, \eqref{eq:3.1.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
+\begin{Exe} \label{Exe:3.1.18}
+假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的。因此系统\eqref{eq:3.1.3},\eqref{eq:3.1.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
 \begin{equation*}
-\xi_{k+1} = F \ \xi_k + \epsilon_k; \quad w_k = D \ \xi_k + \delta_k,
+	\xi_{k+1} = F \xi_k + \epsilon_k; \quad w_k = D \xi_k + \delta_k,
 \end{equation*}
 其中变量$\{x_0,\xi_0,...,v_0,...,\epsilon_0,...,\delta_0,...$都相互独立且服从高斯分布。证明$\{y_k\}$可以表示为一个线性随机系统。
-【提示：可将状态向量改写为$\zeta_k := (x_k^T,\xi_k^T)^T$】
+\textnormal{[}提示：可将状态向量改写为$\zeta_k := (x_k^T,\xi_k^T)^T$\textnormal{]}
+\end{Exe}
 
 因此线性随机系统的定义可以扩大到系统输入噪声为经过线性随机系统过滤后的高斯白噪声的情形。
 
@@ -192,37 +192,35 @@ $y_{k+m}$的方差定义为
 
 对于公式\eqref{eq:3.1.3}所示的线性系统，假设独立随机变量$x_0,w_0,w_1,...,v_0,v_1,...$并不服从高斯分布，但它们的均值和方差仍和先前相同：
 \begin{align*}
-E \ x_0 = \overline{x}_0, \quad E \ w_k = 0, \quad E \ v_k = 0, \\
-cov(x_0) = \Sigma_0, \quad cov(w_k) = Q, \quad cov(v_k) = R.
+	E \ x_0 = \overline{x}_0, \quad E \ w_k = 0, \quad E \ v_k = 0, \\
+	cov(x_0) = \Sigma_0, \quad cov(w_k) = Q, \quad cov(v_k) = R.
 \end{align*}
 与此同时，使用开环控制率使得$g_k = u_k, k \ge 0$是常值函数。
 设
 \begin{align*}
-\overline{x}_{k+m \vert k} \ := \ E \ \{x_{k+m} \vert x_k,u_k,...,u_{k+m-1}\}, \\
-\Sigma_{k+m \vert k} \ := \ E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \vert x_k,u_k,...,u_{k+m-1}\},
+	\overline{x}_{k+m \vert k} := E \ \{x_{k+m} \vert x_k,u_k,...,u_{k+m-1}\}, \\
+	\Sigma_{k+m \vert k} := E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \vert x_k,u_k,...,u_{k+m-1}\},
 \end{align*}
 在已知$x_k$时$x_{k+m}$的条件均值和条件概率。
 
 从公式\eqref{eq:3.1.7}可知
 \begin{align*}
-\overline{x}_{k+m \vert k} \ = \ A^m \ x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \\
-\Sigma_{k+m \vert k} \ = \ cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}),
+	\overline{x}_{k+m \vert k} = A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B u_{k+j}, \\
+	\Sigma_{k+m \vert k} = cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}),
 \end{align*}
 展开可得
 \begin{equation*}
-\Sigma_{k+m \vert k} = A \Sigma_{k+m-1 \vert k} A^T + GQG^T.
+	\Sigma_{k+m \vert k} = A \Sigma_{k+m-1 \vert k} A^T + GQG^T.
 \end{equation*}
-与公式\eqref{eq:3.1.8}相比，前两项条件moments % TO BE DONE
-和高斯系统的情形相同，但条件概率分布并不一定服从高斯分布。
+与公式\eqref{eq:3.1.8}相比，前两项条件矩和高斯系统的情形相同，但条件概率分布并不一定服从高斯分布。
 
 类似地，当系统是开环时，无条件均值和协方差
 \begin{equation*}
-\overline{x}_k \ := \ E \ x_k, \quad \Sigma_k \ := \ E \ (x_k - \overline{x}_k) (x_k - \overline{x}_k)^T
+\overline{x}_k := E \ x_k, \quad \Sigma_k := E \ (x_k - \overline{x}_k) (x_k - \overline{x}_k)^T
 \end{equation*}
 也由公式\eqref{eq:3.1.12}给出。
 
-通过下面的练习，我们可以看出，前两项moments % TO BE DONE
-恰好相同的情况对时变系统也成立。
+通过下面的练习，我们可以看出，前两项矩恰好相同的情况对练习\eqref{Exe:3.1.17}中的时变系统也成立。
 
 % ==== End of Page 28 ====
 
@@ -230,107 +228,100 @@ cov(x_0) = \Sigma_0, \quad cov(w_k) = Q, \quad cov(v_k) = R.
 
 下面我们研究当$k \to \infty$时由公式\eqref{eq:3.1.12}和\eqref{eq:3.1.13}给定的协方差矩阵$\Sigma_k$的变化。$\Sigma_k$的计算公式如下：
 \begin{align}
-\Sigma_k \ &= \ A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.3.1} \\
-\Sigma_0 \ &= \ cov(x_0) \label{eq:3.3.2}
+	\Sigma_k &= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.3.1} \\
+	\Sigma_0 &= cov(x_0) \label{eq:3.3.2}
 \end{align}
 将递归公式展开后，可以得到
 \begin{equation}
-\Sigma_k = A^k \Sigma_0 (A^k)^T + \sum_{j=0}^{k-1} A^j GQG^T (A^j)^T. \label{eq:3.3.3}
+	\Sigma_k = A^k \Sigma_0 (A^k)^T + \sum_{j=0}^{k-1} A^j GQG^T (A^j)^T. \label{eq:3.3.3}
 \end{equation}
 为了得到收敛的$\Sigma_k$序列，整个级数需要可求和，因此矩阵$A^j$要收敛到0.
 
-如果矩阵$A$是稳定的，那么它的所有特征值的绝对值严格小于1.
+如果矩阵$A$是稳定的，那么它的所有特征值的绝对值严格小于1。
 
 \begin{Thm} \label{Thm:3.3.4}
 假设矩阵$A$是稳定的，则存在一个半正定矩阵$\Sigma_{\infty}$使得$\lim_{k \to \infty} \Sigma_k = \Sigma \infty$. 并且，$\Sigma_{\infty}$是下面线性方程的唯一解：
 \begin{equation}
-\Sigma_{\infty} \ = \ A \Sigma_{\infty} A^T + GQG^T. \label{eq:3.3.5}
+	\Sigma_{\infty} = A \Sigma_{\infty} A^T + GQG^T. \label{eq:3.3.5}
 \end{equation}
 \end{Thm}
 
-证明 % Should be defined later
-
-%\begin{proof}
+\begin{Prf}
 因为$A$是稳定的，所以存在数$K < \infty$和$0 < \alpha < 1$使$A^j$的模小于$K \ \alpha^j$对任意$A$的参数都成立。因此公式\eqref{eq:3.3.3}中的第一项消失了，且整个级数可以求和。可以得到
 \begin{equation*}
-\lim_{k \to \infty} \Sigma_k \ = \ \Sigma_{\infty} \ := \ \sum_{j=0}^{\infty} A^j GQG^T (A^j)^T.
+	\lim_{k \to \infty} \Sigma_k = \Sigma_{\infty} := \sum_{j=0}^{\infty} A^j GQG^T (A^j)^T.
 \end{equation*}
 接下来，由于$\Sigma_k$收敛至$\Sigma_{\infty}$，我们让$k \to \infty$，那么$\Sigma_{\infty}$服从公式\eqref{eq:3.3.5}。因此，我们只需要证明公式\eqref{eq:3.3.5}有唯一解。假设$\Sigma_{\infty}^1$和$\Sigma_{\infty}^2$是\eqref{eq:3.3.5}的两个解。那么他们的差值$\Delta := \Sigma_{\infty}^1 - \Sigma_{\infty}^2$满足
 \begin{equation*}
-\Delta \ = \ A \Delta A^T.
+	\Delta \ = \ A \Delta A^T.
 \end{equation*}
 迭代带入此式，可得
 \begin{equation*}
-\Delta \ = \ A^k \Delta (A^k)^T
+	\Delta \ = \ A^k \Delta (A^k)^T
 \end{equation*}
 当$k \to \infty$时显然有$\Delta = 0$，因此$\Sigma_{\infty}^1 = \Sigma_{\infty}^2$，证毕。
-%\end{proof}
+\end{Prf}
 % ==== End of Page 29 ====
 公式\eqref{eq:3.3.5}称为离散李雅普诺夫方程。
 
-练习 % Should be defined later
-
-假设$A$是稳定的，若$cov(x_0) = \Sigma_{\infty}$，则$\{x_k\}$的协方差函数是平稳的 % TO BE CHECKED
-。即$\Sigma_k = \Sigma_{\infty}$且$\Sigma_{k+m,k} = A^m \Sigma_{\infty}$对所有$k > 0$均成立。一般而言，$\{x_k\}$可以被分解成两部分
+\begin{Exe} \label{Exe:3.3.6}
+假设$A$是稳定的，若$cov(x_0) = \Sigma_{\infty}$，则$\{x_k\}$的协方差函数是平稳的。即$\Sigma_k = \Sigma_{\infty}$且$\Sigma_{k+m,k} = A^m \Sigma_{\infty}$对所有$k > 0$均成立。一般而言，$\{x_k\}$可以被分解成两部分
 \begin{equation*}
-x_k = x_k' + x_k''
+	x_k = x_k' + x_k''
 \end{equation*}
 其中$\{x_k'\}$的协方差函数是平稳的 % TO BE CHECKED
 ，且当$k \to \infty$时$E \ \vert x_k'' \vert^2 \to 0$.（分解方式可能不唯一。）
+\end{Exe}
 
-\begin{Rem}
+\begin{Rem} \label{Rem:3.3.7}
 某些时候，即使$A$不是稳定的，$\Sigma_k$仍旧会收敛。一个简单的例子是当$\Sigma_0 = 0$，$Q = 0$时，$\Sigma_k \equiv 0$而与$A$无关。另外，$\Sigma_{\infty}$也不一定是严格正定的。例如当$A = 0$且$GQG^T < n$的时候。上面的两个例子说明，如果输入扰动$\{w_k\}$影响了状态向量的每个组成部分，那么$A$的稳定性必须满足收敛到$\Sigma_k$，且协方差的极限$\Sigma_{\infty}$是正定的。如果合适地定义了影响所有组成部分的标记，上面的说法是很有说服力的。
 \end{Rem}
 
 一对维度分别为$n \times n$和$n \times g$的矩阵$A$和$S$，当维度为$n \times ng$的矩阵$[S \ AS \ A^{n-1}S]$的秩为$n$时，则成这个状态是可达的。可达性将通过下面的习题证明。
 
-练习 % Should be defined later
-
+\begin{Exe} \label{Exe:3.3.8}
 证明下面的几种说法相互等价: \label{3.3.8} \\ % Should be defined later
 (1) $A$，$S$是一个可达对
 (2) $n \times n$的矩阵$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T$是正定的
 (3) 对任意$x \in \mathbb{R}^n$，存在一个输入序列$w_0,...,w_{n-1}$属于$\mathbb{R}^g$，使下面的确定性线性系统
 \begin{equation*}
-x_{k+1} = A \ x_k + S \ w_k, \quad k \ge 0
+	x_{k+1} = A \ x_k + S \ w_k, \quad k \ge 0
 \end{equation*}
 从状态$x_0 = 0$转移到$x_n = x$。
+\end{Exe}
 
 \begin{Thm} \label{Thm:3.3.9}
 设$A$，$S$是一个可达对，则下面的说法相互等价： \\
 (1) $A$是稳定的。
 (2) 方程
 \begin{equation}
-\Sigma = A \Sigma A^T + SS^T \label{eq:3.3.10}
+	\Sigma = A \Sigma A^T + SS^T \label{eq:3.3.10}
 \end{equation}
 有一个正定的解$\Sigma$。
 \end{Thm}
 
-证明 % Should be defined later
-
+\begin{Prf}
+如果$A$是稳定的，由定理\eqref{Thm:3.3.4}可知，存在一个唯一的半正定解，
 % ==== End of Page 30 ====
-
-如果$A$是稳定的，由定理(3.4) % May be \ref{Thm:3.3.4}
-可知，存在一个唯一的半正定解，
 \begin{equation*}
-\Sigma = \sum_{j=0}^{\infty} A^j SS^T (A^j)^T.
+	\Sigma = \sum_{j=0}^{\infty} A^j SS^T (A^j)^T.
 \end{equation*}
-因为$A$，$S$是可达的，由定理(3.8b) % May be \ref{Thm:3.3.8}
-可得$\Sigma$是正定的。
+因为$A$，$S$是可达的，由练习\eqref{Exe:3.3.8}可得$\Sigma$是正定的。
 
 现在假设$\Sigma$是公式\eqref{eq:3.3.10}的一个正定解，那么有
 \begin{equation}
-\Sigma = A^k \Sigma (A^k)^T + \sum_{j=0}^{k-1} A^j SS^T (A^j)^T, \quad k \ge 0. \label{eq:3.3.11}
+	\Sigma = A^k \Sigma (A^k)^T + \sum_{j=0}^{k-1} A^j SS^T (A^j)^T, \quad k \ge 0. \label{eq:3.3.11}
 \end{equation}
 如果$\lambda$是$A$的一个特征值，并且有一个向量$x \neq 0$满足$A^T \ x = \lambda x$。在式\eqref{eq:3.3.11}左乘$x^{\ast}$（$\ast$代表共轭转置），右乘$x$，另$k = n-1$时，有
 \begin{equation*}
-x^{\ast} \Sigma x = \vert \lambda \vert^{2(n-1)} x^{\ast} \Sigma x + x^{\ast} [\sum_{j=0}^{n-1} A^j SS^T (A^j)^T] x.
+	x^{\ast} \Sigma x = \vert \lambda \vert^{2(n-1)} x^{\ast} \Sigma x + x^{\ast} [\sum_{j=0}^{n-1} A^j SS^T (A^j)^T] x.
 \end{equation*}
-括号$[...]$中的矩阵由由定理(3.8b) % May be \ref{Thm:3.3.8}
-可知是正定的，因此上式中的最后一项是严格大于0的。最后可以得出$\vert \lambda \vert < 1$并且$A$是稳定的。
+括号$[...]$中的矩阵由练习\eqref{Exe:3.3.8}可知是正定的，因此上式中的最后一项是严格大于0的。最后可以得出$\vert \lambda \vert < 1$并且$A$是稳定的。
+\end{Prf}
 
 回到协方差公式\eqref{eq:3.3.1}，若矩阵$S$满足
 \begin{equation}
-GQG^T = SS^T \label{eq:3.3.12}
+	GQG^T = SS^T \label{eq:3.3.12}
 \end{equation}
 则称$S$是$GQG^T$的一个平方根。
 
@@ -340,12 +331,12 @@ GQG^T = SS^T \label{eq:3.3.12}
 (2) 当$k \to \infty$时$\Sigma_k$收敛至正定矩阵$\Sigma_{\infty}$。
 \end{Thm}
 
-证明 % Should be defined later
-
+\begin{Prf}
 由定理\eqref{Thm:3.3.9}直接可得。
+\end{Prf}
 
 \begin{Rem}
-式\eqref{eq:3.3.12}中的平方根$S$并不是唯一的。但是从(3.8b) % Should be defined later
+式\eqref{eq:3.3.12}中的平方根$S$并不是唯一的。但是从练习\eqref{Exe:3.3.8}
 可知，$A$，$S$是可达的当且仅当$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的。因此$A$，$S$的可达性并不取决于\eqref{eq:3.3.12}中平方根的选取。
 \end{Rem}
 
@@ -353,55 +344,41 @@ GQG^T = SS^T \label{eq:3.3.12}
 
 如果一个在$\mathbb{R}^n$内取值的随机过程$\{x_k,k \ge 0\}$是高斯的，那么称这个随机过程为高斯-马尔可夫过程。也就是说，对任意$k$，随机变量$x_0,...x_k$的概率分布服从高斯分布，并且满足马尔可夫性质：
 \begin{equation}
-p(x_{k+1} \vert x_k,...,x_0) = p(x_{k+1} \vert x_k) \label{eq:3.4.1}
+	p(x_{k+1} \vert x_k,...,x_0) = p(x_{k+1} \vert x_k) \label{eq:3.4.1}
 \end{equation}
 
 % ==== End of page 31 ====
 
 我们已经知道，状态过程$\{x_k\}$由
 \begin{equation*}
-x_{k+1} = A_k \ x_k + w_k
+	x_{k+1} = A_k \ x_k + w_k
 \end{equation*}
 给出。如果$x_0,w_0,w_1,...$是相互独立的且服从高斯分布，那么这个过程就是高斯-马尔可夫过程。我们把这个这个命题的逆命题作为练习。假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，指定$\Sigma_k := cov(x_k)$，$\Sigma_{k+1,k} := cov(x_{k+1},x_k)$。
 
-练习 \label{3.4.2} % Should be defined later
-
+\begin{Exe} \label{Exe:3.4.2}
 试证明
 \begin{align}
-\hat{x}_{k+1 \vert k} :=& E \ \{x_{k+1} \vert x_k,...,x_0\} = E \ \{x_{k+1} \vert x_k\} \nonumber \\
-=& \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k. \label{eq:3.4.3}
+	\hat{x}_{k+1 \vert k} :=& E \ \{x_{k+1} \vert x_k,...,x_0\} = E \ \{x_{k+1} \vert x_k\} \nonumber \\
+	=& \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k. \label{eq:3.4.3}
 \end{align}
 若令
 \begin{equation*}
-w_k := x_{k+1} - \hat{x}_{k+1 \vert k}
+	w_k := x_{k+1} - \hat{x}_{k+1 \vert k}
 \end{equation*}
 试证明对高斯分布且相互独立的随机变量$x_0,w_0,w_1,...$，高斯-马尔可夫过程可以表示为
 \begin{equation}
-x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
+	x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
 \end{equation}
 其中$A_k := \Sigma_{k+1,k} \Sigma_k^{-1}$。
-【提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和剩下的部分，可以通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \vert x_k = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。】
+\textnormal{[}提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和剩下的部分，可以通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \vert x_k = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。\textnormal{]}
+\end{Exe}
 
-在上面的练习中，$w_k = x_{k+1} - \hat{x}_{k+1 \vert k}$和$x_k$共同决定了$x_{k+1}$。$x_k$这一项可以在$k$时刻知道，但$w_k$与先前的历史无关，因为无法在$k$时刻获知。因此$w_k := \hat{x}_{k+1 \vert k} - x_{k+1}$又称为innovation % TO BE DONE
-，或者说是过去未出现的关于$x_{k+1}$的新信息。式\eqref{eq:3.4.4}也称为过程$\{x_k\}$的 innovations representation % TO BE DONE
+在上面的练习中，$w_k = x_{k+1} - \hat{x}_{k+1 \vert k}$和$x_k$共同决定了$x_{k+1}$。$x_k$这一项可以在$k$时刻知道，但$w_k$与先前的历史无关，因为无法在$k$时刻获知。因此$w_k := \hat{x}_{k+1 \vert k} - x_{k+1}$又称为新型，或者说是过去未出现的关于$x_{k+1}$的新信息。式\eqref{eq:3.4.4}也称为过程$\{x_k\}$的新型表示。
 
 \section{注解}
 
-1. Anderson and Moore (1979)详尽地讨论了线性随机系统的性质。他们的书还研究了与可达性类似的概念--可控性和可观性。有关线性随机系统的更多性质会在第七章介绍。
-
-% 注:破折号无法使用GB2312编码，已使用双横线代替
+1. Anderson and Moore (1979)\cite{Anderson79OF}详尽地讨论了线性随机系统的性质。他们的书还研究了与可达性类似的概念--可控性和可观性。有关线性随机系统的更多性质会在第七章介绍。
 
 % ==== End of Page 32 ====
 
-\section{参考文献}
-
-% To BE DONE
-
 % ==== End of Page 33 ====
-
-%\begin{thebibliography}{100} % estimate max number of bibliography
-%\bibitem{AndersonMoore1979} B.D.O. Anderson and J.B. Moore (1979), \textit{Optimal filtering,} Prentice-Hall, Englewood Cliffs, NJ.
-%\end{thebibliography}
-
-% 似乎不能为每一章单独生成参考文献
-% 原有的bib库不正确
