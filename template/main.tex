@@ -46,9 +46,9 @@
 \usepackage{bibunits}%支持多个参考文献
 % \let\oldinclude\include%保存原有的\include命令定义
 % \def\include#1{\oldinclude{#1}\putbib}%重定义\include，自动加上\putbib
-\bibliographyunit[\chapter]%设置每一章都有参考文献
-\bibliography*{mybib} %设置参考文献数据库
-\bibliographystyle{unsrt} %设置参考文献样式
+% \bibliographyunit[\chapter]%设置每一章都有参考文献
+% \bibliography*{mybib} %设置参考文献数据库
+% \bibliographystyle{unsrt} %设置参考文献样式
 
 %-----------------超链接、PDF书签---------------
 % \usepackage[CJKbookmarks,bookmarksnumbered]{hyperref}
@@ -144,8 +144,8 @@
 % \end{appendix}
 
 %参考文献
-% \bibliography{mybib}
-% \bibliographystyle{plain} 
+\bibliography{mybib}
+\bibliographystyle{unsrt} 
 
 % \end{CJK*}
 
