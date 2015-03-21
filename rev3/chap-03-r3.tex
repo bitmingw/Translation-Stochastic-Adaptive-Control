@@ -79,8 +79,7 @@
 可以递归求得所有$\Sigma_{k+m \vert k}, m > 0$。
 从公式\eqref{eq:3.1.9}和\eqref{eq:3.1.10}可以看出$\Sigma_{k+m \vert k}$只取决于$m$，而与$k$的值无关。
 
-注意上述讨论的反馈函数$g_1,...,g_k$（而不是$g_i, i \ge k$）并不需要为常值函数。事实上，$g_i, i \le k$可以为任何非线性函数。 % of the available information \{y^i\}
-如果反馈函数是非线性的，那么控制过程也将是非高斯的，因此由无条件概率决定的状态过程也将是非高斯的。即便如此，由条件概率决定的转移概率依旧服从高斯分布。这就构成了下面的引理。
+注意上述讨论的反馈函数$g_1,...,g_k$（而不是$g_i, i \ge k$）并不需要为常值函数。事实上，$g_i, i \le k$可以为任何可用信息${\{y_i\}}$的非线性函数。如果反馈函数是非线性的，那么控制过程也将是非高斯的，因此由无条件概率决定的状态过程也将是非高斯的。即便如此，由条件概率决定的转移概率依旧服从高斯分布。这就构成了下面的引理。
 \begin{Lem} \label{lem:3.1.11}
 	由公式\eqref{eq:3.1.3}和\eqref{eq:3.1.4}所描述的$m$步转移概率，当反馈法则$g$满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$时，服从高斯分布：
 	\begin{equation}
@@ -180,7 +179,7 @@ $y_{k+m}$的方差定义为
 \begin{equation*}
 	\xi_{k+1} = F \xi_k + \epsilon_k; \quad w_k = D \xi_k + \delta_k,
 \end{equation*}
-其中变量$\{x_0,\xi_0,...,v_0,...,\epsilon_0,...,\delta_0,...$都相互独立且服从高斯分布。证明$\{y_k\}$可以表示为一个线性随机系统。
+其中变量$\{x_0,\xi_0,...,v_0,...,\epsilon_0,...,\delta_0,...$都相互独立且服从高斯分布。证明$\{y_k\}$可以表示为一个线性随机系统。 \\
 \textnormal{[}提示：可将状态向量改写为$\zeta_k := (x_k^T,\xi_k^T)^T$\textnormal{]}
 \end{Exe}
 
@@ -192,14 +191,14 @@ $y_{k+m}$的方差定义为
 
 对于公式\eqref{eq:3.1.3}所示的线性系统，假设独立随机变量$x_0,w_0,w_1,...,v_0,v_1,...$并不服从高斯分布，但它们的均值和方差仍和先前相同：
 \begin{align*}
-	E \ x_0 = \overline{x}_0, \quad E \ w_k = 0, \quad E \ v_k = 0, \\
-	cov(x_0) = \Sigma_0, \quad cov(w_k) = Q, \quad cov(v_k) = R.
+	E \ x_0 = \overline{x}_0, \quad E \ w_k &= 0, \quad E \ v_k = 0, \\
+	cov(x_0) = \Sigma_0, \quad cov(w_k) &= Q, \quad cov(v_k) = R.
 \end{align*}
 与此同时，使用开环控制率使得$g_k = u_k, k \ge 0$是常值函数。
 设
 \begin{align*}
-	\overline{x}_{k+m \vert k} := E \ \{x_{k+m} \vert x_k,u_k,...,u_{k+m-1}\}, \\
-	\Sigma_{k+m \vert k} := E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \vert x_k,u_k,...,u_{k+m-1}\},
+	\overline{x}_{k+m \vert k} :=& E \ \{x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}\}, \\
+	\Sigma_{k+m \vert k} :=& E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \ \vert \ x_k,u_k,...,u_{k+m-1}\},
 \end{align*}
 在已知$x_k$时$x_{k+m}$的条件均值和条件概率。
 
@@ -235,12 +234,12 @@ $y_{k+m}$的方差定义为
 \begin{equation}
 	\Sigma_k = A^k \Sigma_0 (A^k)^T + \sum_{j=0}^{k-1} A^j GQG^T (A^j)^T. \label{eq:3.3.3}
 \end{equation}
-为了得到收敛的$\Sigma_k$序列，整个级数需要可求和，因此矩阵$A^j$要收敛到0.
+为了得到收敛的$\Sigma_k$序列，整个级数需要可求和，因此矩阵$A^j$要收敛到0。
 
 如果矩阵$A$是稳定的，那么它的所有特征值的绝对值严格小于1。
 
 \begin{Thm} \label{Thm:3.3.4}
-假设矩阵$A$是稳定的，则存在一个半正定矩阵$\Sigma_{\infty}$使得$\lim_{k \to \infty} \Sigma_k = \Sigma \infty$. 并且，$\Sigma_{\infty}$是下面线性方程的唯一解：
+假设矩阵$A$是稳定的，则存在一个半正定矩阵$\Sigma_{\infty}$使得$\lim_{k \to \infty} \Sigma_k = \Sigma_{\infty}$. 并且，$\Sigma_{\infty}$是下面线性方程的唯一解：
 \begin{equation}
 	\Sigma_{\infty} = A \Sigma_{\infty} A^T + GQG^T. \label{eq:3.3.5}
 \end{equation}
@@ -269,8 +268,7 @@ $y_{k+m}$的方差定义为
 \begin{equation*}
 	x_k = x_k' + x_k''
 \end{equation*}
-其中$\{x_k'\}$的协方差函数是平稳的 % TO BE CHECKED
-，且当$k \to \infty$时$E \ \vert x_k'' \vert^2 \to 0$.（分解方式可能不唯一。）
+其中$\{x_k'\}$的协方差函数是平稳的，且当$k \to \infty$时$E \ \vert x_k'' \vert^2 \to 0$。（分解方式可能不唯一。）
 \end{Exe}
 
 \begin{Rem} \label{Rem:3.3.7}
@@ -280,10 +278,10 @@ $y_{k+m}$的方差定义为
 一对维度分别为$n \times n$和$n \times g$的矩阵$A$和$S$，当维度为$n \times ng$的矩阵$[S \ AS \ A^{n-1}S]$的秩为$n$时，则成这个状态是可达的。可达性将通过下面的习题证明。
 
 \begin{Exe} \label{Exe:3.3.8}
-证明下面的几种说法相互等价: \label{3.3.8} \\ % Should be defined later
-(1) $A$，$S$是一个可达对
-(2) $n \times n$的矩阵$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T$是正定的
-(3) 对任意$x \in \mathbb{R}^n$，存在一个输入序列$w_0,...,w_{n-1}$属于$\mathbb{R}^g$，使下面的确定性线性系统
+证明下面的几种说法相互等价: \\
+\textnormal{(1)} $A$，$S$是一个可达对。 \\
+\textnormal{(2)} $n \times n$的矩阵$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T$是正定的。 \\
+\textnormal{(3)} 对任意$x \in R^n$，存在一个输入序列$w_0,...,w_{n-1}$属于$R^g$，使下面的确定性线性系统
 \begin{equation*}
 	x_{k+1} = A \ x_k + S \ w_k, \quad k \ge 0
 \end{equation*}
@@ -292,8 +290,8 @@ $y_{k+m}$的方差定义为
 
 \begin{Thm} \label{Thm:3.3.9}
 设$A$，$S$是一个可达对，则下面的说法相互等价： \\
-(1) $A$是稳定的。
-(2) 方程
+\textnormal{(1)} $A$是稳定的。 \\
+\textnormal{(2)} 方程
 \begin{equation}
 	\Sigma = A \Sigma A^T + SS^T \label{eq:3.3.10}
 \end{equation}
@@ -312,7 +310,7 @@ $y_{k+m}$的方差定义为
 \begin{equation}
 	\Sigma = A^k \Sigma (A^k)^T + \sum_{j=0}^{k-1} A^j SS^T (A^j)^T, \quad k \ge 0. \label{eq:3.3.11}
 \end{equation}
-如果$\lambda$是$A$的一个特征值，并且有一个向量$x \neq 0$满足$A^T \ x = \lambda x$。在式\eqref{eq:3.3.11}左乘$x^{\ast}$（$\ast$代表共轭转置），右乘$x$，另$k = n-1$时，有
+如果$\lambda$是$A$的一个特征值，并且有一个向量$x \neq 0$满足$A^T x = \lambda x$。在式\eqref{eq:3.3.11}左乘$x^{\ast}$\textnormal{(}$\ast$代表共轭转置\textnormal{)}，右乘$x$，另$k = n-1$时，有
 \begin{equation*}
 	x^{\ast} \Sigma x = \vert \lambda \vert^{2(n-1)} x^{\ast} \Sigma x + x^{\ast} [\sum_{j=0}^{n-1} A^j SS^T (A^j)^T] x.
 \end{equation*}
@@ -326,9 +324,9 @@ $y_{k+m}$的方差定义为
 则称$S$是$GQG^T$的一个平方根。
 
 \begin{Thm} \label{Thm:3.3.13}
-假设$A$，$S$是可达的，则下面的命题是等价的：
-(1) $A$是稳定的。
-(2) 当$k \to \infty$时$\Sigma_k$收敛至正定矩阵$\Sigma_{\infty}$。
+假设$A$，$S$是可达的，则下面的命题是等价的： \\
+\textnormal{(1)} $A$是稳定的。 \\
+\textnormal{(2)} 当$k \to \infty$时$\Sigma_k$收敛至正定矩阵$\Sigma_{\infty}$。
 \end{Thm}
 
 \begin{Prf}
@@ -342,9 +340,9 @@ $y_{k+m}$的方差定义为
 
 \section{高斯-马尔可夫过程}
 
-如果一个在$\mathbb{R}^n$内取值的随机过程$\{x_k,k \ge 0\}$是高斯的，那么称这个随机过程为高斯-马尔可夫过程。也就是说，对任意$k$，随机变量$x_0,...x_k$的概率分布服从高斯分布，并且满足马尔可夫性质：
+如果一个在$R^n$内取值的随机过程$\{x_k,k \ge 0\}$是高斯的，那么称这个随机过程为高斯-马尔可夫过程。也就是说，对任意$k$，随机变量$x_0,...x_k$的概率分布服从高斯分布，并且满足马尔可夫性质：
 \begin{equation}
-	p(x_{k+1} \vert x_k,...,x_0) = p(x_{k+1} \vert x_k) \label{eq:3.4.1}
+	p(x_{k+1} \ \vert \ x_k,...,x_0) = p(x_{k+1} \vert x_k) \label{eq:3.4.1}
 \end{equation}
 
 % ==== End of page 31 ====
@@ -358,7 +356,7 @@ $y_{k+m}$的方差定义为
 \begin{Exe} \label{Exe:3.4.2}
 试证明
 \begin{align}
-	\hat{x}_{k+1 \vert k} :=& E \ \{x_{k+1} \vert x_k,...,x_0\} = E \ \{x_{k+1} \vert x_k\} \nonumber \\
+	\hat{x}_{k+1 \vert k} :=& E \ \{x_{k+1} \ \vert \ x_k,...,x_0\} = E \ \{x_{k+1} \ \vert \ x_k\} \nonumber \\
 	=& \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k. \label{eq:3.4.3}
 \end{align}
 若令
@@ -369,8 +367,8 @@ $y_{k+m}$的方差定义为
 \begin{equation}
 	x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
 \end{equation}
-其中$A_k := \Sigma_{k+1,k} \Sigma_k^{-1}$。
-\textnormal{[}提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和剩下的部分，可以通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \vert x_k = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。\textnormal{]}
+其中$A_k := \Sigma_{k+1,k} \Sigma_k^{-1}$。 \\
+\textnormal{[}提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和剩下的部分，可以通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \ \vert \ x_k = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。\textnormal{]}
 \end{Exe}
 
 在上面的练习中，$w_k = x_{k+1} - \hat{x}_{k+1 \vert k}$和$x_k$共同决定了$x_{k+1}$。$x_k$这一项可以在$k$时刻知道，但$w_k$与先前的历史无关，因为无法在$k$时刻获知。因此$w_k := \hat{x}_{k+1 \vert k} - x_{k+1}$又称为新型，或者说是过去未出现的关于$x_{k+1}$的新信息。式\eqref{eq:3.4.4}也称为过程$\{x_k\}$的新型表示。
