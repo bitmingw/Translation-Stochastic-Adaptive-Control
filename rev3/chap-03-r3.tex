@@ -84,7 +84,7 @@
 \begin{Lem} \label{lem:3.1.11}
 	由公式\eqref{eq:3.1.3}和\eqref{eq:3.1.4}所描述的$m$步转移概率，当反馈法则$g$满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$时，服从高斯分布：
 	\begin{equation}
-		p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim N(A^m \ x_k + \Sigma_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \Sigma_{k+m \vert k})
+		p(x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}) \sim N(A^m \ x_k + \sum_{j=0}^{m-1} A^{m-1-j} B \ u_{k+j}, \Sigma_{k+m \vert k})
 	\end{equation}
 	此外，协方差矩阵$\Sigma_{k+m \vert k}$可以通过线性差分方程\eqref{eq:3.1.9}和\eqref{eq:3.1.10}算出。
 \end{Lem}
@@ -98,11 +98,11 @@
 % ==== End of Page 25 ====
 右边的三项相互独立且满足高斯分布，所以
 \begin{equation*}
-	p_{x_k}^g \sim N(\overline{x_k}, \Sigma_k)
+	p_{x_k}^g \sim N(\overline{x}_k, \Sigma_k)
 \end{equation*}
 其中
 \begin{align}
-	\overline{x_k} &= A^k \overline{x_0} + \sum_{j=0}^{k-1} A^{k-1-j} B u_j, \nonumber \\
+	\overline{x}_k &= A^k \overline{x}_0 + \sum_{j=0}^{k-1} A^{k-1-j} B u_j, \nonumber \\
 	\Sigma_k &= cov(A^k x_0 + \sum_{j=0}^{k-1} A^{k-1-j} G w_j) \nonumber \\
 	&= cov(A(A^{k-1} x_0 + \sum_{j=0}^{k-2} A^{k-2-j} G w_j)) + cov(G w_{k-1}) \nonumber \\
 	&= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.1.12} \\
@@ -152,8 +152,8 @@ $y_{k+m}$的方差定义为
 \begin{Exe} \label{Exe:3.1.17}
 除了公式\eqref{eq:3.1.3}和\eqref{eq:3.1.4}的非时变系统之外，也有如下的时变系统
 \begin{align*}
-	x_{k+1} = A^k x_k + B^k u_k + G_k w_k, \\
-	y_k = C_k x_k + H_k v_k,
+	x_{k+1} &= A^k x_k + B^k u_k + G_k w_k, \\
+	y_k &= C_k x_k + H_k v_k,
 \end{align*}
 且独立变量服从高斯分布
 \begin{equation*}
@@ -163,8 +163,8 @@ $y_{k+m}$的方差定义为
 \end{equation*}
 请证明$m$步转移概率也服从高斯分布
 \begin{align*}
-	p(x_{k+m} \vert x_k,u_k,...,u_{k+m-1}) \sim \\
-	N(A_{k+m-1} ... A_k  x_k + \sum_{j=0}^{m-1} A_{k+m-1} ... A_{k+j+1} B_{k+j} u_{k+j}, \Sigma_{k+m \vert k}).
+	&p(x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}) \sim \\
+	&N(A_{k+m-1} ... A_k  x_k + \sum_{j=0}^{m-1} A_{k+m-1} ... A_{k+j+1} B_{k+j} u_{k+j}, \Sigma_{k+m \vert k}).
 \end{align*}
 并且高斯分布的协方差可以使用时变线性差分方程计算
 \begin{align*}
