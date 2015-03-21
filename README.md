@@ -1,5 +1,9 @@
-# 翻译作业
+# 随机系统：估计，辨识与自适应控制
 
-本项目将 P.R. Kumar 和 Pravin Varaiya 的著作 _Stochastic Systems: Estimation, Identification, and Adaptive Control_ 翻译成中文。
+P.R. Kumar 和 Pravin Varaiya 的著作 _Stochastic Systems: Estimation, Identification, and Adaptive Control_ 第三章与第四章的中文翻译。
 
-我将负责该书第三章和第四章的翻译。
+编译环境：<a herf="http://www.ctex.org" target="_blank">CTeX</a>
+
+---
+
+保留所有权利 &copy; Ming Wen
