@@ -14,4 +14,5 @@ pdflatex main.tex
 echo "Solve cross-reference..."
 pdflatex main.tex
 echo "Compile PDF complete!"
+del *.aux rem "make directory cleaner"
 pause
