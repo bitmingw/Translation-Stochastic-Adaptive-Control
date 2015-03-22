@@ -347,7 +347,7 @@ $P$是一个转移概率矩阵，$0 < \beta < 1$，证明$I - \beta P$是可逆的。事实上，
 
 因此对静态的$g$和时不变的代价函数，式\eqref{eq:4.4.14}和\eqref{eq:4.4.15}的单位时间平均代价为
 \begin{equation}
-	J(g) = \lim_{N \to \infty} \frac{1}{N} E^g \sum_{k=0}^{N-1} c(x_k,g(x_k)) = p_0 \Pi c^g \label{eq:4.5.5}
+	J(g) = \lim_{N \to \infty} \frac{1}{N} E^g \ \sum_{k=0}^{N-1} c(x_k,g(x_k)) = p_0 \Pi c^g \label{eq:4.5.5}
 \end{equation}
 
 若$\pi$是$\Pi$中的一行，则下式也成立
@@ -357,7 +357,7 @@ $P$是一个转移概率矩阵，$0 < \beta < 1$，证明$I - \beta P$是可逆的。事实上，
 另外，由于$\Pi$是随机矩阵，$\pi$可以视为概率分布。如果马尔可夫链的初始概率分布是$\pi$，那么状态的概率分布将一直保持为$\pi$。因此$\pi$又称为不变概率分布。如果$\Pi$并非每一行都相同，则存在多于一个不变概率分布。
 
 \begin{Exe} \label{Exe:4.5.6}
-举一个例子说明式\eqref{eq:4.5.5}中$J(g)$于$p_0$有关。
+举一个例子说明式\eqref{eq:4.5.5}中$J(g)$于$p_0$有关。 \\
 \textnormal{[}提示：选取$P = I$，此处有多个不变概率分布。\textnormal{]}
 \end{Exe}
 
@@ -380,17 +380,17 @@ $P$是一个转移概率矩阵，$0 < \beta < 1$，证明$I - \beta P$是可逆的。事实上，
 \begin{equation*}
 	\pi P = \pi, \quad \sum_{i=1}^I \pi_i = 1
 \end{equation*}
-并有$\pi_i > 0$对每个$i$成立。最后，式\eqref{eq:4.5.5}中的矩阵$\Pi$的所有行都等于$\pi$。
-（$\pi$被称为马尔可夫链$\{x_k\}$的稳态或不变概率分布。）
+并有$\pi_i > 0$对每个$i$成立。最后，式\eqref{eq:4.5.5}中的矩阵$\Pi$的所有行都等于$\pi$。 \\
+\textnormal{[}$\pi$被称为马尔可夫链$\{x_k\}$的稳态或不变概率分布。\textnormal{]}
 \end{Lem}
 
 \begin{Exe} \label{Exe:4.5.8}
-构建一个可约的，有多个不变概率分布的马尔可夫链。对每个不变概率分布$\pi$，它的每个组成$\pi_i$都大于0么？
+构建一个可约的，有多个不变概率分布的马尔可夫链。对每个不变概率分布$\pi$，它的每个组成$\pi_i$都大于0么？ \\
 \textnormal{[}提示：见练习\eqref{Exe:4.5.6}\textnormal{]}
 \end{Exe}
 
 \begin{Exe} \label{Exe:4.5.9}
-证明当且仅当对任意$i$和$j$存在一个状态序列$i =: i_0,i_1,...i_{k-1},i_k := j$使得$P_{i_l i_{l+1}} > 0$对$l = 0,1,...,k-1$都成立时，P是不可约的。因此在状态空间中存在一条路径，使任何状态总能以正的概率通过马尔可夫链的遍历转移到其他任何状态。
+证明当且仅当对任意$i$和$j$存在一个状态序列$i =: i_0,i_1,...,i_{k-1},i_k := j$使得$P_{i_l i_{l+1}} > 0$对$l = 0,1,...,k-1$都成立时，P是不可约的。因此在状态空间中存在一条路径，使任何状态总能以正的概率通过马尔可夫链的遍历转移到其他任何状态。 \\
 \textnormal{[}提示：如果不满足，则将所有不可达的状态列为一组，将这些状态划归到矩阵$P_1$中。\textnormal{]}
 \end{Exe}
 
@@ -411,7 +411,7 @@ $P$是一个转移概率矩阵，$0 < \beta < 1$，证明$I - \beta P$是可逆的。事实上，
 		P_n & 0 & 0 & \ldots & 0
 	\end{bmatrix}
 \end{equation*}
-这说明我们可以将各状态拆分成不相关的子集$I_1,...I_n$使得$I_{m-1}$只能转变为状态$I_m$。如果$P$不能变成上述形式，则称它的非周期性的。
+这说明我们可以将各状态拆分成不相关的子集$I_1,...,I_n$使得$I_{m-1}$只能转变为状态$I_m$。如果$P$不能变成上述形式，则称它的非周期性的。
 
 % ==== End of Page 45 ====
 
@@ -430,35 +430,36 @@ $P$是一个转移概率矩阵，$0 < \beta < 1$，证明$I - \beta P$是可逆的。事实上，
 在一种情况下，代价函数可以定义在无限时间长度上，且既不需要衰减因子，也不需要计算单位时间的平均代价。我们在下个练习中介绍这种情况。
 
 \begin{Exe} \label{Exe:4.5.13}
-令$F \subset \{1,...I\}$为状态的一个子集，且对静态马尔可夫策略$g$，设$\tau$为第一次$x_k$进入$F$的时刻，即
+令$F \subset \{1,...,I\}$为状态的一个子集，且对静态马尔可夫策略$g$，设$\tau$为第一次$x_k$进入$F$的时刻，即
 \begin{equation*}
 	\tau =
 	\begin{cases}
-		\min \{k \ge 0 \vert x_k \in F\} \\
-		\infty, \text{if } \forall k, \quad x_k \not\in F
+		\min \{k \ge 0 \ \vert \ x_k \in F\} \\
+		\infty, \quad \text{if } \forall k, \ x_k \not\in F
 	\end{cases}
 \end{equation*}
 假设
-\begin{equation}
+\begin{equation*}
 	\forall i, \quad E \ \{\tau \vert x_0 = i\} < \infty
-\end{equation}
+\end{equation*}
 令$c(i,u)$为一个静态代价函数，设
-\begin{equation}
-	V^g(i) := E^g \ \{\sum_{k=0}^{\tau - 1} c(x_k,g(x_k)) \vert x_0 = i\}
-\end{equation}
+\begin{equation*}
+	V^g(i) := E^g \ \{\sum_{k=0}^{\tau - 1} c(x_k,g(x_k)) \ \vert \ x_0 = i\}
+\end{equation*}
 试证明$V^g(i) < \infty$且
-\begin{equation}
+\begin{equation*}
 	V^g = c^g + R^g V^g
-\end{equation}
-其中当$i \not\in F$时$(R^g)_ij := (P^g)_ij$，当$i \in F$时$(R^g)_ij := 0$。随机时间$\tau$叫做停止时间，这种问题称为停止时间问题。
+\end{equation*}
+其中当$i \not\in F$时$(R^g)_{ij} := (P^g)_{ij}$，当$i \in F$时$(R^g)_{ij} := 0$。 \\
+\textnormal{[}随机时间$\tau$叫做停止时间，这种问题称为停止时间问题。\textnormal{]}
 \end{Exe}
 
 \section{无限状态马尔可夫链}
 
 基于第2、3、4节的内容，我们将状态$x_k$定义在无限集$\{1,2,3,...\}$上的可控马尔可夫链留到现在讨论。控制变量的集合为$U$。对于$u \in U$，转移概率由无限维矩阵
-\begin{equation}
-	P(u) := \{P_ij(u), \quad 1 \le i,j \le \infty\}
-\end{equation}
+\begin{equation*}
+	P(u) := \{P_{ij}(u), \quad 1 \le i,j < \infty\}
+\end{equation*}
 这与式\eqref{eq:4.2.2}的表达方法一致。
 
 % ==== End of Page 46 ====
