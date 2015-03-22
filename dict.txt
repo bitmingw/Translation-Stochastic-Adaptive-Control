@@ -1,6 +1,8 @@
 moment 矩
 innovation 新型
 innovations representation 新型表示
+Cesaro 塞萨罗
 Kolmogorov 柯尔莫哥洛夫
 rate matrix 速率矩阵
+Erlang loss formula 厄兰丢失公式
 uniformizable 可均匀化的
