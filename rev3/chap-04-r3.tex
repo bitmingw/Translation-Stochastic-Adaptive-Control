@@ -6,7 +6,7 @@
 
 迄今为止状态变量的取值范围均为$R^n$，但在很多情况下，让状态只能取一个有限集合的数值是更有利的。下面通过一个例子来说明。
 
-有这样一台机器，在时刻$k$的状态由$x_k$来描述，$x_k$根据机器是否正常运转会返回1或者2。现在假定不允许从外界对机器施加控制，机器处于自治状态。若在$k$时刻机器正常运行，则$x_k = 1$，且它有一定的概率$q > 0$会在下一时刻出错，也就是$x_{k+1} = 2$,同时，有$1 - q$的概率它会维持正常运行的状态，即$x_{k+1} = 1$。若假设$q$与先前的状态$x_{k-1},...x_0$无关，并且出错的机器会一直保持错误的状态（当$x_k = 2$时$x_{k+1} = 2$的概率为1），则称$\{x_k, k \ge 0\}$是一个马尔可夫链。它的转移概率由矩阵$P = P\{P_ij\}$描述：
+有这样一台机器，在时刻$k$的状态由$x_k$来描述，$x_k$根据机器是否正常运转会返回1或者2。现在假定不允许从外界对机器施加控制，机器处于自治状态。若在$k$时刻机器正常运行，则$x_k = 1$，且它有一定的概率$q > 0$会在下一时刻出错，也就是$x_{k+1} = 2$,同时，有$1 - q$的概率它会维持正常运行的状态，即$x_{k+1} = 1$。若假设$q$与先前的状态$x_{k-1},...x_0$无关，并且出错的机器会一直保持错误的状态（当$x_k = 2$时$x_{k+1} = 2$的概率为1），则称$\{x_k, k \ge 0\}$是一个马尔可夫链。它的转移概率由矩阵$P = P\{P_{ij}\}$描述：
 \begin{equation}
 	\begin{bmatrix}
 		1-q & q \\
@@ -17,7 +17,7 @@
 
 马尔可夫性质由下式表示：
 \begin{equation}
-	Prob\{x_{k+1} = j \vert x_k = i, x_{k-1},...,x_0\} = P_ij, \quad i,j \in \{1,2\}. \label{eq:4.1.2}
+	Prob\{x_{k+1} = j \ \vert \ x_k = i, x_{k-1},...,x_0\} = P_{ij}, \quad i,j \in \{1,2\}. \label{eq:4.1.2}
 \end{equation}
 
 % ==== End of Page 35 ====
@@ -26,10 +26,10 @@
 
 这两个控制的结果，可以用如下的控制转移概率建模。定义$u_k := (u_k^1, u_k^2)$，则
 \begin{align}
-	P\{x_{k+1} = 2 \vert x_k = 1, x_{k-1},...,u_k,u_{k-1}...\} &= q_1(u_k^1) - q_2(u_k^2), \nonumber \\
-	P\{x_{k+1} = 1 \vert x_k = 1, x_{k-1},...,u_k,u_{k-1}...\} &= 1 - [q_1(u_k^1) - q_2(u_k^2)], \nonumber \\
-	P\{x_{k+1} = 1 \vert x_k = 2, x_{k-1},...,u_k,u_{k-1}...\} &= q_2(u_k^2), \nonumber \\
-	P\{x_{k+1} = 2 \vert x_k = 2, x_{k-1},...,u_k,u_{k-1}...\} &= 1 - q_2(u_k^2) \label{eq:4.1.3}
+	P\{x_{k+1} = 2 \ \vert \ x_k = 1, x_{k-1},...,u_k,u_{k-1},...\} &= q_1(u_k^1) - q_2(u_k^2), \nonumber \\
+	P\{x_{k+1} = 1 \ \vert \ x_k = 1, x_{k-1},...,u_k,u_{k-1},...\} &= 1 - [q_1(u_k^1) - q_2(u_k^2)], \nonumber \\
+	P\{x_{k+1} = 1 \ \vert \ x_k = 2, x_{k-1},...,u_k,u_{k-1},...\} &= q_2(u_k^2), \nonumber \\
+	P\{x_{k+1} = 2 \ \vert \ x_k = 2, x_{k-1},...,u_k,u_{k-1},...\} &= 1 - q_2(u_k^2) \label{eq:4.1.3}
 \end{align}
 与公式\eqref{eq:4.1.1}类似，它们可以用一个矩阵表示，即控制$u$的函数：
 \begin{equation}
@@ -66,9 +66,9 @@
 
 其中，$q$的取值满足$q_1(0) < q_1(1) < q_1(2)$和$q_2(0) < q_2(1)$。这是因为轻度使用和维护得更好的机器比重度使用和维护不佳的机器崩溃的概率更低。另外，式\eqref{eq:4.1.3}中的最后两项概率与$u_k^1$无关，因为当机器已经崩溃时，它就无法被使用了。
 
-假设系统受到一个时变的反馈指令$\{g_0,g_1,...\}$的作用，记$g_k \equiv g$，且另$u_k = g(x_k)$，则可得到转移概率矩阵$P_g = \{P_ij^g\}$，其中
+假设系统受到一个时变的反馈指令$\{g_0,g_1,...\}$的作用，记$g_k \equiv g$，且另$u_k = g(x_k)$，则可得到转移概率矩阵$P_g = \{P_{ij}^g\}$，其中
 \begin{equation}
-	P_ij^g := P_ij(g(i)), \quad i,j \in \{1,2\} \label{eq:4.1.5}
+	P_{ij}^g := P_{ij}(g(i)), \quad i,j \in \{1,2\} \label{eq:4.1.5}
 \end{equation}
 例如，若$g(1) = (2,0), g(2) = (0,1)$，那么
 \begin{equation}
@@ -109,20 +109,20 @@
 
 \section{有限状态控制马尔可夫链}
 
-前面的例子可以一般化成任意有限状态控制的马尔可夫链。它的状态$x_k$可取值$\{1,...I\}$。它的控制可以从一个有限或无限的集合$U$中取值。转移概率由一个$I \times I$的矩阵描述
+前面的例子可以一般化成任意有限状态控制的马尔可夫链。它的状态$x_k$可取值$\{1,...,I\}$。它的控制可以从一个有限或无限的集合$U$中取值。转移概率由一个$I \times I$的矩阵描述
 \begin{equation}
-	u \to P(u) := \{P_ij(u), \quad 1 \le i,j \le I\} \label{eq:4.2.1}
+	u \to P(u) := \{P_{ij}(u), \quad 1 \le i,j \le I\} \label{eq:4.2.1}
 \end{equation}
 我们记
 \begin{equation}
-	Prob\{x_{k+1} = j \vert x_k = i, x_{k-1},...,x_0,u_k,...,u_0\} = P_ij(u_k) \label{eq:4.2.2}
+	Prob\{x_{k+1} = j \ \vert \ x_k = i, x_{k-1},...,x_0,u_k,...,u_0\} = P_{ij}(u_k) \label{eq:4.2.2}
 \end{equation}
 矩阵$P(u)$的每个元素都是非负的，并且每一行的各个元素之和都是1，即矩阵$P(u)$是一个随机矩阵。同时，我们必须指定初始状态$x_0$的概率分布。当观测不等于状态，即$y_k \not\equiv x_k$，我们还需要指定观测概率
 \begin{equation}
-	P(y \vert i) := Prob\{y_k = y \vert x_k = i\} \label{eq:4.2.3}
+	P(y \ \vert \ i) := Prob\{y_k = y \ \vert \ x_k = i\} \label{eq:4.2.3}
 \end{equation}
 
-\section{完全客观和马尔可夫策略}
+\section{完全可观与马尔可夫策略}
 
 考虑可控的马尔可夫链模型\eqref{eq:4.2.1}，若这个状态是可观测的，即$y_k \equiv x_k$，另$g = \{g_0,g_1,...\}$为一个反馈策略，使得$g_k$只与当前状态$x_k$有关。我们称这个策略$g$为马尔可夫策略。
 
@@ -136,7 +136,7 @@
 当我们运用了马尔可夫策略$g$的时候，状态过程的结果$\{x_k\}$就是一个马尔可夫过程。在$k$时刻它的一步转移概率为
 % ==== End of Page 38 ====
 \begin{equation*}
-	P_k^g := \{(P_k^g)_ij := P_ij (g_k(i)), \quad i \le i, j \le I\}
+	P_k^g := \{(P_k^g)_{ij} := P_{ij} (g_k(i)), \quad i \le i, j \le I\}
 \end{equation*}
 它的$m$步转移概率为
 \begin{equation*}
@@ -165,7 +165,7 @@
 \begin{equation*}
 	c_k(i,u), \quad 1 \le i \le I, \quad u \in U, \quad k \ge 0
 \end{equation*}
-它表示$c_k{i,u}$是$k$时刻当$x_k = i$和$u_k = u$时的代价。
+它表示$c_k(i,u)$是$k$时刻当$x_k = i$和$u_k = u$时的代价。
 
 对于一个固定的马尔可夫策略$g$，到$N$时刻积累的代价为$\sum_{k=0}^N c_k(x_k,u_k)$。因为$x_k$和$u_k$是随机的，所以它是一个随机变量。积累的代价的均值为
 \begin{equation}
@@ -189,7 +189,7 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 
 动态规划是一个用递归方式计算最佳$g$的方法。由于这个方法只取决于下面的事实：由$g$决定的状态过程是马尔可夫的，因此我们在这里加以介绍。对任意时间$1 \le k \le N$以及状态$1 \le i \le I$，令$V_k^g(i)$代表当$x_k = i$时$k,...N$阶段代价的期望。也就是说
 \begin{equation}
-	V_k^g(i) := E^g \ \{\sum_{l=k}^N c_l (x_l,g_l(x_l)) \vert x_k = i\} \label{eq:4.4.4}
+	V_k^g(i) := E^g \ \{\sum_{l=k}^N c_l (x_l,g_l(x_l)) \ \vert \ x_k = i\} \label{eq:4.4.4}
 \end{equation}
 因此所有的代价可以表示为
 \begin{equation}
@@ -199,7 +199,7 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 \begin{Lem} \label{Lem:4.4.6}
 函数$V_k^g(i)$可以通过向后递归的方式计算：
 \begin{equation}
-	V_k^g(i) = c_k(i,g_k(i)) + \sum_{j=1}^I (P_k^g)_ij V_{k+1}^g(j), \quad 0 \le k < N \label{eq:4.4.7}
+	V_k^g(i) = c_k(i,g_k(i)) + \sum_{j=1}^I (P_k^g)_{ij} V_{k+1}^g(j), \quad 0 \le k < N \label{eq:4.4.7}
 \end{equation}
 其初始条件是
 \begin{equation}
@@ -210,11 +210,11 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 \begin{Prf}
 从定义中我们立即可得\eqref{eq:4.4.8}，之后
 \begin{align*}
-	V_k^g(i) &= E^g \ \{\sum_{l=k}^N c_l(x_l,g_l(x_l)) \vert x_k = i\} \\
-	&= c_k(i,g_k(i)) + E^g \ \{E^g \ \{\sum_{l=k+1}^N c_l(x_l,g_l(x_l)) \vert x_{k+1},x_k = i\} \vert x_k = i\} \\
+	V_k^g(i) &= E^g \ \{\sum_{l=k}^N c_l(x_l,g_l(x_l)) \ \vert \ x_k = i\} \\
+	&= c_k(i,g_k(i)) + E^g \ \{E^g \ \{\sum_{l=k+1}^N c_l(x_l,g_l(x_l)) \ \vert \ x_{k+1},x_k = i\} \ \vert \ x_k = i\} \\
 	% ==== End of Page 40 ====
-	&= c_k(i,g_k(i)) + E^g \ \{V_{k+1}^g(x_{k+1}) \vert x_k = i\}, \quad by \eqref{eq:4.2.2} \\
-	&= c_k(ig_k(i)) + \sum_{j=1}^I V_{k+1}^g(j) Prob\{x_{k+1} \vert x_k = i\}
+	&= c_k(i,g_k(i)) + E^g \ \{V_{k+1}^g(x_{k+1}) \ \vert \ x_k = i\}, \quad \text{by } \eqref{eq:4.2.2} \\
+	&= c_k(i,g_k(i)) + \sum_{j=1}^I V_{k+1}^g(j) Prob\{x_{k+1} = j \ \vert \ x_k = i\}
 \end{align*}
 由$(P_k^g)_{ij}$可看出，这就是\eqref{eq:4.4.7}的结果。
 \end{Prf}
@@ -234,7 +234,7 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 
 第一个方法是引入一个衰减因子$\beta, 0 < \beta < 1$，并计算衰减代价的期望
 \begin{equation*}
-	J(g) = E^g \sum_{k=0}^{\infty} \beta^k c_k(x_k,u_k)
+	J(g) = E^g \ \sum_{k=0}^{\infty} \beta^k c_k(x_k,u_k)
 \end{equation*}
 只要$c_k$是有界的，$J(g)$就是有限的。因为在$k$时刻的代价衰减了$\beta^k$，所以现在的代价比未来的代价更为重要。例如，在经济问题中，设$\beta = (1+r)^{-1}$，其中$r > 0$是利率。在这种表示中，$J(g)$是当前的代价，从\eqref{eq:4.4.2}可知
 \begin{equation*}
@@ -242,7 +242,7 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 \end{equation*}
 若定义
 \begin{equation*}
-	V_k^g(i) := E^g \ \{\sum_{l=k}^{\infty} \beta^l c_l(x_l,g_l(x_l)) \vert x_k = i\}
+	V_k^g(i) := E^g \ \{\sum_{l=k}^{\infty} \beta^l c_l(x_l,g_l(x_l)) \ \vert \ x_k = i\}
 \end{equation*}
 使用\eqref{eq:4.4.9}中的记法，式\eqref{eq:4.4.10}和\eqref{eq:4.4.12}可以写为
 \begin{align}
@@ -269,16 +269,16 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 \begin{equation}
 	J(g) := E^g \ I(\max_{0 \le k \le N} h(x_k) \ge \alpha) \label{eq:4.4.17}
 \end{equation}
-其中$I$是指示函数，$h$和$\alpha$的定义如前。（$J(g)$是$h(x_k)$的值在$k$时刻大于$\alpha$的概率。）试证明\eqref{eq:4.4.17}可以写成\eqref{eq:4.4.1}那样累加的形式。
+其中$I$是指示函数，$h$和$\alpha$的定义如前。（$J(g)$是$h(x_k)$的值在$k$时刻大于$\alpha$的概率。）试证明\eqref{eq:4.4.17}可以写成\eqref{eq:4.4.1}那样累加的形式。 \\
 \textnormal{[}提示：定义一个新的马尔可夫链$z_k := (x_k,y_k), y_k \in \{0,1\}$。$x_k$的转移概率没有变化，因此
 \begin{align*}
-	Prob\{y_{k+1} = 1 \vert y_k = 0,x_k,z_{k-1},...,z_0,u_k,...,u_0\} \\
+	Prob\{y_{k+1} = 1 \ \vert \ y_k = 0,x_k,z_{k-1},...,z_0,u_k,...,u_0\} \\
 	=
 	\begin{cases}
 		1 & \text{if } h(x_k) \ge \alpha \\
 		0 & \text{if } h(x_k) < \alpha
 	\end{cases} \\
-	Prob\{y_{k+1} = 1 \vert y_k = 1,x_k,z_{k-1},...,z_0,u_k,...,u+0\} \equiv 1
+	Prob\{y_{k+1} = 1 \ \vert \ y_k = 1,x_k,z_{k-1},...,z_0,u_k,...,u+0\} \equiv 1
 \end{align*}
 再设$c_k(z,u) \equiv 0, k < N$和$c_N(x,y,u) \equiv y$
 \textnormal{]}
@@ -291,8 +291,8 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 如果$g$是静态的，则转移概率矩阵也是静态的，$P_k^g \equiv P^g$。若假设代价函数也是时不变的，即$c_k = c$，设衰减因子$0 < \beta < 1$为一个固定值，则
 % ==== End of Page 42 ====
 \begin{align*}
-	V_k^g(i) &= E^g \ \{\sum_{l=k}^{\infty} \beta^l c(x_l,g(x_l)) \vert x_k = i\} \\
-	&= \beta^k E^g \{\sum_{l=0}^{\infty} \beta^l c(x_l,g(x_l)) \vert x_0 = i\} \\
+	V_k^g(i) &= E^g \ \{\sum_{l=k}^{\infty} \beta^l c(x_l,g(x_l)) \ \vert \ x_k = i\} \\
+	&= \beta^k E^g \ \{\sum_{l=0}^{\infty} \beta^l c(x_l,g(x_l)) \ \vert \ x_0 = i\} \\
 	&= \beta^k V_0^g(i)
 \end{align*}
 带入\eqref{eq:4.4.13}中可得
@@ -306,7 +306,7 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 这是一组共$I$个线性方程，$V_0^g(i)$中有$I$个未知量。练习\eqref{Exe:4.5.3}说明$[I - \beta P^g]$是可逆的，因此这个系统的线性方程有唯一解$V_0^g$。
 
 \begin{Exe} \label{Exe:4.5.1}
-定义$x \in R^I$的模为$\vert x \vert := \max \{\vert x_1 \vert,...\vert x_I \vert\}$。定义$I \times I$的矩阵$P$的模为$\Vert P \Vert := \max_i \sum_j \vert P_ij \vert$。证明矩阵的模可由向量的模推导出来
+定义$x \in R^I$的模为$\vert x \vert := \max \{\vert x_1 \vert,...,\vert x_I \vert\}$。定义$I \times I$的矩阵$P$的模为$\Vert P \Vert := \max_i \sum_j \vert P_{ij} \vert$。证明矩阵的模可由向量的模推导出来
 \begin{equation*}
 	\Vert P \Vert = \max_{x \ne 0} \frac{\vert P_x \vert}{\vert x \vert}
 \end{equation*}
@@ -326,8 +326,8 @@ $P$是一个转移概率矩阵，$0 < \beta < 1$，证明$I - \beta P$是可逆的。事实上，
 \begin{equation*}
 	V(n+1) := c + \beta P V(n)
 \end{equation*}
-试证明当$n \to \infty$时$V(n) \to [I - \beta P]^{-1}$
-【提示：递归带入$V(n)$的表达式。】
+试证明当$n \to \infty$时$V(n) \to [I - \beta P]^{-1}$ \\
+\textnormal{[}提示：递归带入$V(n)$的表达式。\textnormal{]}
 \end{Exe}
 
 % ==== End of Page 43 ====
@@ -558,12 +558,12 @@ $x_k$的概率分布是一个无限长行向量
 \begin{equation}
 	\pi \ P = \pi, \quad \text{and } \sum_{i=0}^{\infty} \pi(i) = 1
 \end{equation}
-当且仅当$\epsilon > \frac{1}{2}$
-【提示：先证明$\pi \ P = \pi$的一个正数解必须与$\eta = (\eta_1,\eta_2,...)$成正比。其中
+当且仅当$\epsilon > \frac{1}{2}$ \\
+\textnormal{[}提示：先证明$\pi \ P = \pi$的一个正数解必须与$\eta = (\eta_1,\eta_2,...)$成正比。其中
 \begin{equation*}
 	\eta(1) = 1, \quad \text{and } \eta{i} = \frac{(1 - \epsilon)^{i-2}}{\epsilon^{i-1}}, \quad i > 1
 \end{equation*}
-再证明$\sum_i \pi(i) = 1$成立当且仅当$\sum_i \eta(i) < \infty$且$\epsilon > \frac{1}{2}$】
+再证明$\sum_i \pi(i) = 1$成立当且仅当$\sum_i \eta(i) < \infty$且$\epsilon > \frac{1}{2}$\textnormal{]}
 \end{Exe}
 
 如果\eqref{eq:4.6.3}中的塞萨罗极限存在（在有限情形下总是存在），那么有
@@ -690,8 +690,8 @@ $Q(u(t))$称为连续时间可控的马尔可夫链$\{x(t)\}$的转移概率变化率矩阵。$Q$的所有非
 下面的定理说明这也是$\pi$为时不变的一个充分条件。
 
 \begin{Exe} \label{Exe:4.7.8}
-如果概率分布$\pi$满足$\pi Q = 0$，证明$p(s) = \pi$可推出$p(t) = \pi$对所有$t \ge s$。
-【提示：通过将矩阵的幂展开成多项式级数，证明$\pi exp(tQ) = \pi$。】
+如果概率分布$\pi$满足$\pi Q = 0$，证明$p(s) = \pi$可推出$p(t) = \pi$对所有$t \ge s$。 \\
+\textnormal{[}提示：通过将矩阵的幂展开成多项式级数，证明$\pi exp(tQ) = \pi$。\textnormal{]}
 \end{Exe}
 
 式\eqref{eq:4.7.7}有一个简单的解释。将向量等式的每个元素取出，方程变为对所有$j$：
