@@ -1,44 +1,43 @@
 \chapter{线性随机系统的性质} % Properties of Linear Stochastic Systems
 
-本章简要介绍了含有输入干扰和测量误差的线性随机系统模型，并重点讨论了当干扰是高斯噪声时的情况。本章推导了状态和测量过程的平均值和协方差和递推公式。递推中的渐近性质和状态方程中的稳定性密切相关。最后，本章说明线性高斯系统的状态和高斯-马尔可夫过程之间存在联系。
+本章简要总结了含有输入干扰和测量误差的线性随机系统模型的基本结论，并重点讨论了干扰是高斯噪声时的情况。本章推导了状态和测量过程的平均值和协方差的递推公式，其渐近性质与状态方程的稳定性密切相关。最后，本章说明了线性高斯系统的状态过程和高斯-马尔可夫过程之间的联系。
 
 \section{线性高斯系统}
 
-对于n维随机变量$z$，
+对于n维随机变量$z$，我们记
 \begin{equation}
 	z \sim N(\overline{z},\Sigma) \quad or \quad 
 	p(z) \sim N(\overline{z},\Sigma) \label{eq:3.1.1}
 \end{equation}
-指出$z$服从平均值为$\overline{z}$，协方差为$\Sigma$的高斯分布。\\
-其中$z$的概率分布是
+表示$z$服从平均值为$\overline{z}$，协方差为$\Sigma$的高斯分布。可知$z$的概率分布是
 \begin{equation}
 	p(z) = [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} exp[-\frac{1}{2} (z - \overline{z})^T \Sigma^{-1} (z - \overline{z})] \label{eq:3.1.2}
 \end{equation}
-式中$\vert \Sigma \vert := det \ \Sigma$。\\
+式中$\vert \Sigma \vert := det \ \Sigma$。
 
-对于线性随机系统
+下面考虑这样一个线性随机系统
 \begin{subequations} \label{eq:3.1.3}
 	\begin{align}
 		x_{k+1} &= A x_k + B u_k + G w_k \label{eq:3.1.3a} \\
 		y_k &= C x_k + H v_k \label{eq:3.1.3b}
 	\end{align}
 \end{subequations}
-式中$x_k \in R^n$，$u_k \in R^m$，$y_k \in R^p$，$w_k \in R^g$，$v_k \in R^h$且$A$，$B$，$G$，$C$，$H$为相应大小的固定矩阵。假设独立随机变量$x_0, w_0, w_1,..., v_0, v_1,...$均服从高斯分布：
+式中的变量满足$x_k \in R^n$，$u_k \in R^m$，$y_k \in R^p$，$w_k \in R^g$，$v_k \in R^h$且$A$，$B$，$G$，$C$，$H$为相应大小的固定矩阵。假设独立简单随机变量$x_0, w_0, w_1,..., v_0, v_1,...$均服从高斯分布：
 \begin{equation}
 	x_0 \sim N(\overline{x}_0,\Sigma_0), \quad
 	w_k \sim N(0,Q), \quad
 	v_k \sim N(0,R). \label{eq:3.1.4}
 \end{equation}
 
-为了计算该系统的一步转移概率，我们可以直接运用公式\eqref{eq:2.6.7}，但从最初的原理开始可以获得更有建设性的解释。因为$w_k$服从高斯分布，$G w_k$也服从高斯分布。其平均值为$E \ G  w_k  =  G \ E \ w_k = 0$，其协方差为$E \ (G w_k)(G w_k)^T = G \ E \ w_k {w_k}^T G^T  =  GQG^T$。因此$G w_k$服从$G w_k \sim N(0,GQG^T)$。
+为了计算该系统的一步转移概率，我们可以直接运用公式\eqref{eq:2.6.7}，但从最初的原理出发可以获得更好的解释。因为$w_k$服从高斯分布，$G w_k$也服从高斯分布，其平均值为$E \ G  w_k  =  G \ E \ w_k = 0$，协方差为$E \ (G w_k)(G w_k)^T = G \ E \ w_k {w_k}^T G^T  =  GQG^T$。因此$G w_k$服从$G w_k \sim N(0,GQG^T)$的高斯分布。
 
 % ==== End of Page 23 ====
 
-因为假设上述的随机变量是相互独立的，所以对于任意反馈法则$g$，$w_k$与$x_k$和$u_k$相互独立。从\eqref{eq:3.1.3a}可以看出，在已知$x_k$和$u_k$时$x_{k+1}$的条件概率分布等同于$G  w_k$的概率分布的平均值偏移了$A x_k + B u_k$。因此系统的状态转移概率是
+因为事先我们假设上述的简单随机变量是相互独立的，所以对于任意反馈法则$g$，$w_k$与$x_k$和$u_k$均相互独立。特别地，从式\eqref{eq:3.1.3a}可以看出，在已知$x_k$和$u_k$的条件下$x_{k+1}$的概率分布等同于$G  w_k$的概率分布，加上平均值的偏移量$A x_k + B u_k$。因此系统的状态转移概率是
 \begin{equation}
 	p(x_{k+1} \ \vert \ x_k,u_k) \sim N(A x_k + B u_k, GQG^T). \label{eq:3.1.5}
 \end{equation}
-代入式\eqref{eq:3.1.2}可得表达式
+代入式\eqref{eq:3.1.2}中可得如下显式的表达
 \begin{align*}
 	p(x_{k+1} \ \vert \ x_k, u_k) = & K \ exp[-\frac{1}{2} (x_{k+1} - A x_k - B u_k)^T \\
 	& \times (GQG^T)^{-1} (x_{k+1} - A x_k - B u_k)]
@@ -48,13 +47,13 @@
 	K = [(2 \pi)^n \ \vert GQG^T \vert]^{{-1}/2}.
 \end{equation*}
 
-类似地可以得到输出概率（观测概率）为
+类似地可以得到系统的输出概率分布（观测概率分布）为
 \begin{equation}
 	p(y_k \ \vert \ x_k) \sim N(C x_k, HRH^T). \label{eq:3.1.6}
 \end{equation}
 
-下面计算系统的$m$步转移概率。设$g$为满足$g_{k+1} \equiv u_{k+1}, ..., g_{k+m-1} \equiv u_{k+m-1}$且$g_{k+1}, ..., g_{k+m-1}$为常值函数的任何反馈法则。设$\{x_k\},\{y_k\}$为相应的系统状态和输出过程。由定义\eqref{Def:2.6.14}可知$m$步转移概率是已知$x_k,u_k, ..., u_{k+m-1}$时$x_{k+m}$的条件概率，它与反馈法则$g$无关。由定义\eqref{Def:2.6.14}
-可以用更简单的方式直接计算此概率。从公式\eqref{eq:3.1.3a}可得
+下面计算系统的$m$步转移概率。设$g$为满足$g_{k+1} \equiv u_{k+1}, ..., g_{k+m-1} \equiv u_{k+m-1}$且$g_{k+1}, ..., g_{k+m-1}$为常值函数的任何反馈法则。设$\{x_k\},\{y_k\}$为相应的系统状态过程和输出过程。由定义\eqref{Def:2.6.14}可知$m$步转移概率是已知$x_k,u_k, ..., u_{k+m-1}$的条件下$x_{k+m}$的概率，它与反馈法则$g$无关。与公式\eqref{eq:2.6.16}
+相比，直接计算此条件概率更为简单。从公式\eqref{eq:3.1.3a}可得
 \begin{equation}
 	x_{k+m} = A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B u_{k+j} 
 	+ \sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}. \label{eq:3.1.7}
@@ -64,19 +63,19 @@
 	p(x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}) \sim
 	N(A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B u_{k+j}, \Sigma_{k+m \vert k}) \label{eq:3.1.8}
 \end{equation}
-式中$\Sigma_{k+m \vert k} := cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j})$。这个协方差的计算与$w_k$的值无关：
+式中记$\Sigma_{k+m \vert k} := cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j})$。此协方差的计算用到了$w_k$的独立性：
 	\begin{align}
 		\Sigma_{k+m \vert k} &= cov(\sum_{j=0}^{m-2} A^{m-1-j} G w_{k+j}) + cov(G w_{k+m-1}) \nonumber \\
 		% ==== End of Page 24 ====
 		&= cov(A \sum_{j=0}^{m-2} A^{m-2-j} G w_{k+j}) + GQG^T \nonumber \\
 		&= A [cov(\sum_{j=0}^{m-2} G w_{k+j})] A^T + GQG^T \nonumber \\
-		&= A \Sigma_{k+m-1 \vert k} A^T + GQG^T \label{eq:3.1.9}
+		&= A \Sigma_{k+m-1 \vert k} A^T + GQG^T. \label{eq:3.1.9}
 	\end{align}
-通过初始条件
+从初始条件
 \begin{equation}
 	\Sigma_{k \vert k} = 0 \label{eq:3.1.10}
 \end{equation}
-可以递归求得所有$\Sigma_{k+m \vert k}, m > 0$。
+出发可以递归求得所有$\Sigma_{k+m \vert k}, m > 0$。
 从公式\eqref{eq:3.1.9}和\eqref{eq:3.1.10}可以看出$\Sigma_{k+m \vert k}$只取决于$m$，而与$k$的值无关。
 
 注意上述讨论的反馈函数$g_1,...,g_k$（而不是$g_i, i \ge k$）并不需要为常值函数。事实上，$g_i, i \le k$可以为任何可用信息${\{y_i\}}$的非线性函数。如果反馈函数是非线性的，那么控制过程也将是非高斯的，因此由无条件概率决定的状态过程也将是非高斯的。即便如此，由条件概率决定的转移概率依旧服从高斯分布。这就构成了下面的引理。
