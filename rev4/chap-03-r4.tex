@@ -265,20 +265,20 @@ $y_k$的均值为
 \begin{Exe} \label{Exe:3.3.6}
 假设$A$是稳定的，若$cov(x_0) = \Sigma_{\infty}$，则$\{x_k\}$的协方差函数是平稳的。即$\Sigma_k = \Sigma_{\infty}$且$\Sigma_{k+m,k} = A^m \Sigma_{\infty}$对所有$k > 0$均成立。一般而言，$\{x_k\}$可以被分解成两部分
 \begin{equation*}
-	x_k = x_k' + x_k''
+	x_k = x_k' + x_k''.
 \end{equation*}
 其中$\{x_k'\}$的协方差函数是平稳的，且当$k \to \infty$时$E \ \vert x_k'' \vert^2 \to 0$。（分解方式可能不唯一。）
 \end{Exe}
 
 \begin{Rem} \label{Rem:3.3.7}
-某些时候，即使$A$不是稳定的，$\Sigma_k$仍旧会收敛。一个简单的例子是当$\Sigma_0 = 0$，$Q = 0$时，$\Sigma_k \equiv 0$而与$A$无关。另外，$\Sigma_{\infty}$也不一定是严格正定的。例如当$A = 0$且$GQG^T < n$的时候。上面的两个例子说明，如果输入扰动$\{w_k\}$影响了状态向量的每个组成部分，那么$A$的稳定性必须满足收敛到$\Sigma_k$，且协方差的极限$\Sigma_{\infty}$是正定的。如果合适地定义了影响所有组成部分的标记，上面的说法是很有说服力的。
+某些时候，即使$A$不是稳定的，$\Sigma_k$仍旧会收敛。一个简单的例子是当$\Sigma_0 = 0$，$Q = 0$时，$\Sigma_k \equiv 0$而与$A$无关。另外，$\Sigma_{\infty}$也不必是严格正定的，例如当$A = 0$且$GQG^T < n$的时候，$\Sigma_k$也是收敛的。上面的两个例子说明，如果输入扰动$\{w_k\}$影响了状态向量的每个组成部分，那么$A$的稳定性是$\Sigma_k$收敛的必要条件，且协方差的极限$\Sigma_{\infty}$是正定的。如果合适地定义了影响每个组成部分的记号，上面的断言是有说服力的。
 \end{Rem}
 
-一对维度分别为$n \times n$和$n \times g$的矩阵$A$和$S$，当维度为$n \times ng$的矩阵$[S \ AS \ A^{n-1}S]$的秩为$n$时，则成这个状态是可达的。可达性将通过下面的习题证明。
+一对维度分别为$n \times n$和$n \times g$的矩阵$A$和$S$，当维度为$n \times ng$的矩阵$[S \ AS \ A^{n-1}S]$的秩为$n$时，则称系统状态是可达的。有关可达性的定理留作下面的练习。
 
 \begin{Exe} \label{Exe:3.3.8}
 证明下面的几种说法相互等价: \\
-\textnormal{(1)} $A$，$S$是一个可达对。 \\
+\textnormal{(1)} $A$，$S$是一对可达矩阵。 \\
 \textnormal{(2)} $n \times n$的矩阵$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T$是正定的。 \\
 \textnormal{(3)} 对任意$x \in R^n$，存在一个输入序列$w_0,...,w_{n-1}$属于$R^g$，使下面的确定性线性系统
 \begin{equation*}
@@ -288,7 +288,7 @@ $y_k$的均值为
 \end{Exe}
 
 \begin{Thm} \label{Thm:3.3.9}
-设$A$，$S$是一个可达对，则下面的说法相互等价： \\
+设$A$，$S$是一对可达矩阵，则下面的说法相互等价： \\
 \textnormal{(1)} $A$是稳定的。 \\
 \textnormal{(2)} 方程
 \begin{equation}
@@ -309,16 +309,16 @@ $y_k$的均值为
 \begin{equation}
 	\Sigma = A^k \Sigma (A^k)^T + \sum_{j=0}^{k-1} A^j SS^T (A^j)^T, \quad k \ge 0. \label{eq:3.3.11}
 \end{equation}
-如果$\lambda$是$A$的一个特征值，并且有一个向量$x \neq 0$满足$A^T x = \lambda x$。在式\eqref{eq:3.3.11}左乘$x^{\ast}$\textnormal{(}$\ast$代表共轭转置\textnormal{)}，右乘$x$，另$k = n-1$时，有
+设$\lambda$是$A$的一个特征值，并且有一个非零向量$x$满足$A^T x = \lambda x$。在式\eqref{eq:3.3.11}左乘$x^{\ast}$\textnormal{(}$\ast$代表共轭转置\textnormal{)}，右乘$x$，当$k = n-1$时，有
 \begin{equation*}
 	x^{\ast} \Sigma x = \vert \lambda \vert^{2(n-1)} x^{\ast} \Sigma x + x^{\ast} [\sum_{j=0}^{n-1} A^j SS^T (A^j)^T] x.
 \end{equation*}
-括号$[...]$中的矩阵由练习\eqref{Exe:3.3.8}可知是正定的，因此上式中的最后一项是严格大于0的。最后可以得出$\vert \lambda \vert < 1$并且$A$是稳定的。
+由练习\eqref{Exe:3.3.8}可知，括号$[...]$中的矩阵是正定的，因此上式中的最后一项是严格大于$0$的。最后可以得出$\vert \lambda \vert < 1$并且$A$是稳定的。
 \end{Prf}
 
-回到协方差公式\eqref{eq:3.3.1}，若矩阵$S$满足
+回到协方差公式\eqref{eq:3.3.1}，若任意矩阵$S$满足
 \begin{equation}
-	GQG^T = SS^T \label{eq:3.3.12}
+	GQG^T = SS^T, \label{eq:3.3.12}
 \end{equation}
 则称$S$是$GQG^T$的一个平方根。
 
@@ -334,14 +334,15 @@ $y_k$的均值为
 
 \begin{Rem}
 式\eqref{eq:3.3.12}中的平方根$S$并不是唯一的。但是从练习\eqref{Exe:3.3.8}
-可知，$A$，$S$是可达的当且仅当$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的。因此$A$，$S$的可达性并不取决于\eqref{eq:3.3.12}中平方根的选取。
+可知，$A$，$S$是可达的当且仅当 \\
+$\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的。因此$A$，$S$的可达性与\eqref{eq:3.3.12}中平方根的选取无关。
 \end{Rem}
 
 \section{高斯-马尔可夫过程}
 
 如果一个在$R^n$内取值的随机过程$\{x_k,k \ge 0\}$是高斯的，那么称这个随机过程为高斯-马尔可夫过程。也就是说，对任意$k$，随机变量$x_0,...x_k$的概率分布服从高斯分布，并且满足马尔可夫性质：
 \begin{equation}
-	p(x_{k+1} \ \vert \ x_k,...,x_0) = p(x_{k+1} \vert x_k) \label{eq:3.4.1}
+	p(x_{k+1} \ \vert \ x_k,...,x_0) = p(x_{k+1} \vert x_k). \label{eq:3.4.1}
 \end{equation}
 
 % ==== End of page 31 ====
@@ -350,27 +351,29 @@ $y_k$的均值为
 \begin{equation*}
 	x_{k+1} = A_k \ x_k + w_k
 \end{equation*}
-给出。如果$x_0,w_0,w_1,...$是相互独立的且服从高斯分布，那么这个过程就是高斯-马尔可夫过程。我们把这个这个命题的逆命题作为练习。假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，指定$\Sigma_k := cov(x_k)$，$\Sigma_{k+1,k} := cov(x_{k+1},x_k)$。
+给出。如果$x_0,w_0,w_1,...$是相互独立的且服从高斯分布，那么这个过程就是高斯-马尔可夫过程。我们把这个这个命题的逆命题作为练习。
+
+假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，指定$\Sigma_k := cov(x_k)$，$\Sigma_{k+1,k} := cov(x_{k+1},x_k)$。
 
 \begin{Exe} \label{Exe:3.4.2}
 试证明
 \begin{align}
-	\hat{x}_{k+1 \vert k} :=& E \ \{x_{k+1} \ \vert \ x_k,...,x_0\} = E \ \{x_{k+1} \ \vert \ x_k\} \nonumber \\
-	=& \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k. \label{eq:3.4.3}
+	\hat{x}_{k+1 \vert k} :=& \ E \ \{x_{k+1} \ \vert \ x_k,...,x_0\} = E \ \{x_{k+1} \ \vert \ x_k\} \nonumber \\
+	=& \ \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k. \label{eq:3.4.3}
 \end{align}
 若令
 \begin{equation*}
 	w_k := x_{k+1} - \hat{x}_{k+1 \vert k}
 \end{equation*}
-试证明对高斯分布且相互独立的随机变量$x_0,w_0,w_1,...$，高斯-马尔可夫过程可以表示为
+试证明随机变量$x_0,w_0,w_1,...$相互独立且服从高斯分布，即高斯-马尔可夫过程$\{x_k\}$可以表示为
 \begin{equation}
-	x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
+	x_{k+1} = A_k \ x_k + w_k, \label{eq:3.4.4}
 \end{equation}
 其中$A_k := \Sigma_{k+1,k} \Sigma_k^{-1}$。 \\
-\textnormal{[}提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和剩下的部分，可以通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \ \vert \ x_k = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。\textnormal{]}
+\textnormal{[}提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和余下的推导，可通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \ \vert \ x_k \} = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。\textnormal{]}
 \end{Exe}
 
-在上面的练习中，$w_k = x_{k+1} - \hat{x}_{k+1 \vert k}$和$x_k$共同决定了$x_{k+1}$。$x_k$这一项可以在$k$时刻知道，但$w_k$与先前的历史无关，因为无法在$k$时刻获知。因此$w_k := \hat{x}_{k+1 \vert k} - x_{k+1}$又称为新型，或者说是过去未出现的关于$x_{k+1}$的新信息。式\eqref{eq:3.4.4}也称为过程$\{x_k\}$的新型表示。
+在练习中，$w_k = x_{k+1} - \hat{x}_{k+1 \vert k}$和$x_k$共同决定了$x_{k+1}$。$x_k$这一项可在$k$时刻获知，但$w_k$与先前的历史无关，因此无法在$k$时刻获知，所以$w_k := \hat{x}_{k+1 \vert k} - x_{k+1}$又称为新型，或者说是过去未出现的关于$x_{k+1}$的新信息。式\eqref{eq:3.4.4}也称为过程$\{x_k\}$的新型表示。
 
 \section{注解}
 
