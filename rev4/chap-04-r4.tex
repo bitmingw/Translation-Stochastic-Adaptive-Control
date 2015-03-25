@@ -502,7 +502,7 @@ $x_k$的概率分布是一个无限长行向量
 % ==== End of Page 47 ====
 \begin{align}
 	J(g) :=& \lim_{N \to \infty} \frac{1}{N} E^g \ \sum_{k=0}^N c(x_k,g(x_k)) \nonumber \\
-	=& \ p_0 [\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^N (P^g)^k] c^g \label{eq:4.6.3}
+	=& \ p_0 [\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^N (P^g)^k] c^g. \label{eq:4.6.3}
 \end{align}
 这里是有限和无限状态的唯一显著区别，因为引理\eqref{Lem:4.5.4}，\eqref{Lem:4.5.7}和\eqref{Lem:4.5.11}在无限状态条件下不成立。这将在下面的练习中说明。
 
@@ -554,58 +554,58 @@ $x_k$的概率分布是一个无限长行向量
 		\ldots & \ldots & \epsilon & 0 & \ldots \\
 		\ldots & \ldots & \ldots & \epsilon & \ldots \\
 		\ldots & \ldots & \ldots & \ldots & \ldots
-	\end{bmatrix}
+	\end{bmatrix}.
 \end{equation*}
-试证明对任意$\epsilon > 0$，$P$是不可约的且周期性的。证明存在一个稳态分布$\pi$使
+试证明对任意$\epsilon > 0$，$P$是不可约的且是周期性的。证明存在一个稳态分布$\pi$使
 \begin{equation}
 	\pi \ P = \pi, \quad \textnormal{and } \quad \sum_{i=0}^{\infty} \pi(i) = 1
 \end{equation}
-当且仅当$\epsilon > \frac{1}{2}$ \\
-\textnormal{[}提示：先证明$\pi \ P = \pi$的一个正数解必须与$\eta = (\eta_1,\eta_2,...)$成正比。其中
+成立当且仅当$\epsilon > \frac{1}{2}$ \\
+\textnormal{[}提示：先证明$\pi \ P = \pi$的一个正数解与$\eta = (\eta_1,\eta_2,...)$成正比，其中
 \begin{equation*}
 	\eta(1) = 1, \quad \textnormal{and } \quad \eta(i) = \frac{(1 - \epsilon)^{i-2}}{\epsilon^{i-1}}, \quad i > 1
 \end{equation*}
-再证明$\sum_i \pi(i) = 1$成立当且仅当$\sum_i \eta(i) < \infty$且$\epsilon > \frac{1}{2}$\textnormal{]}
+再证明$\sum_i \pi(i) = 1$成立当且仅当$\sum_i \eta(i) < \infty$且$\epsilon > \frac{1}{2}$.\textnormal{]}
 \end{Exe}
 
-如果\eqref{eq:4.6.3}中的塞萨罗极限存在（在有限情形下总是存在），那么有
+如果\eqref{eq:4.6.3}中的塞萨罗极限存在（在有限状态下总是存在），那么有
 \begin{equation*}
-	\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^N (P^g)^k = \Pi
+	\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^N (P^g)^k = \Pi.
 \end{equation*}
 % ==== End of Page 48 ====
 这时有$J(g) = p_0 \Pi c^g$。如果进一步，马尔可夫链是各态历经性的，矩阵$\Pi$的每一行都等于稳态分布$\pi$，则平均代价与初始分布无关，即$J(g) = \pi c^g$。
 
 \section{连续时间马尔可夫链}
 
-当机器的状态转变可以在任何连续时间$t$发生时，第一节的例子依然有意义。状态过程由$\{x(t),t \ge 0\}$给出，其中$x(t)$可以取值$\{1,2\}$。控制量是$\{u(t),t \ge 0\}, \quad u(t) = (u^1(t),u^2(t)) \in \{0,1,2\} \times \{0,1\}$。$x(t)$通过统计的方式加以描述，即状态在无限小时间段$(t,t+dt)$内发生转变的概率。与式\eqref{eq:4.1.3}相比，系统的设定如下：
+当机器的状态转变可以在任何连续时间$t$发生时，第一节的例子依然有意义。状态过程由$\{x(t),t \ge 0\}$给出，其中$x(t)$可以取值$\{1,2\}$。控制量是$\{u(t),t \ge 0\}, u(t) = (u^1(t),u^2(t)) \in \{0,1,2\} \times \{0,1\}$。$x(t)$通过统计的方式加以描述，即状态在无限小时间段$(t,t+dt)$内发生转变的概率。与式\eqref{eq:4.1.3}相比，系统的设定如下：
 \begin{align}
 	P\{x(t+dt) = 2 \ \vert \ x(t) = 1, x(s),u(s),s \le t\} \nonumber \\
-	&= [q_1(u^1(t)) - q_2(u^2(t))] dt \nonumber \\
+	&= [q_1(u^1(t)) - q_2(u^2(t))] dt, \nonumber \\
 	P\{x(t+dt) = 1 \ \vert \ x(t) = 1, x(s),u(s),s \le t\} \nonumber \\
-	&= 1 -  [q_1(u^1(t)) - q_2(u^2(t))] dt \nonumber \\
+	&= 1 -  [q_1(u^1(t)) - q_2(u^2(t))] dt, \nonumber \\
 	P\{x(t+dt) = 1 \ \vert \ x(t) = 2, x(s),u(s),s \le t\} \nonumber \\
-	&= q_2(u^2(t)) dt \nonumber \\
+	&= q_2(u^2(t)) dt, \nonumber \\
 	P\{x(t+dt) = 2 \ \vert \ x(t) = 2, x(s),u(s),s \le t\} \nonumber \\
-	&= 1 - q_2(u^2(t)) dt \label{eq:4.7.1}
+	&= 1 - q_2(u^2(t)) dt. \label{eq:4.7.1}
 \end{align}
-前两个关系式说明，当$x(t) = 1$时，$x(t+dt) = 2$的概率为$[q_1 - q_2] dt$，它的补集$x(t+dt) = 1$的概率是$1 - [q_1 - q_2] dt$。并且这些转移概率并不取决于先前的状态和控制量，即当$s < t$时与$x(s)$，$u(s)$无关，这是马尔可夫的性质。相似的表述可以说明后两个关系式。
+前两个关系式说明，当$x(t) = 1$时，$x(t+dt) = 2$的概率为$[q_1 - q_2] dt$，它的补集$x(t+dt) = 1$的概率是$1 - [q_1 - q_2] dt$。另外，这些转移概率并不取决于先前的状态和控制量，即当$s < t$时转移概率与$x(s), u(s)$无关，这是马尔可夫的性质。相似的表述对后两个关系式也适用。
 
 令$x(t)$的概率分布为$p(t) = (p_1(t),p_2(t)) := (P\{x(t) = 1\}, P\{x(t) = 2\})$。由贝叶斯定理，
 \begin{equation*}
-	p_j(t+dt) = \sum_{i=1}^2 P\{x(t+dt) = j \ \vert \ x(t) = i, u(t) = u\} p_i(t)
+	p_j(t+dt) = \sum_{i=1}^2 P\{x(t+dt) = j \ \vert \ x(t) = i, u(t) = u\} p_i(t).
 \end{equation*}
 特别地，从\eqref{eq:4.7.1}可得
 \begin{equation*}
-	p_1(t+dt) = p_1(t) \{1 - [q_1(u^1(t)) - q_2(u^2(t))] dt\} + p_2(t) q_2(u^2(t)) dt
+	p_1(t+dt) = p_1(t) \{1 - [q_1(u^1(t)) - q_2(u^2(t))] dt\} + p_2(t) q_2(u^2(t)) dt.
 \end{equation*}
 我们可以推得微分方程
 \begin{equation*}
-	\dot{p_1}(t) = -p_1(t) [q_1(u^1(t)) - q_2(u^2(t))] + p_2(t) q_2(u^2(t))
+	\dot{p_1}(t) = -p_1(t) [q_1(u^1(t)) - q_2(u^2(t))] + p_2(t) q_2(u^2(t)).
 \end{equation*}
 % ==== End of Page 49 ====
 类似地，
 \begin{equation*}
-	\dot{p_2}(t) = p_1(t) [q_1(u^1(t)) - q_2(u^2(t))] - p_2(t) q_2(u^2(t))
+	\dot{p_2}(t) = p_1(t) [q_1(u^1(t)) - q_2(u^2(t))] - p_2(t) q_2(u^2(t)).
 \end{equation*}
 写成矩阵形式，可得
 \begin{align*}
@@ -614,27 +614,27 @@ $x_k$的概率分布是一个无限长行向量
 		-[q_1(u^1(t)) - q_2(u^2(t))] & [q_1(u^1(t)) - q_2(u^2(t))] \\
 		q_2(u^2(t)) & -q_2(u^2(t))
 	\end{bmatrix} \\
-	&=: p(t) \ Q(u(t))
+	&=: p(t) \ Q(u(t)).
 \end{align*}
-$Q(u(t))$称为连续时间可控的马尔可夫链$\{x(t)\}$的转移概率变化率矩阵。$Q$的所有非对角元素都是非负的，且每一行的和为$0$。与此类似，转移概率矩阵的每一行之和等于$1$。
+$Q(u(t))$称为连续时间可控的马尔可夫链$\{x(t)\}$的（转移概率）速率矩阵。$Q$的所有非对角元素都是非负的，且每一行的和为$0$。（相比之下，转移概率矩阵的每一行之和等于$1$。）
 
-更一般地，一个状态值定义在有限集$\{1,...,I\}$或者可数集$\{1,2,...\}$上的连续时间马尔可夫链$\{x(t)\}$可以由下面的变化率矩阵给出。对每个$u \in U$，
+更一般地，一个状态值定义在有限集$\{1,...,I\}$或者可数集$\{1,2,...\}$上的连续时间可控马尔可夫链$\{x(t)\}$可以由下面的速率矩阵给出。对每个$u \in U$，
 \begin{equation*}
-	Q(t) = \{Q_ij(u)\}
+	Q(t) = \{Q_{ij}(u)\}.
 \end{equation*}
-由于对任意$i \ne j$，$Q_ij(u) \ge 0, Q_ii(u) = -\sum_j Q_ij(u)$，转移概率可以表示为
+由于对任意$i \ne j$，$Q_{ij}(u) \ge 0, Q_{ii}(u) = -\sum_j Q_{ij}(u)$，转移概率可以表示为
 \begin{align*}
 	P\{x(t+dt) = j \ \vert \ x(t) = i, x(s),u(s),s \le t\} \\
-	&= Q_{ij}(u(t)) dt, i \ne j \\
+	&= Q_{ij}(u(t)) dt, i \ne j, \\
 	P\{x(t+dt) = i \ \vert \ x(t) = i, x(s),u(s),s \le t\} \\
-	&= 1 - \sum_{j \ne i} Q_{ij} (u(t)) dt
+	&= 1 - \sum_{j \ne i} Q_{ij} (u(t)) dt.
 \end{align*}
-若$p(t) = (P\{x(t) = 1\}, P\{x(t) = 2\}, ...)$是$x(t)$的概率分布，则它服从微分方程
+若$p(t) = (P\{x(t) = 1\}, P\{x(t) = 2\}, ...)$是$x(t)$的概率分布，则它满足微分方程
 \begin{equation*}
-	\dot{p}(t) = p(t) \ Q(u(t))
+	\dot{p}(t) = p(t) \ Q(u(t)).
 \end{equation*}
 
-一个马尔可夫策略是一个组合$g = \{g(t,i), t \ge 0\}$使得在任意时刻$t$它给出状态的控制函数$u(t) = g(t,x(t))$。这就定义了$t$时刻的变化率矩阵
+一个马尔可夫策略是一个组合$g = \{g(t,i), t \ge 0\}$，它在任意时刻$t$给出状态的控制函数$u(t) = g(t,x(t))$。这就定义了$t$时刻的速率矩阵
 \begin{equation*}
 	Q^g(t) := \{Q_{ij}(g(t,i))\}
 \end{equation*}
@@ -653,26 +653,26 @@ $Q(u(t))$称为连续时间可控的马尔可夫链$\{x(t)\}$的转移概率变化率矩阵。$Q$的所有非
 \begin{equation}
 	p(t) = p(s) P^g(s,t) = p(0) P^g(0,t) \label{eq:4.7.3}
 \end{equation}
-式\eqref{eq:4.7.2}称为柯尔莫哥洛夫前向方程，\eqref{eq:4.7.3}是\eqref{eq:4.3.2}的对应。若$g(t,i) \equiv g(i)$是时不变的，$Q^g$是静态的，且有
+式\eqref{eq:4.7.2}称为柯尔莫哥洛夫前向方程，\eqref{eq:4.7.3}是\eqref{eq:4.3.2}的对应。若$g(t,i) \equiv g(i)$是时不变的，则$Q^g$是静态的，且有
 \begin{equation*}
-	P^g(s,t) = exp([(t-s) Q^g]), \quad p(t) = p(0) \ exp(tQ^g)
+	P^g(s,t) = exp([(t-s) Q^g]), \quad p(t) = p(0) \ exp(tQ^g).
 \end{equation*}
 
 \begin{Exe} \label{Exe:4.7.4}
-令$Q$为一个变化率矩阵，其非对角线元素均为非负，且每一行元素之和为0。设$x(t) =: (x_1(t),...,x_n(t))$满足微分方程$\dot{x}(t) = x(t) \ Q$。试证明对所有$t$，均有$\sum_{i=1}^n x_i(t)$为常数。因此只要$x(0)$是一个概率分布，则对任意$t$，$x(t)$各组成部分之和为$1$。 \\
-\textnormal{[}提示：在微分方程的左右两边同时乘以列向量$(1,...,1)^T$。\textnormal{]}
+令$Q$为一个速率矩阵，其非对角线元素均为非负，且每一行元素之和为$0$。设$x(t) := (x_1(t),...,x_n(t))$满足微分方程$\dot{x}(t) = x(t) \ Q$。试证明对所有$t$，均有$\sum_{i=1}^n x_i(t)$为常数。因此只要$x(0)$是一个概率分布，则对任意$t$，$x(t)$各组成部分之和为$1$。 \\
+\textnormal{[}提示：在微分方程的左右两边同时右乘列向量$(1,...,1)^T$。\textnormal{]}
 \end{Exe}
 
-无限状态连续时间马尔可夫链的一个有意义的例子是泊松过程，我们在下个练习中描述其速率$\lambda$。
+无限状态连续时间马尔可夫链的一个有意思的例子是泊松过程，我们在下个练习中描述其速率$\lambda$。
 
 \begin{Exe} \label{Exe:4.7.5}
 考虑一个状态空间为$\{0,1,...\}$的马尔可夫链。令$Q_{i,i+1} := \lambda > 0$且$Q_ii := - \lambda$。因此马尔可夫链以$\lambda$的速率向下一个更大的整数移动。设初始的概率分布$p(0) = (1,0,0,0,...)$，即马尔可夫链从状态$0$开始。证明对所有$i \ge 0$，有$p_i(t) = exp(- \lambda t)(\lambda t)^i / i!$。 \\
 \textnormal{[}提示：从$i = 0$开始递归地求解微分方程\eqref{eq:4.7.2}。\textnormal{]}
 \end{Exe}
 
-我们可以证明，每次进入状态$i$的时候，连续时间马尔可夫链在转移到一个新状态之前花费的时间是一个指数分布的随机变量，其均值为$(-Q_ii)^{-1}$，即如果$\tau$指代任意时间，则有
+可以证明，每次进入状态$i$的时候，连续时间马尔可夫链在转移到一个新状态之前花费的时间是一个指数分布的随机变量，其均值为$(-Q_{ii})^{-1}$，即如果$\tau$指代任意时间，则有
 \begin{equation*}
-	Prob(\tau > t) = exp(Q_{ii} t)
+	Prob(\tau > t) = exp(Q_{ii} t).
 \end{equation*}
 
 \begin{Exe} \label{Exe:4.7.6}
@@ -680,51 +680,51 @@ $Q(u(t))$称为连续时间可控的马尔可夫链$\{x(t)\}$的转移概率变化率矩阵。$Q$的所有非
 \begin{equation*}
 	Prob(\tau > t+s \ \vert \ \tau > s) = Prob(\tau > t)
 \end{equation*}
-成立。因此，在马尔可夫链内跳转所花费的时间是无记忆的，也就是说，马尔可夫链继续停留在状态$i$上的时间与它已经停留在$i$上的时间无关。
+成立。因此，在马尔可夫链中跳转所花费的时间是无记忆的，也就是说，马尔可夫链继续停留在状态$i$上的时间与它已经停留在$i$上的时间无关。
 \end{Exe}
 
 % ==== End of Page 51 ====
 
-在离散马尔可夫链的情况下，概率分布$\pi$是时不变的，如果对所有$t \ge s$和$p(s) = \pi$可以得到$p(t) = \pi$，也就是说$\dot{p}(t) \equiv 0$。从\eqref{eq:4.7.2}我们可知
+在离散马尔可夫链的情况下，如果对所有$t \ge s$和$p(s) = \pi$可以得到$p(t) = \pi$，也就是说$\dot{p}(t) \equiv 0$，则概率分布$\pi$是时不变的。从\eqref{eq:4.7.2}我们可知
 \begin{equation}
-	\pi Q = 0 \label{eq:4.7.7}
+	\pi Q = 0. \label{eq:4.7.7}
 \end{equation}
-下面的定理说明这也是$\pi$为时不变的一个充分条件。
+下面的练习说明这也是$\pi$时不变的一个充分条件。
 
 \begin{Exe} \label{Exe:4.7.8}
-如果概率分布$\pi$满足$\pi Q = 0$，证明$p(s) = \pi$可推出$p(t) = \pi$对所有$t \ge s$。 \\
-\textnormal{[}提示：通过将矩阵的幂展开成多项式级数，证明$\pi \ exp(tQ) = \pi$。\textnormal{]}
+如果概率分布$\pi$满足$\pi Q = 0$，证明$p(s) = \pi$可推出$p(t) = \pi$对所有$t \ge s$成立。 \\
+\textnormal{[}提示：通过将指数矩阵展开成多项式级数，证明$\pi \ exp(tQ) = \pi$。\textnormal{]}
 \end{Exe}
 
-式\eqref{eq:4.7.7}有一个简单的解释。将向量等式的每个元素取出，方程变为对所有$j$：
+式\eqref{eq:4.7.7}有一个简单的解释。将向量等式的每个元素取出，对任意$j$有：
 \begin{equation*}
-	\sum_i \pi_i Q_{ij} = 0
+	\sum_i \pi_i Q_{ij} = 0.
 \end{equation*}
 由于$Q_{jj} = - \sum_{i \ne j} Q_{ji}$，上式可以改写为
 \begin{equation}
-	\sum_{i \ne j} \pi_i Q_{ij} = \pi_j \sum_{i \ne j} Q_{ji} \label{eq:4.7.9}
+	\sum_{i \ne j} \pi_i Q_{ij} = \pi_j \sum_{i \ne j} Q_{ji}. \label{eq:4.7.9}
 \end{equation}
-等式左侧是进入状态$j$的总速率，等式右侧是离开状态$j$的总速率。条件\eqref{eq:4.7.9}是状态平衡方程。
+等式左侧是进入状态$j$的总速率，等式右侧是离开状态$j$的总速率。因此条件\eqref{eq:4.7.9}又称为状态平衡方程。
 
-在离散时间马尔可夫链中，状态的转移只发生在离散的时刻，但连续时间的马尔可夫链的状态转移可以在任意时间发生。因此，无法为它定义周期性。一个相应的结果是，对有限状态连续时间的马尔可夫链，极限
+在离散时间马尔可夫链中，状态的转移只发生在离散的时刻，但连续时间的马尔可夫链的状态转移可以在任意时间发生，因此无法为它定义周期性。一个相应的结果是，对有限状态连续时间的马尔可夫链，极限
 \begin{equation*}
 	p(\infty) := \lim_{t \to \infty} p(0) \ exp(tQ)
 \end{equation*}
-总是存在的。并且它是时不变的概率分布，满足$p(\infty) Q = 0$。（我们没有必要取引理\eqref{Lem:4.5.4}中的塞萨罗极限）另外，就像离散时间的情形一样，若马尔可夫链是可约的，$p(\infty)$的值取决于初始概率分布$p(0)$。另外，对无限状态的马尔可夫链，极限并不是始终存在。
+总是存在的。它是时不变的概率分布，满足$p(\infty) Q = 0$。（我们没有必要取引理\eqref{Lem:4.5.4}中的塞萨罗极限。）就像离散时间的情形一样，若马尔可夫链是可约的，$p(\infty)$的值取决于初始概率分布$p(0)$。另外，对无限状态的马尔可夫链，该极限并不始终存在。
 
-下面的两个例子讲解了排队系统。
+下面的两个例子讲解了马尔可夫链在排队系统中的应用。
 
 \begin{Exe} \label{eq:4.7.10}
-有这样一个队列，顾客以泊松过程的速率$\lambda$进入队列。队列一次可以处理一个顾客，且每次完成服务的时间是一个以$\mu^{-1}$为均值的呈指数分布的随机变量。设$x(t)$为在$t$时刻队列中的顾客数量。
+有这样一个队列，顾客以泊松过程的速率$\lambda$进入队列。队列由一台服务器负责，一次可以处理一个顾客，且每次完成服务的时间是一个以$\mu^{-1}$为均值的呈指数分布的随机变量。设$x(t)$为在$t$时刻队列中的顾客数量。
 % ==== End of Page 52 ====
 过程$x(t)$是一个连续时间马尔可夫链，它的速率矩阵由下面几个式子给出
 \begin{align*}
 	Q_{01} := \lambda, \quad Q_{00} :=& -\lambda, \\
-	Q_{i,i+1} := \lambda, \quad Q_{i,i-1} :=& \ \mu, \quad Q_{ii} := -(\lambda + \mu), \quad i \ge 1
+	Q_{i,i+1} := \lambda, \quad Q_{i,i-1} :=& \ \mu, \quad Q_{ii} := -(\lambda + \mu), \quad i \ge 1.
 \end{align*}
-试证明存在一个时不变概率分布$\pi$当且仅当$\rho := \frac{\lambda}{\mu} < 1$，且该概率密度为
+试证明存在一个时不变概率分布$\pi$当且仅当$\rho := \frac{\lambda}{\mu} < 1$，且该概率分布为
 \begin{equation*}
-	\pi_i = \frac{\rho^i}{1 - \rho}, \quad i \ge 0
+	\pi_i = \frac{\rho^i}{1 - \rho}, \quad i \ge 0.
 \end{equation*}
 \textnormal{[}提示：写出状态平衡方程，并递归地用$\pi_0$求解$\pi_1,\pi_2,...$，再证明当且仅当$\rho < 1$时$\sum_{i=0}^{\infty} \pi_i = 1$。\textnormal{]}
 \end{Exe}
