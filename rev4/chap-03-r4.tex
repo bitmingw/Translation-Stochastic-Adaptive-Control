@@ -175,7 +175,7 @@ $y_k$的均值为
 \begin{Exe} \label{Exe:3.1.18}
 假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的。因此系统\eqref{eq:3.1.3},\eqref{eq:3.1.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
 \begin{equation*}
-	\xi_{k+1} = F \xi_k + \epsilon_k; \quad w_k = D \xi_k + \delta_k,
+	\xi_{k+1} = F \xi_k + \epsilon_k; \quad w_k = D \xi_k + \delta_k
 \end{equation*}
 式中的变量$\{x_0,\xi_0,...,v_0,...,\epsilon_0,...,\delta_0,...$都相互独立且服从高斯分布。证明$\{y_k\}$可以表示为一个线性随机系统。 \\
 \textnormal{[}提示：可将状态向量改写为$\zeta_k := (x_k^T,\xi_k^T)^T$\textnormal{]}
@@ -187,18 +187,19 @@ $y_k$的均值为
 
 \section{线性非高斯系统}
 
-对于公式\eqref{eq:3.1.3}所示的线性系统，假设独立随机变量$x_0,w_0,w_1,...,v_0,v_1,...$并不服从高斯分布，但它们的均值和方差仍和先前相同：
+对于公式\eqref{eq:3.1.3}所示的线性系统，假设独立简单随机变量$x_0,w_0,w_1,...,v_0,v_1,...$并不服从高斯分布，但它们的均值和方差仍和先前相同：
 \begin{align*}
 	E \ x_0 = \overline{x}_0, \quad E \ w_k &= 0, \quad E \ v_k = 0, \\
 	cov(x_0) = \Sigma_0, \quad cov(w_k) &= Q, \quad cov(v_k) = R.
 \end{align*}
 与此同时，使用开环控制率使得$g_k = u_k, k \ge 0$是常值函数。
+
 设
 \begin{align*}
 	\overline{x}_{k+m \vert k} :=& E \ \{x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}\}, \\
 	\Sigma_{k+m \vert k} :=& E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \ \vert \ x_k,u_k,...,u_{k+m-1}\},
 \end{align*}
-在已知$x_k$时$x_{k+m}$的条件均值和条件概率。
+为已知$x_k$的条件下$x_{k+m}$的均值和协方差。
 
 从公式\eqref{eq:3.1.7}可知
 \begin{align*}
@@ -209,21 +210,21 @@ $y_k$的均值为
 \begin{equation*}
 	\Sigma_{k+m \vert k} = A \Sigma_{k+m-1 \vert k} A^T + GQG^T.
 \end{equation*}
-与公式\eqref{eq:3.1.8}相比，前两项条件矩和高斯系统的情形相同，但条件概率分布并不一定服从高斯分布。
+与公式\eqref{eq:3.1.8}相比，条件概率的一阶和二阶矩与高斯分布的情形相同，但条件概率分布并不一定服从高斯分布。
 
-类似地，当系统是开环时，无条件均值和协方差
+类似地，当系统是开环时，其无条件均值和协方差
 \begin{equation*}
-\overline{x}_k := E \ x_k, \quad \Sigma_k := E \ (x_k - \overline{x}_k) (x_k - \overline{x}_k)^T
+\overline{x}_k := E \ x_k, \quad \Sigma_k := E \ (x_k - \overline{x}_k) (x_k - \overline{x}_k)^T，
 \end{equation*}
 也由公式\eqref{eq:3.1.12}给出。
 
-通过下面的练习，我们可以看出，前两项矩恰好相同的情况对练习\eqref{Exe:3.1.17}中的时变系统也成立。
+此外，若将练习\eqref{Exe:3.1.17}中的系统变为时变系统，一阶和二阶矩恰好相同的情况仍然成立。
 
 % ==== End of Page 28 ====
 
 \section{渐进性质}
 
-下面我们研究当$k \to \infty$时由公式\eqref{eq:3.1.12}和\eqref{eq:3.1.13}给定的协方差矩阵$\Sigma_k$的变化。$\Sigma_k$的计算公式如下：
+下面我们研究当$k \to \infty$时由公式\eqref{eq:3.1.12}和\eqref{eq:3.1.13}给出的协方差矩阵$\Sigma_k$的变化。$\Sigma_k$的计算公式如下：
 \begin{align}
 	\Sigma_k &= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.3.1} \\
 	\Sigma_0 &= cov(x_0) \label{eq:3.3.2}
@@ -232,34 +233,34 @@ $y_k$的均值为
 \begin{equation}
 	\Sigma_k = A^k \Sigma_0 (A^k)^T + \sum_{j=0}^{k-1} A^j GQG^T (A^j)^T. \label{eq:3.3.3}
 \end{equation}
-为了得到收敛的$\Sigma_k$序列，整个级数需要可求和，因此矩阵$A^j$要收敛到0。
+为了得到收敛的$\Sigma_k$序列，这个级数应为可求和的，因此矩阵$A^j$要收敛到0。
 
-如果矩阵$A$是稳定的，那么它的所有特征值的绝对值严格小于1。
+回忆相关概念，如果矩阵$A$是稳定的，那么它的所有特征值的绝对值均严格小于1。
 
 \begin{Thm} \label{Thm:3.3.4}
-假设矩阵$A$是稳定的，则存在一个半正定矩阵$\Sigma_{\infty}$使得$\lim_{k \to \infty} \Sigma_k = \Sigma_{\infty}$. 并且，$\Sigma_{\infty}$是下面线性方程的唯一解：
+假设矩阵$A$是稳定的，则存在一个半正定矩阵$\Sigma_{\infty}$使得$\lim_{k \to \infty} \Sigma_k = \Sigma_{\infty}$. 并且，$\Sigma_{\infty}$是如下线性方程的唯一解：
 \begin{equation}
 	\Sigma_{\infty} = A \Sigma_{\infty} A^T + GQG^T. \label{eq:3.3.5}
 \end{equation}
 \end{Thm}
 
 \begin{Prf}
-因为$A$是稳定的，所以存在数$K < \infty$和$0 < \alpha < 1$使$A^j$的模小于$K \ \alpha^j$对任意$A$的参数都成立。因此公式\eqref{eq:3.3.3}中的第一项消失了，且整个级数可以求和。可以得到
+因为$A$是稳定的，所以存在数$K < \infty$和$0 < \alpha < 1$使$A^j$的每个系数的模都小于$K \ \alpha^j$。因此公式\eqref{eq:3.3.3}中的第一项变成了0，且整个级数可求和。因此
 \begin{equation*}
 	\lim_{k \to \infty} \Sigma_k = \Sigma_{\infty} := \sum_{j=0}^{\infty} A^j GQG^T (A^j)^T.
 \end{equation*}
-接下来，由于$\Sigma_k$收敛至$\Sigma_{\infty}$，我们让$k \to \infty$，那么$\Sigma_{\infty}$服从公式\eqref{eq:3.3.5}。因此，我们只需要证明公式\eqref{eq:3.3.5}有唯一解。假设$\Sigma_{\infty}^1$和$\Sigma_{\infty}^2$是\eqref{eq:3.3.5}的两个解。那么他们的差值$\Delta := \Sigma_{\infty}^1 - \Sigma_{\infty}^2$满足
+接下来，由于$\Sigma_k$收敛至$\Sigma_{\infty}$，我们让\eqref{eq:3.3.1}中的$k \to \infty$，归纳出$\Sigma_{\infty}$满足公式\eqref{eq:3.3.5}。因此，只需要证明公式\eqref{eq:3.3.5}有唯一解。假设$\Sigma_{\infty}^1$和$\Sigma_{\infty}^2$是\eqref{eq:3.3.5}的两个解。那么他们的差值$\Delta := \Sigma_{\infty}^1 - \Sigma_{\infty}^2$满足
 \begin{equation*}
 	\Delta \ = \ A \Delta A^T.
 \end{equation*}
-迭代带入此式，可得
+递归带入此式，可得
 \begin{equation*}
-	\Delta \ = \ A^k \Delta (A^k)^T
+	\Delta \ = \ A^k \Delta (A^k)^T.
 \end{equation*}
 当$k \to \infty$时显然有$\Delta = 0$，因此$\Sigma_{\infty}^1 = \Sigma_{\infty}^2$，证毕。
 \end{Prf}
 % ==== End of Page 29 ====
-公式\eqref{eq:3.3.5}称为离散李雅普诺夫方程。
+公式\eqref{eq:3.3.5}称为离散时间李雅普诺夫方程。
 
 \begin{Exe} \label{Exe:3.3.6}
 假设$A$是稳定的，若$cov(x_0) = \Sigma_{\infty}$，则$\{x_k\}$的协方差函数是平稳的。即$\Sigma_k = \Sigma_{\infty}$且$\Sigma_{k+m,k} = A^m \Sigma_{\infty}$对所有$k > 0$均成立。一般而言，$\{x_k\}$可以被分解成两部分
