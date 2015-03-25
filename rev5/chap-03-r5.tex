@@ -1,10 +1,10 @@
 \chapter{线性随机系统的性质} % Properties of Linear Stochastic Systems
 
-本章简要总结了含有输入干扰和测量误差的线性随机系统模型的基本结论，并重点讨论了干扰是高斯噪声时的情况。本章推导了状态和测量过程的平均值和协方差的递推公式，其渐近性质与状态方程的稳定性密切相关。最后，本章说明了线性高斯系统的状态过程和高斯-马尔可夫过程之间的联系。
+本章简要总结了含有输入干扰和测量误差的线性随机系统模型的基本结论，并重点讨论了干扰是高斯噪声时的情况。本章推导了状态和测量过程的平均值和协方差的递推公式，说明其渐近性质与状态方程的稳定性密切相关。最后，本章说明了线性高斯系统的状态过程和高斯-马尔可夫过程之间的联系。
 
 \section{线性高斯系统}
 
-对于n维随机变量$z$，我们记
+对于$n$维随机变量$z$，我们记
 \begin{equation}
 	z \sim N(\overline{z},\Sigma) \quad or \quad 
 	p(z) \sim N(\overline{z},\Sigma) \label{eq:3.1.1}
@@ -18,11 +18,11 @@
 下面考虑这样一个线性随机系统
 \begin{subequations} \label{eq:3.1.3}
 	\begin{align}
-		x_{k+1} &= A x_k + B u_k + G w_k \label{eq:3.1.3a} \\
-		y_k &= C x_k + H v_k \label{eq:3.1.3b}
+		x_{k+1} &= A x_k + B u_k + G w_k, \label{eq:3.1.3a} \\
+		y_k &= C x_k + H v_k. \label{eq:3.1.3b}
 	\end{align}
 \end{subequations}
-式中的变量满足$x_k \in R^n$，$u_k \in R^m$，$y_k \in R^p$，$w_k \in R^g$，$v_k \in R^h$且$A$，$B$，$G$，$C$，$H$为相应大小的固定矩阵。假设独立简单随机变量$x_0, w_0, w_1,..., v_0, v_1,...$均服从高斯分布：
+式中的变量满足$x_k \in R^n, u_k \in R^m, y_k \in R^p, w_k \in R^g, v_k \in R^h$，且$A, B, G, C, H$为相应大小的定值矩阵。假设独立简单随机变量$x_0, w_0, w_1,..., v_0, v_1,...$均服从高斯分布：
 \begin{equation}
 	x_0 \sim N(\overline{x}_0,\Sigma_0), \quad
 	w_k \sim N(0,Q), \quad
@@ -33,7 +33,7 @@
 
 % ==== End of Page 23 ====
 
-因为事先我们假设上述的简单随机变量是相互独立的，所以对于任意反馈法则$g$，$w_k$与$x_k$和$u_k$均相互独立。特别地，从式\eqref{eq:3.1.3a}可以看出，在已知$x_k$和$u_k$的条件下$x_{k+1}$的概率分布等同于$G  w_k$的概率分布，加上平均值的偏移量$A x_k + B u_k$。因此系统的状态转移概率是
+因为事先我们假设上述的简单随机变量是相互独立的，所以对于任意反馈法则$g$，$w_k$与$x_k$和$u_k$均相互独立。特别地，从式\eqref{eq:3.1.3a}可以看出，在已知$x_k$和$u_k$的条件下$x_{k+1}$的概率分布等同于$G  w_k$的概率分布，再加上均值偏移量$A x_k + B u_k$。因此系统的状态转移概率是
 \begin{equation}
 	p(x_{k+1} \ \vert \ x_k,u_k) \sim N(A x_k + B u_k, GQG^T). \label{eq:3.1.5}
 \end{equation}
@@ -78,7 +78,7 @@
 出发可以递归求得所有$\Sigma_{k+m \vert k}, m > 0$。
 从公式\eqref{eq:3.1.9}和\eqref{eq:3.1.10}可以看出$\Sigma_{k+m \vert k}$只取决于$m$，而与$k$的值无关。
 
-注意上述讨论的反馈函数$g_1,...,g_k$（而不是$g_i, i \ge k$）并不需要为常值函数。事实上，$g_i, i \le k$可以为任何可用信息${\{y_i\}}$的非线性函数。如果反馈函数是非线性的，那么控制过程也将是非高斯的，因此由无条件概率决定的状态过程也将是非高斯的。即便如此，由条件概率决定的转移概率依旧服从高斯分布。我们将这一性质总结为下面的引理。
+注意上述讨论的反馈函数$g_1,...,g_k$（而不是$g_i, i \ge k$）并不必为常值函数。事实上，$g_i, i \le k$可以为任何可用信息${\{y_i\}}$的非线性函数。如果反馈函数是非线性的，那么控制过程也将是非高斯的，因此由无条件概率决定的状态过程也将是非高斯的。即便如此，由条件概率决定的转移概率依旧服从高斯分布。我们将这一性质总结为下面的引理。
 \begin{Lem} \label{lem:3.1.11}
 	由公式\eqref{eq:3.1.3}和\eqref{eq:3.1.4}所描述的$m$步转移概率，当反馈法则$g$满足$g_{k+1} \equiv u_{k+1},...,g_{k+m-1} \equiv u_{k+m-1}$时，服从高斯分布：
 	\begin{equation}
@@ -158,7 +158,7 @@ $y_k$的均值为
 	w_k \sim N(0, Q_k), \quad 
 	v_k \sim N(0, R_k).
 \end{equation*}
-请证明$m$步转移概率也服从高斯分布
+请证明其$m$步转移概率也服从高斯分布
 \begin{align*}
 	&p(x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}) \sim \\
 	&N(A_{k+m-1} ... A_k  x_k + \sum_{j=0}^{m-1} A_{k+m-1} ... A_{k+j+1} B_{k+j} u_{k+j}, \Sigma_{k+m \vert k}).
@@ -173,15 +173,15 @@ $y_k$的均值为
 在上文中我们均假设系统的输入噪声$\{w_k\}$是一个独立过程。下面的练习将展示如何通过扩大状态向量消除这个假设。
 
 \begin{Exe} \label{Exe:3.1.18}
-假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的。因此系统\eqref{eq:3.1.3},\eqref{eq:3.1.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
+假设噪声序列$\{w_0,w_1,...\}$并不是相互独立的，因此系统\eqref{eq:3.1.3},\eqref{eq:3.1.4}不满足线性随机系统的定义。但是我们假设$\{w_k\}$本身是一个线性系统的输出
 \begin{equation*}
-	\xi_{k+1} = F \xi_k + \epsilon_k; \quad w_k = D \xi_k + \delta_k
+	\xi_{k+1} = F \xi_k + \epsilon_k; \quad w_k = D \xi_k + \delta_k.
 \end{equation*}
-式中的变量$\{x_0,\xi_0,...,v_0,...,\epsilon_0,...,\delta_0,...$都相互独立且服从高斯分布。证明$\{y_k\}$可以表示为一个线性随机系统。 \\
+式中的变量$\{x_0,\xi_0,...,v_0,...,\epsilon_0,...,\delta_0,...\}$都相互独立且服从高斯分布。证明$\{y_k\}$可以表示为一个线性随机系统。 \\
 \textnormal{[}提示：可将状态向量改写为$\zeta_k := (x_k^T,\xi_k^T)^T$\textnormal{]}
 \end{Exe}
 
-因此线性随机系统的定义可以扩大到系统输入噪声为经过某些线性随机系统过滤后的高斯白噪声的情形。
+这样线性随机系统的定义就扩大到系统输入噪声为经过某些线性随机系统滤波后的高斯白噪声的情形。
 
 % ==== End of Page 27 ====
 
@@ -196,15 +196,15 @@ $y_k$的均值为
 
 设
 \begin{align*}
-	\overline{x}_{k+m \vert k} :=& E \ \{x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}\}, \\
-	\Sigma_{k+m \vert k} :=& E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \ \vert \ x_k,u_k,...,u_{k+m-1}\},
+	\overline{x}_{k+m \vert k} :=& E \ \{x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}\} \\
+	\Sigma_{k+m \vert k} :=& E \ \{(x_{k+m} - \overline{x}_{k+m \vert k}) (x_{k+m} - \overline{x}_{k+m \vert k})^T \ \vert \ x_k,u_k,...,u_{k+m-1}\}
 \end{align*}
 为已知$x_k$的条件下$x_{k+m}$的均值和协方差。
 
 从公式\eqref{eq:3.1.7}可知
 \begin{align*}
 	\overline{x}_{k+m \vert k} = A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B u_{k+j}, \\
-	\Sigma_{k+m \vert k} = cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}),
+	\Sigma_{k+m \vert k} = cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}).
 \end{align*}
 展开可得
 \begin{equation*}
@@ -214,11 +214,11 @@ $y_k$的均值为
 
 类似地，当系统是开环时，其无条件均值和协方差
 \begin{equation*}
-\overline{x}_k := E \ x_k, \quad \Sigma_k := E \ (x_k - \overline{x}_k) (x_k - \overline{x}_k)^T，
+\overline{x}_k := E \ x_k, \quad \Sigma_k := E \ (x_k - \overline{x}_k) (x_k - \overline{x}_k)^T
 \end{equation*}
 也由公式\eqref{eq:3.1.12}给出。
 
-此外，若将练习\eqref{Exe:3.1.17}中的系统变为时变系统，一阶和二阶矩恰好相同的情况仍然成立。
+此外，若将练习\eqref{Exe:3.1.17}中的系统变为时变系统，一阶和二阶矩恰好相同的结论仍然成立。
 
 % ==== End of Page 28 ====
 
@@ -227,7 +227,7 @@ $y_k$的均值为
 下面我们研究当$k \to \infty$时由公式\eqref{eq:3.1.12}和\eqref{eq:3.1.13}给出的协方差矩阵$\Sigma_k$的变化。$\Sigma_k$的计算公式如下：
 \begin{align}
 	\Sigma_k &= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.3.1} \\
-	\Sigma_0 &= cov(x_0) \label{eq:3.3.2}
+	\Sigma_0 &= cov(x_0). \label{eq:3.3.2}
 \end{align}
 将递归公式展开后，可以得到
 \begin{equation}
@@ -245,11 +245,11 @@ $y_k$的均值为
 \end{Thm}
 
 \begin{Prf}
-因为$A$是稳定的，所以存在数$K < \infty$和$0 < \alpha < 1$使$A^j$的每个系数的模都小于$K \ \alpha^j$。因此公式\eqref{eq:3.3.3}中的第一项变成了0，且整个级数可求和。因此
+因为$A$是稳定的，所以存在数$K < \infty$和$0 < \alpha < 1$使$A^j$的每个系数的模都小于$K \ \alpha^j$。因此公式\eqref{eq:3.3.3}中的第一项变成了$0$，并且整个级数可求和。因此
 \begin{equation*}
 	\lim_{k \to \infty} \Sigma_k = \Sigma_{\infty} := \sum_{j=0}^{\infty} A^j GQG^T (A^j)^T.
 \end{equation*}
-接下来，由于$\Sigma_k$收敛至$\Sigma_{\infty}$，我们让\eqref{eq:3.3.1}中的$k \to \infty$，归纳出$\Sigma_{\infty}$满足公式\eqref{eq:3.3.5}。因此，只需要证明公式\eqref{eq:3.3.5}有唯一解。假设$\Sigma_{\infty}^1$和$\Sigma_{\infty}^2$是\eqref{eq:3.3.5}的两个解。那么他们的差值$\Delta := \Sigma_{\infty}^1 - \Sigma_{\infty}^2$满足
+接下来，由于$\Sigma_k$收敛至$\Sigma_{\infty}$，我们让\eqref{eq:3.3.1}中的$k \to \infty$，归纳出$\Sigma_{\infty}$满足公式\eqref{eq:3.3.5}。最后，只需要证明公式\eqref{eq:3.3.5}有唯一解即可。假设$\Sigma_{\infty}^1$和$\Sigma_{\infty}^2$是\eqref{eq:3.3.5}的两个解。那么他们的差值$\Delta := \Sigma_{\infty}^1 - \Sigma_{\infty}^2$满足
 \begin{equation*}
 	\Delta \ = \ A \Delta A^T.
 \end{equation*}
@@ -271,7 +271,7 @@ $y_k$的均值为
 \end{Exe}
 
 \begin{Rem} \label{Rem:3.3.7}
-某些时候，即使$A$不是稳定的，$\Sigma_k$仍旧会收敛。一个简单的例子是当$\Sigma_0 = 0$，$Q = 0$时，$\Sigma_k \equiv 0$而与$A$无关。另外，$\Sigma_{\infty}$也不必是严格正定的，例如当$A = 0$且$GQG^T < n$的时候，$\Sigma_k$也是收敛的。上面的两个例子说明，如果输入扰动$\{w_k\}$影响了状态向量的每个组成部分，那么$A$的稳定性是$\Sigma_k$收敛的必要条件，且协方差的极限$\Sigma_{\infty}$是正定的。如果合适地定义了影响每个组成部分的记号，上面的断言是有说服力的。
+某些时候，即使$A$不是稳定的，$\Sigma_k$仍旧会收敛。一个简单的例子是当$\Sigma_0 = 0$，$Q = 0$时，$\Sigma_k \equiv 0$而与$A$无关。另外，$\Sigma_{\infty}$也不必是严格正定的，例如当$A = 0$且$GQG^T < n$的时候，$\Sigma_k$也是收敛的。上面的两个例子说明，如果输入扰动$\{w_k\}$影响了状态向量的每个组成部分，那么$A$的稳定性是$\Sigma_k$收敛的必要条件，此时协方差的极限$\Sigma_{\infty}$是正定的。如果合适地定义“影响每个组成部分”，上面的断言是有说服力的。
 \end{Rem}
 
 一对维度分别为$n \times n$和$n \times g$的矩阵$A$和$S$，当维度为$n \times ng$的矩阵$[S \ AS \ A^{n-1}S]$的秩为$n$时，则称系统状态是可达的。有关可达性的定理留作下面的练习。
@@ -318,7 +318,7 @@ $y_k$的均值为
 
 回到协方差公式\eqref{eq:3.3.1}，若任意矩阵$S$满足
 \begin{equation}
-	GQG^T = SS^T, \label{eq:3.3.12}
+	GQG^T = SS^T \label{eq:3.3.12}
 \end{equation}
 则称$S$是$GQG^T$的一个平方根。
 
@@ -342,7 +342,7 @@ $\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的
 
 如果一个在$R^n$内取值的随机过程$\{x_k,k \ge 0\}$是高斯的，那么称这个随机过程为高斯-马尔可夫过程。也就是说，对任意$k$，随机变量$x_0,...x_k$的概率分布服从高斯分布，并且满足马尔可夫性质：
 \begin{equation}
-	p(x_{k+1} \ \vert \ x_k,...,x_0) = p(x_{k+1} \vert x_k). \label{eq:3.4.1}
+	p(x_{k+1} \ \vert \ x_k,...,x_0) = p(x_{k+1} \ \vert \ x_k). \label{eq:3.4.1}
 \end{equation}
 
 % ==== End of page 31 ====
@@ -351,11 +351,10 @@ $\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的
 \begin{equation*}
 	x_{k+1} = A_k \ x_k + w_k
 \end{equation*}
-给出。如果$x_0,w_0,w_1,...$是相互独立的且服从高斯分布，那么这个过程就是高斯-马尔可夫过程。我们把这个这个命题的逆命题作为练习。
-
-假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，指定$\Sigma_k := cov(x_k)$，$\Sigma_{k+1,k} := cov(x_{k+1},x_k)$。
+给出。如果$x_0,w_0,w_1,...$相互独立且服从高斯分布，那么这个过程就是高斯-马尔可夫过程。我们把这个这个命题的逆命题作为练习。
 
 \begin{Exe} \label{Exe:3.4.2}
+假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，令$\Sigma_k := cov(x_k), \Sigma_{k+1,k} := cov(x_{k+1},x_k)$。 \\
 试证明
 \begin{align}
 	\hat{x}_{k+1 \vert k} :=& \ E \ \{x_{k+1} \ \vert \ x_k,...,x_0\} = E \ \{x_{k+1} \ \vert \ x_k\} \nonumber \\
@@ -367,17 +366,17 @@ $\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的
 \end{equation*}
 试证明随机变量$x_0,w_0,w_1,...$相互独立且服从高斯分布，即高斯-马尔可夫过程$\{x_k\}$可以表示为
 \begin{equation}
-	x_{k+1} = A_k \ x_k + w_k, \label{eq:3.4.4}
+	x_{k+1} = A_k \ x_k + w_k \label{eq:3.4.4}
 \end{equation}
 其中$A_k := \Sigma_{k+1,k} \Sigma_k^{-1}$。 \\
-\textnormal{[}提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和余下的推导，可通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。由于两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \ \vert \ x_k \} = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。\textnormal{]}
+\textnormal{[}提示：\eqref{eq:3.4.3}的第一个等式可以由马尔可夫的性质\eqref{eq:3.4.1}得到。它的第二个等式和余下的推导，可通过计算$x_{k+1} - \Sigma_{k+1,k} \Sigma_k^{-1} x_k$和$x_k$之间的协方差证明他们之间没有相关关系。因为两个耦合的高斯随机变量是非相关的，所以他们是相互独立的，也就是说$E \ \{\hat{x}_{k+1} - \Sigma_{k+1,k} \Sigma_{k}^{-1} x_k \ \vert \ x_k \} = 0$，因此\eqref{eq:3.4.3}的第二项也得到了验证。\textnormal{]}
 \end{Exe}
 
 在练习中，$w_k = x_{k+1} - \hat{x}_{k+1 \vert k}$和$x_k$共同决定了$x_{k+1}$。$x_k$这一项可在$k$时刻获知，但$w_k$与先前的历史无关，因此无法在$k$时刻获知，所以$w_k := \hat{x}_{k+1 \vert k} - x_{k+1}$又称为新型，或者说是过去未出现的关于$x_{k+1}$的新信息。式\eqref{eq:3.4.4}也称为过程$\{x_k\}$的新型表示。
 
 \section{注解}
 
-1. Anderson and Moore (1979)\cite{Anderson79OF}详尽地讨论了线性随机系统的性质。他们的书还研究了与可达性类似的概念--可控性和可观性。有关线性随机系统的更多性质会在第七章介绍。
+1. Anderson and Moore (1979)\cite{Anderson79OF}详尽地讨论了线性随机系统的性质。他们的书还研究了与可达性类似的概念---可控性和可观性。有关线性随机系统的更多性质会在第七章介绍。
 
 % ==== End of Page 32 ====
 
