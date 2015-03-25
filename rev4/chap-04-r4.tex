@@ -67,7 +67,7 @@
 
 其中，$q$的取值满足$q_1(0) < q_1(1) < q_1(2)$和$q_2(0) < q_2(1)$，这是因为轻度使用和维护得更好的机器比重度使用和维护不佳的机器崩溃的概率更低。另外，式\eqref{eq:4.1.3}中的最后两项概率与$u_k^1$无关，因为当机器已经崩溃时，它就无法被使用了。
 
-假设系统状态可观，且系统受到一个时不变的反馈指令$\{g_0,g_1,...\}, g_k \equiv g$的作用，设$u_k = g(x_k)$，则转移概率矩阵$P_g = \{P_{ij}^g\}$可写成
+假设直接观测系统状态，且系统受到一个时不变的反馈指令$\{g_0,g_1,...\}, g_k \equiv g$的作用，设$u_k = g(x_k)$，则转移概率矩阵$P_g = \{P_{ij}^g\}$可写成
 \begin{equation}
 	P_{ij}^g := P_{ij}(g(i)), \quad i,j \in \{1,2\}. \label{eq:4.1.5}
 \end{equation}
@@ -108,44 +108,44 @@
 
 从式\eqref{eq:4.1.9}可以看出稳态概率$p$取决于反馈法则$g$。通过改变法则$g$，也就是改变使用和维护机器的时机，就可以调整机器崩溃的时长。但运用什么样的法则$g$可以得到最好的$p$呢？我们会在之后的章节进一步探讨这个问题。
 
-\section{有限状态控制马尔可夫链}
+\section{有限可控马尔可夫链}
 
-前面的例子可以一般化成任意有限状态控制的马尔可夫链。它的状态$x_k$可取值$\{1,...,I\}$。它的控制可以从一个有限或无限的集合$U$中取值。转移概率由一个$I \times I$的矩阵描述
+前面的例子可以一般化成任意有限可控马尔可夫链。它的状态$x_k$可取值$\{1,...,I\}$。它的控制可以从一个有限或无限的集合$U$中取值。转移概率由一个以$U$中的值为自变量，大小为$I \times I$的矩阵描述
 \begin{equation}
-	u \to P(u) := \{P_{ij}(u), \quad 1 \le i,j \le I\} \label{eq:4.2.1}
+	u \to P(u) := \{P_{ij}(u), \quad 1 \le i,j \le I\}. \label{eq:4.2.1}
 \end{equation}
 我们记
 \begin{equation}
-	Prob\{x_{k+1} = j \ \vert \ x_k = i, x_{k-1},...,x_0,u_k,...,u_0\} = P_{ij}(u_k) \label{eq:4.2.2}
+	Prob\{x_{k+1} = j \ \vert \ x_k = i, x_{k-1},...,x_0,u_k,...,u_0\} = P_{ij}(u_k). \label{eq:4.2.2}
 \end{equation}
-矩阵$P(u)$的每个元素都是非负的，并且每一行的各个元素之和都是1，即矩阵$P(u)$是一个随机矩阵。同时，我们必须指定初始状态$x_0$的概率分布。当观测不等于状态，即$y_k \not\equiv x_k$，我们还需要指定观测概率
+矩阵$P(u)$的每个元素都是非负的，并且每一行的各个元素之和都是1，即矩阵$P(u)$是一个随机矩阵。同时，我们必须指定初始状态$x_0$的概率分布。当观测不等于状态，即$y_k \not\equiv x_k$时，我们还需要指定观测概率
 \begin{equation}
-	P(y \ \vert \ i) := Prob\{y_k = y \ \vert \ x_k = i\} \label{eq:4.2.3}
+	P(y \ \vert \ i) := Prob\{y_k = y \ \vert \ x_k = i\}. \label{eq:4.2.3}
 \end{equation}
 
 \section{完全可观与马尔可夫策略}
 
-考虑可控的马尔可夫链模型\eqref{eq:4.2.1}，若这个状态是可观测的，即$y_k \equiv x_k$，另$g = \{g_0,g_1,...\}$为一个反馈策略，使得$g_k$只与当前状态$x_k$有关。我们称这个策略$g$为马尔可夫策略。
+对于可控的马尔可夫链模型\eqref{eq:4.2.1}，假设直接观测系统状态，即$y_k \equiv x_k$，设$g = \{g_0,g_1,...\}$为一个反馈策略，使得$g_k$只与当前状态$x_k$有关。我们称这个策略$g$为马尔可夫策略。
 
 若$g$是一个马尔可夫策略，且$\{x_k\}$是状态过程的结果，我们用一个$I$维的行向量表示$x_k$的概率分布：
 \begin{equation*}
 	p_k^g := (Prob\{x_k = 1\},...,Prob\{x_k = I\})
 \end{equation*}
-上标$g$表示此分布由$g$决定，但在语义清楚时可以省略。
+上标$g$表示此分布由$g$决定，但在没有歧义时可以省略。
 
 \begin{Lem} \label{Lem:4.3.1}
 当我们运用了马尔可夫策略$g$的时候，状态过程的结果$\{x_k\}$就是一个马尔可夫过程。在$k$时刻它的一步转移概率为
 % ==== End of Page 38 ====
 \begin{equation*}
-	P_k^g := \{(P_k^g)_{ij} := P_{ij} (g_k(i)), \quad i \le i, j \le I\}
+	P_k^g := \{(P_k^g)_{ij} := P_{ij} (g_k(i)), \quad i \le i, j \le I\}.
 \end{equation*}
 它的$m$步转移概率为
 \begin{equation*}
-	P_k^g ... P_{k+m-1}^g
+	P_k^g ... P_{k+m-1}^g.
 \end{equation*}
-矩阵中第$ij$个元素是当$k$时刻它的状态为$i$的条件下$k+m$时刻它的状态为$j$的概率。即
+矩阵中第$ij$个元素是指当$k$时刻系统状态为$i$的条件下$k+m$时刻它的状态为$j$的概率。即
 \begin{equation*}
-	p_{k+m} = p_k P_k^g ... P_{k+m-1}^g
+	p_{k+m} = p_k P_k^g ... P_{k+m-1}^g.
 \end{equation*}
 特别地，
 \begin{equation}
@@ -158,21 +158,21 @@
 从马尔可夫的性质\eqref{eq:4.2.2}直接得证。
 \end{Prf}
 
-由于转移概率矩阵只取决于时间$k$，因此我们说$\{x_k\}$是一个具有非静态转移概率的马尔可夫链。
+由于转移概率矩阵$P_k^g$取决于时间$k$，所以我们说$\{x_k\}$是一个具有非静态转移概率的马尔可夫链。
 
 \section{马尔可夫策略的成本}
 
-马尔可夫策略$g$决定了状态过程$\{x_k\}$的概率分布和控制过程$\{u_k = g_k(x_k)\}$。不同的策略会导致不同的概率分布。在最优控制中，我们希望找到最好的策略，这需要通过比较多种策略才能得出。我们为此定义了代价函数，它是一系列和状态与控制相关的实值函数
+马尔可夫策略$g$决定了状态过程$\{x_k\}$的概率分布和控制过程$\{u_k = g_k(x_k)\}$。不同的策略会导致不同的概率分布。在最优控制中，我们希望找到最好的策略，这需要通过比较多种策略才能得出。为此需要定义代价函数，它是一系列和状态与控制相关的实值函数
 \begin{equation*}
-	c_k(i,u), \quad 1 \le i \le I, \quad u \in U, \quad k \ge 0
+	c_k(i,u), \quad 1 \le i \le I, \quad u \in U, \quad k \ge 0.
 \end{equation*}
-它表示$c_k(i,u)$是$k$时刻当$x_k = i$和$u_k = u$时的代价。
+这表示$c_k(i,u)$是$k$时刻当$x_k = i$和$u_k = u$时的代价。
 
-对于一个固定的马尔可夫策略$g$，到$N$时刻积累的代价为$\sum_{k=0}^N c_k(x_k,u_k)$。因为$x_k$和$u_k$是随机的，所以它是一个随机变量。积累的代价的均值为
+对于一个固定的马尔可夫策略$g$，到$N$时刻积累的代价为$\sum_{k=0}^N c_k(x_k,u_k)$。因为$x_k$和$u_k$是随机的，所以它也是一个随机变量。积累的代价的均值为
 \begin{equation}
-	J(g) := E^g \ \sum_{k=0}^N c_k(x_k,u_k) = E^g \ \sum_{k=0}^N c_k(x_k,g_k(x_k)) \label{eq:4.4.1}
+	J(g) := E^g \ \sum_{k=0}^N c_k(x_k,u_k) = E^g \ \sum_{k=0}^N c_k(x_k,g_k(x_k)). \label{eq:4.4.1}
 \end{equation}
-此处的$E^g$代表由$g$决定的$\{x_k\}$和$\{u_k\}$的概率分布。
+此处的$E^g$代表由$g$决定的$\{x_k\}$和$\{u_k\}$的概率分布下的均值。
 
 $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 \begin{align}
@@ -182,19 +182,19 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 \end{align}
 其中$c_k^g$是$I$维的列向量
 \begin{equation}
-	c_k^g := (c_k(1,g(1)),...,c_k(I,g(I)))^T \label{eq:4.4.3}
+	c_k^g := (c_k(1,g(1)),...,c_k(I,g(I)))^T. \label{eq:4.4.3}
 \end{equation}
 式\eqref{eq:4.4.2}中的最后一步推导用到了\eqref{eq:4.3.2}。
 
-最佳的马尔可夫策略$g$可以使$J(g) = \sum_{k=0}^N p_0 (P_0^g ... P_{k-1}^g) c_k^g$取最小值。在第五章我们将通过学习动态规划来计算最佳的$g$。
+最佳的马尔可夫策略$g$应使$J(g) = \sum_{k=0}^N p_0 (P_0^g ... P_{k-1}^g) c_k^g$取最小值。在第五章我们将运用动态规划方法计算最佳的$g$。
 
-动态规划是一个用递归方式计算最佳$g$的方法。由于这个方法只取决于下面的事实：由$g$决定的状态过程是马尔可夫的，因此我们在这里加以介绍。对任意时间$1 \le k \le N$以及状态$1 \le i \le I$，令$V_k^g(i)$代表当$x_k = i$时$k,...N$阶段代价的期望。也就是说
+动态规划是一个用递归方式计算策略$g$对应的代价的方法。由于这个方法只取决于下面的事实：由$g$决定的状态过程是马尔可夫的，因此我们在这里加以介绍。对任意时间$1 \le k \le N$以及状态$1 \le i \le I$，令$V_k^g(i)$代表当$x_k = i$时$k,...,N$时间内代价的期望。也就是说
 \begin{equation}
-	V_k^g(i) := E^g \ \{\sum_{l=k}^N c_l (x_l,g_l(x_l)) \ \vert \ x_k = i\} \label{eq:4.4.4}
+	V_k^g(i) := E^g \ \{\sum_{l=k}^N c_l (x_l,g_l(x_l)) \ \vert \ x_k = i\}. \label{eq:4.4.4}
 \end{equation}
-因此所有的代价可以表示为
+式\eqref{eq:4.4.2}中的总代价可以表示为
 \begin{equation}
-	J(g) = \sum_{i=1}^I (p_0)_i V_0^g (i) \label{eq:4.4.5}
+	J(g) = \sum_{i=1}^I (p_0)_i V_0^g(i). \label{eq:4.4.5}
 \end{equation}
 
 \begin{Lem} \label{Lem:4.4.6}
@@ -217,53 +217,53 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 	&= c_k(i,g_k(i)) + E^g \ \{V_{k+1}^g(x_{k+1}) \ \vert \ x_k = i\}, \quad \text{由} \eqref{eq:4.2.2} \\
 	&= c_k(i,g_k(i)) + \sum_{j=1}^I V_{k+1}^g(j) Prob\{x_{k+1} = j \ \vert \ x_k = i\}
 \end{align*}
-由$(P_k^g)_{ij}$可看出，这就是\eqref{eq:4.4.7}的结果。
+由$(P_k^g)_{ij}$的定义可看出，这就是\eqref{eq:4.4.7}的结果。
 \end{Prf}
 
 前面的公式可以用向量的形式更方便地表达，我们设$I$维的列向量
 \begin{equation}
-	V_k^g := (V_k^g(1),...,V_k^g(I))^T \label{eq:4.4.9}
+	V_k^g := (V_k^g(1),...,V_k^g(I))^T, \label{eq:4.4.9}
 \end{equation}
 则用\eqref{eq:4.4.3}可以分别表达\eqref{eq:4.4.7}，\eqref{eq:4.4.8}和\eqref{eq:4.4.5}如下
 \begin{align}
-	V_k^g &= c_k^g + P_k^g V_{k+1}^g, \quad 0 \le k < N \label{eq:4.4.10} \\
-	V_N^g &= c_N^g \label{eq:4.4.11} \\
-	J(g) &= p_0 \ V_0^g \label{eq:4.4.12}
+	V_k^g &= c_k^g + P_k^g V_{k+1}^g, \quad 0 \le k < N, \label{eq:4.4.10} \\
+	V_N^g &= c_N^g, \label{eq:4.4.11} \\
+	J(g) &= p_0 \ V_0^g. \label{eq:4.4.12}
 \end{align}
 
-这里的时间长度$N$是有限的，但有时我们需要研究时间为无限长时的情况。这不是一个立即可得的扩充，因为如果直接将\eqref{eq:4.4.1}中的$N = \infty$，在大多数情况下对任意$g$会有$J(g) = \infty$，所以最好的$g$也就失去了意义。有两个途径可以解决无限时间的问题。
+这里的时间长度$N$是有限的，但有时我们需要研究时间为无限长的情况。这不是一个直接的扩展，因为如果直接令\eqref{eq:4.4.1}中的$N = \infty$，在大多数情况下对任意$g$都有$J(g) = \infty$，所以最好的$g$也就失去了意义。我们有两个途径可以解决无限时间的问题。
 
-第一个方法是引入一个衰减因子$\beta, 0 < \beta < 1$，并计算衰减代价的期望
+第一个方法是引入一个衰减因子$\beta, 0 < \beta < 1$，并计算衰减的代价的期望
 \begin{equation*}
-	J(g) = E^g \ \sum_{k=0}^{\infty} \beta^k c_k(x_k,u_k)
+	J(g) = E^g \ \sum_{k=0}^{\infty} \beta^k c_k(x_k,u_k).
 \end{equation*}
-只要$c_k$是有界的，$J(g)$就是有限的。因为在$k$时刻的代价衰减了$\beta^k$，所以现在的代价比未来的代价更为重要。例如，在经济问题中，设$\beta = (1+r)^{-1}$，其中$r > 0$是利率。在这种表示中，$J(g)$是当前的代价，从\eqref{eq:4.4.2}可知
+只要$c_k$是有界的，$J(g)$就是有限的。因为在$k$时刻的代价衰减了$\beta^k$倍，所以现在付出的代价比未来的代价更为重要。例如，在经济问题中，设$\beta = (1+r)^{-1}$，其中$r > 0$是利率。用$J(g)$表示当前的代价，从\eqref{eq:4.4.2}可知
 \begin{equation*}
-	J(g) = \sum_{k=0}^{\infty} \beta^k p_0 (P_0^g ... P_{k-1}^g) c_k^g
+	J(g) = \sum_{k=0}^{\infty} \beta^k p_0 (P_0^g ... P_{k-1}^g) c_k^g.
 \end{equation*}
 若定义
 \begin{equation*}
-	V_k^g(i) := E^g \ \{\sum_{l=k}^{\infty} \beta^l c_l(x_l,g_l(x_l)) \ \vert \ x_k = i\}
+	V_k^g(i) := E^g \ \{\sum_{l=k}^{\infty} \beta^l c_l(x_l,g_l(x_l)) \ \vert \ x_k = i\},
 \end{equation*}
 使用\eqref{eq:4.4.9}中的记法，式\eqref{eq:4.4.10}和\eqref{eq:4.4.12}可以写为
 \begin{align}
-	V_k^g &= \beta^k c_k^g + P_k^g V_{k+1}^g, \quad k \ge 0 \label{eq:4.4.13} \\
+	V_k^g &= \beta^k c_k^g + P_k^g V_{k+1}^g, \quad k \ge 0, \label{eq:4.4.13} \\
 % ==== End of Page 41 ====
-	J(g) &= p_0 \ V_0^g \nonumber
+	J(g) &= p_0 \ V_0^g. \nonumber
 \end{align}
 但是，在无限时间问题中，式\eqref{eq:4.4.11}没有对应的公式。
 
-第二个方法可以在衰减不适用的情况下使用。此时，马尔可夫策略通过单位时间内的平均代价来衡量
+第二个方法可以在衰减不适用的情况下使用。在这里，马尔可夫策略通过单位时间内的平均代价来衡量
 \begin{equation}
-	J(g) = \lim_{N \to \infty} \frac{1}{N} E^g \ \sum_{k=0}^{N-1} c_k(x_k,g_k(x_k)) \label{eq:4.4.14}
+	J(g) = \lim_{N \to \infty} \frac{1}{N} E^g \ \sum_{k=0}^{N-1} c_k(x_k,g_k(x_k)). \label{eq:4.4.14}
 \end{equation}
-通过\eqref{eq:4.4.2}式可知其代价等于
+通过式\eqref{eq:4.4.2}可知其代价等于
 \begin{equation}
 	\lim_{N \to \infty} \frac{1}{N} \sum_{k=0}^{N-1} p_0 (P_0^g ... P_{k-1}^g) c_k^g \label{eq:4.4.15}
 \end{equation}
-从上面的表达式可以看出，$P_k^g$是随$k$的变化而变化的，因此极限不一定存在。如果转移概率矩阵与$k$无关，则极限始终存在。
+从这个表达式可以看出，如果$P_k^g$是随$k$的变化而变化的，则极限不一定存在；如果转移概率矩阵与$k$无关，则极限始终存在。
 
-到目前为止，式\eqref{eq:4.4.1}表达的总代价是每个时刻的代价的累加。下面的练习会证明，其他的代价函数也可以写成累加的形式。
+到目前为止，式\eqref{eq:4.4.1}表达的总代价是每个时刻的代价的累加。下面的练习说明，其他的代价函数也可以写成这种累加的形式。
 
 \begin{Exe} \label{Exe:4.4.16}
 假设马尔可夫策略$g := \{g_0,...,g_n\}$的代价是
@@ -281,30 +281,30 @@ $J(g)$可以通过转移概率矩阵$P_k^g$算出。从公式\eqref{eq:4.4.1}可以得到
 	\end{cases} \\
 	Prob\{y_{k+1} = 1 \ \vert \ y_k = 1,x_k,z_{k-1},...,z_0,u_k,...,u+0\} \equiv 1
 \end{align*}
-再设$c_k(z,u) \equiv 0, k < N$和$c_N(x,y,u) \equiv y$
+再设$c_k(z,u) \equiv 0, k < N$和$c_N(x,y,u) \equiv y$即可求证。
 \textnormal{]}
 \end{Exe}
 
 \section{静态马尔可夫策略}
 
-一个马尔可夫策略$g = \{g_0,g_1,...\}$称为静态的或者时不变的，如果$g_0 \equiv g_1 \equiv ... \equiv g$。
+一个马尔可夫策略$g = \{g_0,g_1,...\}$若满足$g_0 \equiv g_1 \equiv ... \equiv g$，称为静态的或者时不变的。
 
 如果$g$是静态的，则转移概率矩阵也是静态的，$P_k^g \equiv P^g$。若假设代价函数也是时不变的，即$c_k = c$，设衰减因子$0 < \beta < 1$为一个固定值，则
 % ==== End of Page 42 ====
 \begin{align*}
 	V_k^g(i) &= E^g \ \{\sum_{l=k}^{\infty} \beta^l c(x_l,g(x_l)) \ \vert \ x_k = i\} \\
 	&= \beta^k E^g \ \{\sum_{l=0}^{\infty} \beta^l c(x_l,g(x_l)) \ \vert \ x_0 = i\} \\
-	&= \beta^k V_0^g(i)
+	&= \beta^k V_0^g(i).
 \end{align*}
 带入\eqref{eq:4.4.13}中可得
 \begin{equation*}
-	\beta^k V_0^g = \beta^k c^g + \beta^{k+1} P^g V_0^g
+	\beta^k V_0^g = \beta^k c^g + \beta^{k+1} P^g V_0^g,
 \end{equation*}
 或者用矩阵表示为
 \begin{equation*}
-	[I - \beta P^g] V_0^g = c^g
+	[I - \beta P^g] V_0^g = c^g.
 \end{equation*}
-这是一组共$I$个线性方程，$V_0^g(i)$中有$I$个未知量。练习\eqref{Exe:4.5.3}说明$[I - \beta P^g]$是可逆的，因此这个系统的线性方程有唯一解$V_0^g$。
+这是一组共$I$个线性方程，$V_0^g(i)$中有$I$个未知量。练习\eqref{Exe:4.5.3}说明$[I - \beta P^g]$是可逆的，因此这个线性方程有唯一解$V_0^g$。
 
 \begin{Exe} \label{Exe:4.5.1}
 定义$x \in R^I$的模为$\vert x \vert := \max \{\vert x_1 \vert,...,\vert x_I \vert\}$。定义$I \times I$的矩阵$P$的模为$\Vert P \Vert := \max_i \sum_j \vert P_{ij} \vert$。证明矩阵的模可由向量的模推导出来
