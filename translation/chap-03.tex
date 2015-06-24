@@ -87,7 +87,7 @@
 	此外，协方差矩阵$\Sigma_{k+m \vert k}$可以通过线性差分方程\eqref{eq:3.1.9}和\eqref{eq:3.1.10}算出。
 \end{Lem}
 
-假设我们的控制率总是开环的，即$g_i \equiv u_i$对所有$i \ge 0$和$i \le k$总是常值函数，这时状态过程$\{x_k\}$服从高斯分布。它的无条件概率分布完全由无条件的均值$E \ x_k^g$和无条件的协方差$\Sigma_{k+m \vert k} := cov(x_{k+m},x_k)$描述。
+假设我们的控制律总是开环的，即$g_i \equiv u_i$对所有$i \ge 0$和$i \le k$总是常值函数，这时状态过程$\{x_k\}$服从高斯分布。它的无条件概率分布完全由无条件的均值$E \ x_k^g$和无条件的协方差$\Sigma_{k+m \vert k} := cov(x_{k+m},x_k)$描述。
 
 概率$p_{x_k}^g$决定了均值$E \ x_k^g$和方差$\Sigma_{k,k} := cov(x_k,x_k) := \Sigma_k$。为了计算它，注意到
 \begin{equation*}
@@ -192,7 +192,7 @@ $y_k$的均值为
 	E \ x_0 = \overline{x}_0, \quad E \ w_k &= 0, \quad E \ v_k = 0, \\
 	cov(x_0) = \Sigma_0, \quad cov(w_k) &= Q, \quad cov(v_k) = R.
 \end{align*}
-与此同时，使用开环控制率使得$g_k = u_k, k \ge 0$是常值函数。
+与此同时，使用开环控制律使得$g_k = u_k, k \ge 0$是常值函数。
 
 设
 \begin{align*}
@@ -222,7 +222,7 @@ $y_k$的均值为
 
 % ==== End of Page 28 ====
 
-\section{渐进性质}
+\section{渐近性质}
 
 下面我们研究当$k \to \infty$时由公式\eqref{eq:3.1.12}和\eqref{eq:3.1.13}给出的协方差矩阵$\Sigma_k$的变化。$\Sigma_k$的计算公式如下：
 \begin{align}
