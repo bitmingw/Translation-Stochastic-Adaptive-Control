@@ -11,9 +11,9 @@
 \end{equation}
 表示$z$服从平均值为$\overline{z}$，协方差为$\Sigma$的高斯分布。可知$z$的概率分布是
 \begin{equation}
-	p(z) = [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} exp[-\frac{1}{2} (z - \overline{z})^T \Sigma^{-1} (z - \overline{z})] \label{eq:3.1.2}
+	p(z) = [(2 \pi)^n \ \vert \Sigma \vert]^{{-1}/2} \textnormal{exp}[-\frac{1}{2} (z - \overline{z})^T \Sigma^{-1} (z - \overline{z})] \label{eq:3.1.2}
 \end{equation}
-式中$\vert \Sigma \vert := det \ \Sigma$。
+式中$\vert \Sigma \vert := \textnormal{det} \ \Sigma$。
 
 下面考虑这样一个线性随机系统
 \begin{subequations} \label{eq:3.1.3}
@@ -39,7 +39,7 @@
 \end{equation}
 代入式\eqref{eq:3.1.2}中可得如下显式的表达
 \begin{align*}
-	p(x_{k+1} \ \vert \ x_k, u_k) = & K \ exp[-\frac{1}{2} (x_{k+1} - A x_k - B u_k)^T \\
+	p(x_{k+1} \ \vert \ x_k, u_k) = & K \ \textnormal{exp}[-\frac{1}{2} (x_{k+1} - A x_k - B u_k)^T \\
 	& \times (GQG^T)^{-1} (x_{k+1} - A x_k - B u_k)]
 \end{align*}
 式中的$K$为归一化常数
@@ -63,12 +63,12 @@
 	p(x_{k+m} \ \vert \ x_k,u_k,...,u_{k+m-1}) \sim
 	N(A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B u_{k+j}, \Sigma_{k+m \vert k}) \label{eq:3.1.8}
 \end{equation}
-式中记$\Sigma_{k+m \vert k} := cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j})$。此协方差的计算用到了$w_k$的独立性：
+式中记$\Sigma_{k+m \vert k} := \textnormal{cov}(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j})$。此协方差的计算用到了$w_k$的独立性：
 	\begin{align}
-		\Sigma_{k+m \vert k} &= cov(\sum_{j=0}^{m-2} A^{m-1-j} G w_{k+j}) + cov(G w_{k+m-1}) \nonumber \\
+		\Sigma_{k+m \vert k} &= \textnormal{cov}(\sum_{j=0}^{m-2} A^{m-1-j} G w_{k+j}) + \textnormal{cov}(G w_{k+m-1}) \nonumber \\
 		% ==== End of Page 24 ====
-		&= cov(A \sum_{j=0}^{m-2} A^{m-2-j} G w_{k+j}) + GQG^T \nonumber \\
-		&= A [cov(\sum_{j=0}^{m-2} G w_{k+j})] A^T + GQG^T \nonumber \\
+		&= \textnormal{cov}(A \sum_{j=0}^{m-2} A^{m-2-j} G w_{k+j}) + GQG^T \nonumber \\
+		&= A [\textnormal{cov}(\sum_{j=0}^{m-2} G w_{k+j})] A^T + GQG^T \nonumber \\
 		&= A \Sigma_{k+m-1 \vert k} A^T + GQG^T. \label{eq:3.1.9}
 	\end{align}
 从初始条件
@@ -87,9 +87,9 @@
 	此外，协方差矩阵$\Sigma_{k+m \vert k}$可以通过线性差分方程\eqref{eq:3.1.9}和\eqref{eq:3.1.10}算出。
 \end{Lem}
 
-假设我们的控制律总是开环的，即$g_i \equiv u_i$对所有$i \ge 0$和$i \le k$总是常值函数，这时状态过程$\{x_k\}$服从高斯分布。它的无条件概率分布完全由无条件的均值$E \ x_k^g$和无条件的协方差$\Sigma_{k+m \vert k} := cov(x_{k+m},x_k)$描述。
+假设我们的控制律总是开环的，即$g_i \equiv u_i$对所有$i \ge 0$和$i \le k$总是常值函数，这时状态过程$\{x_k\}$服从高斯分布。它的无条件概率分布完全由无条件的均值$E \ x_k^g$和无条件的协方差$\Sigma_{k+m \vert k} := \textnormal{cov}(x_{k+m},x_k)$描述。
 
-概率$p_{x_k}^g$决定了均值$E \ x_k^g$和方差$\Sigma_{k,k} := cov(x_k,x_k) := \Sigma_k$。为了计算它，注意到
+概率$p_{x_k}^g$决定了均值$E \ x_k^g$和方差$\Sigma_{k,k} := \textnormal{cov}(x_k,x_k) := \Sigma_k$。为了计算它，注意到
 \begin{equation*}
 	x_k = A^k x_0 + \sum_{j=0}^{k-1} A^{k-1-j} B u_j + \sum_{j=0}^{k-1} A^{k-1-j} G w_j
 \end{equation*}
@@ -101,10 +101,10 @@
 其中
 \begin{align}
 	\overline{x}_k &= A^k \overline{x}_0 + \sum_{j=0}^{k-1} A^{k-1-j} B u_j, \nonumber \\
-	\Sigma_k &= cov(A^k x_0 + \sum_{j=0}^{k-1} A^{k-1-j} G w_j) \nonumber \\
-	&= cov(A(A^{k-1} x_0 + \sum_{j=0}^{k-2} A^{k-2-j} G w_j)) + cov(G w_{k-1}) \nonumber \\
+	\Sigma_k &= \textnormal{cov}(A^k x_0 + \sum_{j=0}^{k-1} A^{k-1-j} G w_j) \nonumber \\
+	&= \textnormal{cov}(A(A^{k-1} x_0 + \sum_{j=0}^{k-2} A^{k-2-j} G w_j)) + \textnormal{cov}(G w_{k-1}) \nonumber \\
 	&= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.1.12} \\
-	\Sigma_0 &= cov(x_0). \label{eq:3.1.13}
+	\Sigma_0 &= \textnormal{cov}(x_0). \label{eq:3.1.13}
 \end{align}
 也就是说$\{x_k\}$的概率分布可以递归地计算出来。
 
@@ -132,7 +132,7 @@ $y_k$的均值为
 \end{equation*}
 方差为
 \begin{equation}
-	\Sigma_k^y = cov(C x_k) + cov(H v_k) = C \Sigma_k C^T + HRH^T. \label{eq:3.1.15}
+	\Sigma_k^y = \textnormal{cov}(C x_k) + \textnormal{cov}(H v_k) = C \Sigma_k C^T + HRH^T. \label{eq:3.1.15}
 \end{equation}
 同时可以得到$y_{k+m}$和$y_k$之间的协方差
 % ==== End of Page 26 ====
@@ -190,7 +190,7 @@ $y_k$的均值为
 对于公式\eqref{eq:3.1.3}所示的线性系统，假设独立简单随机变量$x_0,w_0,w_1,...,v_0,v_1,...$并不服从高斯分布，但它们的均值和方差仍和先前相同：
 \begin{align*}
 	E \ x_0 = \overline{x}_0, \quad E \ w_k &= 0, \quad E \ v_k = 0, \\
-	cov(x_0) = \Sigma_0, \quad cov(w_k) &= Q, \quad cov(v_k) = R.
+	\textnormal{cov}(x_0) = \Sigma_0, \quad \textnormal{cov}(w_k) &= Q, \quad \textnormal{cov}(v_k) = R.
 \end{align*}
 与此同时，使用开环控制律使得$g_k = u_k, k \ge 0$是常值函数。
 
@@ -204,7 +204,7 @@ $y_k$的均值为
 从公式\eqref{eq:3.1.7}可知
 \begin{align*}
 	\overline{x}_{k+m \vert k} = A^m x_k + \sum_{j=0}^{m-1} A^{m-1-j} B u_{k+j}, \\
-	\Sigma_{k+m \vert k} = cov(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}).
+	\Sigma_{k+m \vert k} = \textnormal{cov}(\sum_{j=0}^{m-1} A^{m-1-j} G w_{k+j}).
 \end{align*}
 展开可得
 \begin{equation*}
@@ -227,7 +227,7 @@ $y_k$的均值为
 下面我们研究当$k \to \infty$时由公式\eqref{eq:3.1.12}和\eqref{eq:3.1.13}给出的协方差矩阵$\Sigma_k$的变化。$\Sigma_k$的计算公式如下：
 \begin{align}
 	\Sigma_k &= A \Sigma_{k-1} A^T + GQG^T, \quad k \ge 1, \label{eq:3.3.1} \\
-	\Sigma_0 &= cov(x_0). \label{eq:3.3.2}
+	\Sigma_0 &= \textnormal{cov}(x_0). \label{eq:3.3.2}
 \end{align}
 将递归公式展开后，可以得到
 \begin{equation}
@@ -263,7 +263,7 @@ $y_k$的均值为
 公式\eqref{eq:3.3.5}称为离散时间李雅普诺夫方程。
 
 \begin{Exe} \label{Exe:3.3.6}
-假设$A$是稳定的，若$cov(x_0) = \Sigma_{\infty}$，则$\{x_k\}$的协方差函数是平稳的。即$\Sigma_k = \Sigma_{\infty}$且$\Sigma_{k+m,k} = A^m \Sigma_{\infty}$对所有$k > 0$均成立。一般而言，$\{x_k\}$可以被分解成两部分
+假设$A$是稳定的，若$\textnormal{cov}(x_0) = \Sigma_{\infty}$，则$\{x_k\}$的协方差函数是平稳的。即$\Sigma_k = \Sigma_{\infty}$且$\Sigma_{k+m,k} = A^m \Sigma_{\infty}$对所有$k > 0$均成立。一般而言，$\{x_k\}$可以被分解成两部分
 \begin{equation*}
 	x_k = x_k' + x_k''.
 \end{equation*}
@@ -354,7 +354,7 @@ $\sum_{j=0}^{n-1} A^j SS^T (A^j)^T = \sum_{j=0}^{n-1} A^j GQG^T (A^j)^T$是正定的
 给出。如果$x_0,w_0,w_1,...$相互独立且服从高斯分布，那么这个过程就是高斯-马尔可夫过程。我们把这个这个命题的逆命题作为练习。
 
 \begin{Exe} \label{Exe:3.4.2}
-假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，令$\Sigma_k := cov(x_k), \Sigma_{k+1,k} := cov(x_{k+1},x_k)$。 \\
+假设$\{x_k\}$是一个高斯-马尔可夫过程，$E \ x_k \equiv 0$，令$\Sigma_k := \textnormal{cov}(x_k), \Sigma_{k+1,k} := \textnormal{cov}(x_{k+1},x_k)$。 \\
 试证明
 \begin{align}
 	\hat{x}_{k+1 \vert k} :=& \ E \ \{x_{k+1} \ \vert \ x_k,...,x_0\} = E \ \{x_{k+1} \ \vert \ x_k\} \nonumber \\
