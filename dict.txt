@@ -1,6 +1,6 @@
 moment 矩
-innovation 新型
-innovations representation 新型表示
+innovation 新息
+innovations representation 新息表示
 Cesaro 塞萨罗
 Kolmogorov 柯尔莫哥洛夫
 rate matrix 速率矩阵
